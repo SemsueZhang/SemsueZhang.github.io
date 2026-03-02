@@ -63,7 +63,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js" defer></script>
 
 
@@ -184,7 +184,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://example.com/excercises/Vocabulary/">
+    <link itemprop="mainEntityOfPage" href="https://example.com/articles/k-LUT-Mapper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/excercises/Vocabulary/" class="post-title-link" itemprop="url">Vocabulary</a>
+          <a href="/articles/k-LUT-Mapper/" class="post-title-link" itemprop="url">K-LUT Mapper</a>
         </h2>
 
         <div class="post-meta-container">
@@ -214,7 +214,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-03-01 11:28:14 / Modified: 20:53:40" itemprop="dateCreated datePublished" datetime="2026-03-01T11:28:14+08:00">2026-03-01</time>
+      <time title="Created: 2026-03-02 12:39:16 / Modified: 17:01:40" itemprop="dateCreated datePublished" datetime="2026-03-02T12:39:16+08:00">2026-03-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/excercises/" itemprop="url" rel="index"><span itemprop="name">Excercises</span></a>
+          <a href="/categories/articles/" itemprop="url" rel="index"><span itemprop="name">Articles</span></a>
         </span>
     </span>
 
@@ -236,7 +236,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Vocabulary-for-IERLTS"><a href="#Vocabulary-for-IERLTS" class="headerlink" title="Vocabulary for IERLTS"></a>Vocabulary for IERLTS</h1><p>参考刘洪波的雅思词汇真经，预计每天整理背诵 $100$ 个单词（包括过去学习过的）。也会和他书上内容相适应，按照分类进行背诵。</p>
+          <h1 id="K-LUT-Mapper"><a href="#K-LUT-Mapper" class="headerlink" title="$K$-LUT Mapper"></a>$K$-LUT Mapper</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Techenology Mapping is an important step in the FPGA design flow, which maps the logic design to the target FPGA architecture. Our $k$-LUT Mapper is a tool that performs technology mapping using $k$-input Look-Up Tables (we use $4$-LUT as example) as the basic building blocks. This mapper focuses on optimizing the mapping process to achieve better performance(especially minimization of area) and efficiency.</p>
+<p>Look Up Tables (LUTs) are a fundamental component in FPGA architectures, allowing for the implementation of combinational logic functions. $K$-LUTs can implement any <strong>Boolean function</strong> of $k$ variables.</p>
+<p>We have implemented a $k$-LUT Mapper that takes a logic design(blif format) as input and produces a mapped netlist. The mapper uses algorithms based on cut enumeration and randomized iteration.</p>
+<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>Our method is an improvement over AGDMap[1], which efficiently overcame the structural bias problem of cut enumeration algorithms. However, the efficiency of AGGMap needs improvement. We have implemented a $k$-LUT Mapper that uses a randomized iteration method to further optimize the mapping process. This approach allows us to explore a larger solution space and find better mappings, resulting in improved performance and reduced area.</p>
+<h2 id="Main-Algorithm"><a href="#Main-Algorithm" class="headerlink" title="Main Algorithm"></a>Main Algorithm</h2><p>The main algorithm of our $k$-LUT Mapper consists of the following steps:</p>
+<h3 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h3><p>We convert the graph into an AIG (And-Inverter Graph), which is a directed acyclic graph containing only two-input AND and NOT gates. By converting the graph into an AIG, we can omit handling wide-cuts and processing bin-package algorithm.</p>
+<h3 id="Cut-Enumeration"><a href="#Cut-Enumeration" class="headerlink" title="Cut Enumeration"></a>Cut Enumeration</h3><p><strong>Definition(Cut)</strong>: A cut of a node $v$ is a set of nodes that can be used to implement the logic function of v. A $k$-feasible cut is a cut that contains at most $k$ nodes.</p>
+<p><strong>Definition(Cone)</strong>: A cone of a cut of node $v$ is the subgraph that contains all the nodes that can reach $v$ and be reached by the nodes in the cut.</p>
+<h2 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] Longfei Fan, Chang Wu. 2023. “FPGA Technology Mapping with Adaptive Gate Decomposition”. Proceedings of the 2023 ACM/SIGDA International Symposium on Field Programmable Gate Arrays (FPGA 2023).</p>
 
       
     </div>
