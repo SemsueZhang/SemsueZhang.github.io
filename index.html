@@ -202,7 +202,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/articles/k-LUT-Mapper/" class="post-title-link" itemprop="url">$K$-LUT Mapper</a>
+          <a href="/articles/k-LUT-Mapper/" class="post-title-link" itemprop="url">K-LUT Mapper</a>
         </h2>
 
         <div class="post-meta-container">
@@ -214,7 +214,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-03-02 12:39:16 / Modified: 17:17:22" itemprop="dateCreated datePublished" datetime="2026-03-02T12:39:16+08:00">2026-03-02</time>
+      <time title="Created: 2026-03-02 12:39:16 / Modified: 17:25:13" itemprop="dateCreated datePublished" datetime="2026-03-02T12:39:16+08:00">2026-03-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -255,7 +255,7 @@ A_c=\dfrac{c_1}{fanout(v_1)}+\dfrac{c_2}{fanout(v_2)}+1.0</script><p>其中 $fan
 <script type="math/tex; mode=display">
 cost(c)=1.0 + \sum_{v\in c}\dfrac{bestcost(v)}{fanout(v)}</script><p>其中 $bestcost(v)$ 是节点 $v$ 上一轮迭代的最佳映射代价，$fanout(v)$ 是节点 $v$ 的输出连接的节点数量。</p>
 <h4 id="随机扰动"><a href="#随机扰动" class="headerlink" title="随机扰动"></a>随机扰动</h4><p>为了避免陷入局部最优解，我们在每轮迭代中引入随机扰动。在计算 $cost$ 的过程中，我们加上 $[-0.1,0.1]$ 内的一个随机数，以增加算法的探索能力。</p>
-<h4 id="随机选择"><a href="#随机选择" class="headerlink" title="随机选择"></a>随机选择</h4><p>在每轮迭代中，我们直接选择 $cost$ 最小的割，而是以 $P_{i,j}=\exp(-\dfrac{j}{i})$ 的概率选择第 $j$ 小的割，其中 $i$ 是当前迭代轮数，$j$ 是割的序号。这样可以增加算法的随机性，避免陷入局部最优解。</p>
+<h4 id="随机选择"><a href="#随机选择" class="headerlink" title="随机选择"></a>随机选择</h4><p>在每轮迭代中，我们直接选择 $cost$ 最小的割，而是以 $P_{i,j}=\exp(-j/i)$ 的概率选择第 $j$ 小的割，其中 $i$ 是当前迭代轮数，$j$ 是割的序号。这样可以增加算法的随机性，避免陷入局部最优解。</p>
 <h2 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] Longfei Fan, Chang Wu. 2023. “FPGA Technology Mapping with Adaptive Gate Decomposition”. Proceedings of the 2023 ACM/SIGDA International Symposium on Field Programmable Gate Arrays (FPGA 2023).</p>
 
       
