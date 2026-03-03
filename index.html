@@ -212,9 +212,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-03-02 12:39:16 / Modified: 17:25:13" itemprop="dateCreated datePublished" datetime="2026-03-02T12:39:16+08:00">2026-03-02</time>
+      <time title="Created: 2026-03-02 12:39:16" itemprop="dateCreated datePublished" datetime="2026-03-02T12:39:16+08:00">2026-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-03 09:19:52" itemprop="dateModified" datetime="2026-03-03T09:19:52+08:00">2026-03-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -236,7 +242,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Techenology Mapping is an important step in the FPGA design flow, which maps the logic design to the target FPGA architecture. Our $k$-LUT Mapper is a tool that performs technology mapping using $k$-input Look-Up Tables (we use $4$-LUT as example) as the basic building blocks. This mapper focuses on optimizing the mapping process to achieve better performance(especially minimization of area) and efficiency.</p>
+          <h2 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h2><ul>
+<li>从 blif 格式文件读入，并存储进图结构中。</li>
+<li><del>将 LUT 节点映射输出，并得到真值表。</del></li>
+<li>按照原有 blif 格式输出映射后的 LUTs。</li>
+<li>并行化。</li>
+<li>整理文档。</li>
+</ul>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Techenology Mapping is an important step in the FPGA design flow, which maps the logic design to the target FPGA architecture. Our $k$-LUT Mapper is a tool that performs technology mapping using $k$-input Look-Up Tables (we use $4$-LUT as example) as the basic building blocks. This mapper focuses on optimizing the mapping process to achieve better performance(especially minimization of area) and efficiency.</p>
 <p>Look Up Tables (LUTs) are a fundamental component in FPGA architectures, allowing for the implementation of combinational logic functions. $K$-LUTs can implement any <strong>Boolean function</strong> of $k$ variables.</p>
 <p>We have implemented a $k$-LUT Mapper that takes a logic design(blif format) as input and produces a mapped netlist. The mapper uses algorithms based on cut enumeration and randomized iteration.</p>
 <h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>Our method is an improvement over AGDMap[$1$], which efficiently overcame the structural bias problem of cut enumeration algorithms. However, the efficiency of AGGMap needs improvement. We have implemented a $k$-LUT Mapper that uses a randomized iteration method to further optimize the mapping process. This approach allows us to explore a larger solution space and find better mappings, resulting in improved performance and reduced area.</p>
