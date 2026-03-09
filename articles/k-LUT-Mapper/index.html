@@ -259,27 +259,34 @@
 </ul>
 <h2 id="introduction">Introduction</h2>
 <p>Techenology Mapping is an important step in the FPGA design flow,
-which maps the logic design to the target FPGA architecture. Our <span class="math inline"><em>k</em></span>-LUT Mapper is a tool that performs
-technology mapping using <span class="math inline"><em>k</em></span>-input Look-Up Tables (we use <span class="math inline">4</span>-LUT as example) as the basic building
+which maps the logic design to the target FPGA architecture. Our <span
+class="math inline"><em>k</em></span>-LUT Mapper is a tool that performs
+technology mapping using <span
+class="math inline"><em>k</em></span>-input Look-Up Tables (we use <span
+class="math inline">4</span>-LUT as example) as the basic building
 blocks. This mapper focuses on optimizing the mapping process to achieve
 better performance(especially minimization of area) and efficiency.</p>
 <p>Look Up Tables (LUTs) are a fundamental component in FPGA
 architectures, allowing for the implementation of combinational logic
 functions. <span class="math inline"><em>K</em></span>-LUTs can
-implement any <strong>Boolean function</strong> of <span class="math inline"><em>k</em></span> variables.</p>
+implement any <strong>Boolean function</strong> of <span
+class="math inline"><em>k</em></span> variables.</p>
 <p>We have implemented a <span class="math inline"><em>k</em></span>-LUT
 Mapper that takes a logic design(blif format) as input and produces a
 mapped netlist. The mapper uses algorithms based on cut enumeration and
 randomized iteration.</p>
 <h2 id="related-work">Related Work</h2>
-<p>Our method is an improvement over AGDMap[<span class="math inline">1</span>], which efficiently overcame the structural
+<p>Our method is an improvement over AGDMap[<span
+class="math inline">1</span>], which efficiently overcame the structural
 bias problem of cut enumeration algorithms. However, the efficiency of
-AGGMap needs improvement. We have implemented a <span class="math inline"><em>k</em></span>-LUT Mapper that uses a randomized
+AGGMap needs improvement. We have implemented a <span
+class="math inline"><em>k</em></span>-LUT Mapper that uses a randomized
 iteration method to further optimize the mapping process. This approach
 allows us to explore a larger solution space and find better mappings,
 resulting in improved performance and reduced area.</p>
 <h2 id="main-algorithm">Main Algorithm</h2>
-<p>The main algorithm of our <span class="math inline"><em>k</em></span>-LUT Mapper consists of the
+<p>The main algorithm of our <span
+class="math inline"><em>k</em></span>-LUT Mapper consists of the
 following steps:</p>
 <h3 id="initialization">Initialization</h3>
 <p>We convert the graph into an AIG (And-Inverter Graph), which is a
@@ -287,53 +294,76 @@ directed acyclic graph containing only two-input AND and NOT gates. By
 converting the graph into an AIG, we can omit handling wide-cuts and
 processing bin-package algorithm.</p>
 <h3 id="cut-enumeration">Cut Enumeration</h3>
-<p><strong>Definition(Cut)</strong>: A cut of a node <span class="math inline"><em>v</em></span> is a set of nodes that can be used
-to implement the logic function of v. A <span class="math inline"><em>k</em></span>-feasible cut is a cut that
+<p><strong>Definition(Cut)</strong>: A cut of a node <span
+class="math inline"><em>v</em></span> is a set of nodes that can be used
+to implement the logic function of v. A <span
+class="math inline"><em>k</em></span>-feasible cut is a cut that
 contains at most <span class="math inline"><em>k</em></span> nodes.</p>
 <p>其中割还有一个重要指标面积，用来反映大致需要的 LUT 数量。</p>
-<p><strong>Definition(Cone)</strong>: A cone of a cut of node <span class="math inline"><em>v</em></span> is the subgraph that contains all
+<p><strong>Definition(Cone)</strong>: A cone of a cut of node <span
+class="math inline"><em>v</em></span> is the subgraph that contains all
 the nodes that can reach <span class="math inline"><em>v</em></span> and
 be reached by the nodes in the cut.</p>
 <h4 id="cut-merging">Cut Merging</h4>
-<p>我们可以通过合并 <span class="math inline"><em>v</em> ∈ <em>F</em><em>a</em><em>n</em><em>i</em><em>n</em>(<em>u</em>)</span>
+<p>我们可以通过合并 <span
+class="math inline"><em>v</em> ∈ <em>F</em><em>a</em><em>n</em><em>i</em><em>n</em>(<em>u</em>)</span>
 的割来得到 u 的割。</p>
-<p>具体来讲，设 <span class="math inline"><em>L</em></span> 是目前 <span class="math inline"><em>u</em></span> 的割的集合，依次枚举 <span class="math inline"><em>v</em> ∈ <em>F</em><em>a</em><em>n</em><em>i</em><em>n</em>(<em>u</em>)</span>，将
-<span class="math inline"><em>L</em></span> 中的每个割与 <span class="math inline"><em>v</em></span> 的割进行合并，得到新的割集合 <span class="math inline"><em>L</em><sup>′</sup></span>，然后将 <span class="math inline"><em>L</em><sup>′</sup></span> 赋值给 <span class="math inline"><em>L</em></span>。合并的过程中，如果某个割的大小超过
+<p>具体来讲，设 <span class="math inline"><em>L</em></span> 是目前 <span
+class="math inline"><em>u</em></span> 的割的集合，依次枚举 <span
+class="math inline"><em>v</em> ∈ <em>F</em><em>a</em><em>n</em><em>i</em><em>n</em>(<em>u</em>)</span>，将
+<span class="math inline"><em>L</em></span> 中的每个割与 <span
+class="math inline"><em>v</em></span> 的割进行合并，得到新的割集合 <span
+class="math inline"><em>L</em><sup>′</sup></span>，然后将 <span
+class="math inline"><em>L</em><sup>′</sup></span> 赋值给 <span
+class="math inline"><em>L</em></span>。合并的过程中，如果某个割的大小超过
 <span class="math inline"><em>k</em></span>，则舍弃该割。</p>
-<p>在合并来自 <span class="math inline"><em>v</em><sub>1</sub>, <em>v</em><sub>2</sub></span>
-的割 <span class="math inline"><em>c</em><sub>1</sub>, <em>c</em><sub>2</sub></span>
+<p>在合并来自 <span
+class="math inline"><em>v</em><sub>1</sub>, <em>v</em><sub>2</sub></span>
+的割 <span
+class="math inline"><em>c</em><sub>1</sub>, <em>c</em><sub>2</sub></span>
 时，通过一下公式计算新的割的面积：</p>
 <p><span class="math display">$$
 A_c=\dfrac{c_1}{fanout(v_1)}+\dfrac{c_2}{fanout(v_2)}+1.0
 $$</span></p>
-<p>其中 <span class="math inline"><em>f</em><em>a</em><em>n</em><em>o</em><em>u</em><em>t</em>(<em>v</em>)</span>
+<p>其中 <span
+class="math inline"><em>f</em><em>a</em><em>n</em><em>o</em><em>u</em><em>t</em>(<em>v</em>)</span>
 是节点 <span class="math inline"><em>v</em></span>
 的输出连接的节点数量。</p>
 <h4 id="cut-pruning">Cut Pruning</h4>
 <p>在枚举完割之后，我们需要对割进行剪枝，以减少后续的计算量。剪枝的标准是割的面积，面积较大的割被<strong>认为</strong>是较差的选择（事实上不一定），因此我们保留面积较小的割。同时，还需要根据割的大小区分，保留不同大小的割，以保证后续的映射过程中有足够的选择。</p>
 <h3 id="randomized-iteration">Randomized Iteration</h3>
 <h4 id="迭代">迭代</h4>
-<p>每轮迭代从输出节点开始，依次向输入节点进行映射。对于每个节点 <span class="math inline"><em>u</em></span>，我们从 <span class="math inline"><em>u</em></span> 的割集合中选择一个 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+<p>每轮迭代从输出节点开始，依次向输入节点进行映射。对于每个节点 <span
+class="math inline"><em>u</em></span>，我们从 <span
+class="math inline"><em>u</em></span> 的割集合中选择一个 <span
+class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
 最小的割 <span class="math inline"><em>c</em></span> 进行映射。其中
-<span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+<span
+class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
 的计算公式如下：</p>
 <p><span class="math display">$$
 cost(c)=1.0 + \sum_{v\in c}\dfrac{bestcost(v)}{fanout(v)}
 $$</span></p>
-<p>其中 <span class="math inline"><em>b</em><em>e</em><em>s</em><em>t</em><em>c</em><em>o</em><em>s</em><em>t</em>(<em>v</em>)</span>
+<p>其中 <span
+class="math inline"><em>b</em><em>e</em><em>s</em><em>t</em><em>c</em><em>o</em><em>s</em><em>t</em>(<em>v</em>)</span>
 是节点 <span class="math inline"><em>v</em></span>
-上一轮迭代的最佳映射代价，<span class="math inline"><em>f</em><em>a</em><em>n</em><em>o</em><em>u</em><em>t</em>(<em>v</em>)</span>
+上一轮迭代的最佳映射代价，<span
+class="math inline"><em>f</em><em>a</em><em>n</em><em>o</em><em>u</em><em>t</em>(<em>v</em>)</span>
 是节点 <span class="math inline"><em>v</em></span>
 的输出连接的节点数量。</p>
 <h4 id="随机扰动">随机扰动</h4>
-<p>为了避免陷入局部最优解，我们在每轮迭代中引入随机扰动。在计算 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+<p>为了避免陷入局部最优解，我们在每轮迭代中引入随机扰动。在计算 <span
+class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
 的过程中，我们加上 <span class="math inline">[−0.1, 0.1]</span>
 内的一个随机数，以增加算法的探索能力。</p>
 <h4 id="随机选择">随机选择</h4>
-<p>在每轮迭代中，我们直接选择 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
-最小的割，而是以 <span class="math inline"><em>P</em><sub><em>i</em>, <em>j</em></sub> = exp (−<em>j</em>/<em>i</em>)</span>
+<p>在每轮迭代中，我们直接选择 <span
+class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+最小的割，而是以 <span
+class="math inline"><em>P</em><sub><em>i</em>, <em>j</em></sub> = exp (−<em>j</em>/<em>i</em>)</span>
 的概率选择第 <span class="math inline"><em>j</em></span> 小的割，其中
-<span class="math inline"><em>i</em></span> 是当前迭代轮数，<span class="math inline"><em>j</em></span>
+<span class="math inline"><em>i</em></span> 是当前迭代轮数，<span
+class="math inline"><em>j</em></span>
 是割的序号。这样可以增加算法的随机性，避免陷入局部最优解。</p>
 <h2 id="implementation-details">Implementation Details</h2>
 <h2 id="references">References</h2>
