@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="Todo List 从 blif 格式文件读入，并存储进图结构中。 将 LUT 节点映射输出，并得到真值表。 按照原有 blif 格式输出映射后的 LUTs。 并行化。 整理文档。  IntroductionTechenology Mapping is an important step in the FPGA design flow, which maps the logic design to">
+    <meta name="description" content="Todo List  从 blif 格式文件读入，并存储进图结构中。 将 LUT 节点映射输出，并得到真值表。 按照原有 blif 格式输出映射后的 LUTs。 并行化。 整理文档。  Introduction Techenology Mapping is an important step in the FPGA design flow, which maps the log">
 <meta property="og:type" content="article">
 <meta property="og:title" content="K-LUT Mapper">
 <meta property="og:url" content="https://example.com/articles/k-LUT-Mapper/index.html">
 <meta property="og:site_name" content="ZHANG Chenrui&#39;s Blog">
-<meta property="og:description" content="Todo List 从 blif 格式文件读入，并存储进图结构中。 将 LUT 节点映射输出，并得到真值表。 按照原有 blif 格式输出映射后的 LUTs。 并行化。 整理文档。  IntroductionTechenology Mapping is an important step in the FPGA design flow, which maps the logic design to">
+<meta property="og:description" content="Todo List  从 blif 格式文件读入，并存储进图结构中。 将 LUT 节点映射输出，并得到真值表。 按照原有 blif 格式输出映射后的 LUTs。 并行化。 整理文档。  Introduction Techenology Mapping is an important step in the FPGA design flow, which maps the log">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-03-02T04:39:16.000Z">
 <meta property="article:modified_time" content="2026-03-03T01:19:52.188Z">
@@ -136,7 +136,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Todo-List"><span class="nav-number">1.</span> <span class="nav-text">Todo List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Related-Work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Main-Algorithm"><span class="nav-number">4.</span> <span class="nav-text">Main Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Initialization"><span class="nav-number">4.1.</span> <span class="nav-text">Initialization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cut-Enumeration"><span class="nav-number">4.2.</span> <span class="nav-text">Cut Enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cut-Merging"><span class="nav-number">4.2.1.</span> <span class="nav-text">Cut Merging</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cut-Pruning"><span class="nav-number">4.2.2.</span> <span class="nav-text">Cut Pruning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Randomized-Iteration"><span class="nav-number">4.3.</span> <span class="nav-text">Randomized Iteration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">4.3.1.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%89%B0%E5%8A%A8"><span class="nav-number">4.3.2.</span> <span class="nav-text">随机扰动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9"><span class="nav-number">4.3.3.</span> <span class="nav-text">随机选择</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Implementation-Details"><span class="nav-number">5.</span> <span class="nav-text">Implementation Details</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">6.</span> <span class="nav-text">References</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#todo-list"><span class="nav-number">1.</span> <span class="nav-text">Todo List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#related-work"><span class="nav-number">3.</span> <span class="nav-text">Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-algorithm"><span class="nav-number">4.</span> <span class="nav-text">Main Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#initialization"><span class="nav-number">4.1.</span> <span class="nav-text">Initialization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cut-enumeration"><span class="nav-number">4.2.</span> <span class="nav-text">Cut Enumeration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cut-merging"><span class="nav-number">4.2.1.</span> <span class="nav-text">Cut Merging</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cut-pruning"><span class="nav-number">4.2.2.</span> <span class="nav-text">Cut Pruning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#randomized-iteration"><span class="nav-number">4.3.</span> <span class="nav-text">Randomized Iteration</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3"><span class="nav-number">4.3.1.</span> <span class="nav-text">迭代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%89%B0%E5%8A%A8"><span class="nav-number">4.3.2.</span> <span class="nav-text">随机扰动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9"><span class="nav-number">4.3.3.</span> <span class="nav-text">随机选择</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#implementation-details"><span class="nav-number">5.</span> <span class="nav-text">Implementation Details</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">6.</span> <span class="nav-text">References</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,34 +249,98 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="Todo-List"><a href="#Todo-List" class="headerlink" title="Todo List"></a>Todo List</h2><ul>
+    <div class="post-body" itemprop="articleBody"><h2 id="todo-list">Todo List</h2>
+<ul>
 <li>从 blif 格式文件读入，并存储进图结构中。</li>
 <li><del>将 LUT 节点映射输出，并得到真值表。</del></li>
 <li>按照原有 blif 格式输出映射后的 LUTs。</li>
 <li>并行化。</li>
 <li>整理文档。</li>
 </ul>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Techenology Mapping is an important step in the FPGA design flow, which maps the logic design to the target FPGA architecture. Our $k$-LUT Mapper is a tool that performs technology mapping using $k$-input Look-Up Tables (we use $4$-LUT as example) as the basic building blocks. This mapper focuses on optimizing the mapping process to achieve better performance(especially minimization of area) and efficiency.</p>
-<p>Look Up Tables (LUTs) are a fundamental component in FPGA architectures, allowing for the implementation of combinational logic functions. $K$-LUTs can implement any <strong>Boolean function</strong> of $k$ variables.</p>
-<p>We have implemented a $k$-LUT Mapper that takes a logic design(blif format) as input and produces a mapped netlist. The mapper uses algorithms based on cut enumeration and randomized iteration.</p>
-<h2 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h2><p>Our method is an improvement over AGDMap[$1$], which efficiently overcame the structural bias problem of cut enumeration algorithms. However, the efficiency of AGGMap needs improvement. We have implemented a $k$-LUT Mapper that uses a randomized iteration method to further optimize the mapping process. This approach allows us to explore a larger solution space and find better mappings, resulting in improved performance and reduced area.</p>
-<h2 id="Main-Algorithm"><a href="#Main-Algorithm" class="headerlink" title="Main Algorithm"></a>Main Algorithm</h2><p>The main algorithm of our $k$-LUT Mapper consists of the following steps:</p>
-<h3 id="Initialization"><a href="#Initialization" class="headerlink" title="Initialization"></a>Initialization</h3><p>We convert the graph into an AIG (And-Inverter Graph), which is a directed acyclic graph containing only two-input AND and NOT gates. By converting the graph into an AIG, we can omit handling wide-cuts and processing bin-package algorithm.</p>
-<h3 id="Cut-Enumeration"><a href="#Cut-Enumeration" class="headerlink" title="Cut Enumeration"></a>Cut Enumeration</h3><p><strong>Definition(Cut)</strong>: A cut of a node $v$ is a set of nodes that can be used to implement the logic function of v. A $k$-feasible cut is a cut that contains at most $k$ nodes.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Techenology Mapping is an important step in the FPGA design flow,
+which maps the logic design to the target FPGA architecture. Our <span class="math inline"><em>k</em></span>-LUT Mapper is a tool that performs
+technology mapping using <span class="math inline"><em>k</em></span>-input Look-Up Tables (we use <span class="math inline">4</span>-LUT as example) as the basic building
+blocks. This mapper focuses on optimizing the mapping process to achieve
+better performance(especially minimization of area) and efficiency.</p>
+<p>Look Up Tables (LUTs) are a fundamental component in FPGA
+architectures, allowing for the implementation of combinational logic
+functions. <span class="math inline"><em>K</em></span>-LUTs can
+implement any <strong>Boolean function</strong> of <span class="math inline"><em>k</em></span> variables.</p>
+<p>We have implemented a <span class="math inline"><em>k</em></span>-LUT
+Mapper that takes a logic design(blif format) as input and produces a
+mapped netlist. The mapper uses algorithms based on cut enumeration and
+randomized iteration.</p>
+<h2 id="related-work">Related Work</h2>
+<p>Our method is an improvement over AGDMap[<span class="math inline">1</span>], which efficiently overcame the structural
+bias problem of cut enumeration algorithms. However, the efficiency of
+AGGMap needs improvement. We have implemented a <span class="math inline"><em>k</em></span>-LUT Mapper that uses a randomized
+iteration method to further optimize the mapping process. This approach
+allows us to explore a larger solution space and find better mappings,
+resulting in improved performance and reduced area.</p>
+<h2 id="main-algorithm">Main Algorithm</h2>
+<p>The main algorithm of our <span class="math inline"><em>k</em></span>-LUT Mapper consists of the
+following steps:</p>
+<h3 id="initialization">Initialization</h3>
+<p>We convert the graph into an AIG (And-Inverter Graph), which is a
+directed acyclic graph containing only two-input AND and NOT gates. By
+converting the graph into an AIG, we can omit handling wide-cuts and
+processing bin-package algorithm.</p>
+<h3 id="cut-enumeration">Cut Enumeration</h3>
+<p><strong>Definition(Cut)</strong>: A cut of a node <span class="math inline"><em>v</em></span> is a set of nodes that can be used
+to implement the logic function of v. A <span class="math inline"><em>k</em></span>-feasible cut is a cut that
+contains at most <span class="math inline"><em>k</em></span> nodes.</p>
 <p>其中割还有一个重要指标面积，用来反映大致需要的 LUT 数量。</p>
-<p><strong>Definition(Cone)</strong>: A cone of a cut of node $v$ is the subgraph that contains all the nodes that can reach $v$ and be reached by the nodes in the cut.</p>
-<h4 id="Cut-Merging"><a href="#Cut-Merging" class="headerlink" title="Cut Merging"></a>Cut Merging</h4><p>我们可以通过合并 $v\in Fanin(u)$ 的割来得到 u 的割。</p>
-<p>具体来讲，设 $L$ 是目前 $u$ 的割的集合，依次枚举 $v \in Fanin(u)$，将 $L$ 中的每个割与 $v$ 的割进行合并，得到新的割集合 $L’$，然后将 $L’$ 赋值给 $L$。合并的过程中，如果某个割的大小超过 $k$，则舍弃该割。</p>
-<p>在合并来自 $v_1,v_2$ 的割 $c_1,c_2$ 时，通过一下公式计算新的割的面积：</p>
-<script type="math/tex; mode=display">
-A_c=\dfrac{c_1}{fanout(v_1)}+\dfrac{c_2}{fanout(v_2)}+1.0</script><p>其中 $fanout(v)$ 是节点 $v$ 的输出连接的节点数量。</p>
-<h4 id="Cut-Pruning"><a href="#Cut-Pruning" class="headerlink" title="Cut Pruning"></a>Cut Pruning</h4><p>在枚举完割之后，我们需要对割进行剪枝，以减少后续的计算量。剪枝的标准是割的面积，面积较大的割被<strong>认为</strong>是较差的选择（事实上不一定），因此我们保留面积较小的割。同时，还需要根据割的大小区分，保留不同大小的割，以保证后续的映射过程中有足够的选择。</p>
-<h3 id="Randomized-Iteration"><a href="#Randomized-Iteration" class="headerlink" title="Randomized Iteration"></a>Randomized Iteration</h3><h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>每轮迭代从输出节点开始，依次向输入节点进行映射。对于每个节点 $u$，我们从 $u$ 的割集合中选择一个 $cost$ 最小的割 $c$ 进行映射。其中 $cost$ 的计算公式如下：</p>
-<script type="math/tex; mode=display">
-cost(c)=1.0 + \sum_{v\in c}\dfrac{bestcost(v)}{fanout(v)}</script><p>其中 $bestcost(v)$ 是节点 $v$ 上一轮迭代的最佳映射代价，$fanout(v)$ 是节点 $v$ 的输出连接的节点数量。</p>
-<h4 id="随机扰动"><a href="#随机扰动" class="headerlink" title="随机扰动"></a>随机扰动</h4><p>为了避免陷入局部最优解，我们在每轮迭代中引入随机扰动。在计算 $cost$ 的过程中，我们加上 $[-0.1,0.1]$ 内的一个随机数，以增加算法的探索能力。</p>
-<h4 id="随机选择"><a href="#随机选择" class="headerlink" title="随机选择"></a>随机选择</h4><p>在每轮迭代中，我们直接选择 $cost$ 最小的割，而是以 $P_{i,j}=\exp(-j/i)$ 的概率选择第 $j$ 小的割，其中 $i$ 是当前迭代轮数，$j$ 是割的序号。这样可以增加算法的随机性，避免陷入局部最优解。</p>
-<h2 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>[1] Longfei Fan, Chang Wu. 2023. “FPGA Technology Mapping with Adaptive Gate Decomposition”. Proceedings of the 2023 ACM/SIGDA International Symposium on Field Programmable Gate Arrays (FPGA 2023).</p>
+<p><strong>Definition(Cone)</strong>: A cone of a cut of node <span class="math inline"><em>v</em></span> is the subgraph that contains all
+the nodes that can reach <span class="math inline"><em>v</em></span> and
+be reached by the nodes in the cut.</p>
+<h4 id="cut-merging">Cut Merging</h4>
+<p>我们可以通过合并 <span class="math inline"><em>v</em> ∈ <em>F</em><em>a</em><em>n</em><em>i</em><em>n</em>(<em>u</em>)</span>
+的割来得到 u 的割。</p>
+<p>具体来讲，设 <span class="math inline"><em>L</em></span> 是目前 <span class="math inline"><em>u</em></span> 的割的集合，依次枚举 <span class="math inline"><em>v</em> ∈ <em>F</em><em>a</em><em>n</em><em>i</em><em>n</em>(<em>u</em>)</span>，将
+<span class="math inline"><em>L</em></span> 中的每个割与 <span class="math inline"><em>v</em></span> 的割进行合并，得到新的割集合 <span class="math inline"><em>L</em><sup>′</sup></span>，然后将 <span class="math inline"><em>L</em><sup>′</sup></span> 赋值给 <span class="math inline"><em>L</em></span>。合并的过程中，如果某个割的大小超过
+<span class="math inline"><em>k</em></span>，则舍弃该割。</p>
+<p>在合并来自 <span class="math inline"><em>v</em><sub>1</sub>, <em>v</em><sub>2</sub></span>
+的割 <span class="math inline"><em>c</em><sub>1</sub>, <em>c</em><sub>2</sub></span>
+时，通过一下公式计算新的割的面积：</p>
+<p><span class="math display">$$
+A_c=\dfrac{c_1}{fanout(v_1)}+\dfrac{c_2}{fanout(v_2)}+1.0
+$$</span></p>
+<p>其中 <span class="math inline"><em>f</em><em>a</em><em>n</em><em>o</em><em>u</em><em>t</em>(<em>v</em>)</span>
+是节点 <span class="math inline"><em>v</em></span>
+的输出连接的节点数量。</p>
+<h4 id="cut-pruning">Cut Pruning</h4>
+<p>在枚举完割之后，我们需要对割进行剪枝，以减少后续的计算量。剪枝的标准是割的面积，面积较大的割被<strong>认为</strong>是较差的选择（事实上不一定），因此我们保留面积较小的割。同时，还需要根据割的大小区分，保留不同大小的割，以保证后续的映射过程中有足够的选择。</p>
+<h3 id="randomized-iteration">Randomized Iteration</h3>
+<h4 id="迭代">迭代</h4>
+<p>每轮迭代从输出节点开始，依次向输入节点进行映射。对于每个节点 <span class="math inline"><em>u</em></span>，我们从 <span class="math inline"><em>u</em></span> 的割集合中选择一个 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+最小的割 <span class="math inline"><em>c</em></span> 进行映射。其中
+<span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+的计算公式如下：</p>
+<p><span class="math display">$$
+cost(c)=1.0 + \sum_{v\in c}\dfrac{bestcost(v)}{fanout(v)}
+$$</span></p>
+<p>其中 <span class="math inline"><em>b</em><em>e</em><em>s</em><em>t</em><em>c</em><em>o</em><em>s</em><em>t</em>(<em>v</em>)</span>
+是节点 <span class="math inline"><em>v</em></span>
+上一轮迭代的最佳映射代价，<span class="math inline"><em>f</em><em>a</em><em>n</em><em>o</em><em>u</em><em>t</em>(<em>v</em>)</span>
+是节点 <span class="math inline"><em>v</em></span>
+的输出连接的节点数量。</p>
+<h4 id="随机扰动">随机扰动</h4>
+<p>为了避免陷入局部最优解，我们在每轮迭代中引入随机扰动。在计算 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+的过程中，我们加上 <span class="math inline">[−0.1, 0.1]</span>
+内的一个随机数，以增加算法的探索能力。</p>
+<h4 id="随机选择">随机选择</h4>
+<p>在每轮迭代中，我们直接选择 <span class="math inline"><em>c</em><em>o</em><em>s</em><em>t</em></span>
+最小的割，而是以 <span class="math inline"><em>P</em><sub><em>i</em>, <em>j</em></sub> = exp (−<em>j</em>/<em>i</em>)</span>
+的概率选择第 <span class="math inline"><em>j</em></span> 小的割，其中
+<span class="math inline"><em>i</em></span> 是当前迭代轮数，<span class="math inline"><em>j</em></span>
+是割的序号。这样可以增加算法的随机性，避免陷入局部最优解。</p>
+<h2 id="implementation-details">Implementation Details</h2>
+<h2 id="references">References</h2>
+<p>[1] Longfei Fan, Chang Wu. 2023. “FPGA Technology Mapping with
+Adaptive Gate Decomposition”. Proceedings of the 2023 ACM/SIGDA
+International Symposium on Field Programmable Gate Arrays (FPGA
+2023).</p>
 
     </div>
 
