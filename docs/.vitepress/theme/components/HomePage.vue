@@ -9,8 +9,10 @@ const { site } = useData();
 const profile = {
   name: 'Zhang Chenrui',
   identity: '科研与技术写作者',
-  school: '学校信息待补充',
-  email: '邮箱信息待补充',
+  organization: 'Sun Yat-sen University',
+  location: '广东 · 广州',
+  email: 'zhangchr28@mail2.sysu.edu.cn',
+  githubLabel: 'github.semsuezhang',
   github: 'https://github.com/SemsueZhang'
 };
 </script>
@@ -31,18 +33,25 @@ const profile = {
 
       <dl class="home-profile__details">
         <div>
-          <dt>学校</dt>
-          <dd>{{ profile.school }}</dd>
+          <dt>组织</dt>
+          <dd>{{ profile.organization }}</dd>
+        </div>
+        <div>
+          <dt>地点</dt>
+          <dd>{{ profile.location }}</dd>
         </div>
         <div>
           <dt>邮箱</dt>
-          <dd>{{ profile.email }}</dd>
+          <dd><a :href="`mailto:${profile.email}`">{{ profile.email }}</a></dd>
+        </div>
+        <div>
+          <dt>GitHub</dt>
+          <dd><a :href="profile.github" rel="me external">{{ profile.githubLabel }}</a></dd>
         </div>
       </dl>
 
       <nav class="home-profile__links" aria-label="个人链接">
         <a :href="withBase('/about')">关于我</a>
-        <a :href="profile.github" rel="me external">GitHub</a>
       </nav>
     </aside>
 
