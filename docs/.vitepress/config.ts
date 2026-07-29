@@ -52,6 +52,7 @@ export default defineConfig({
       { text: '标签', link: '/tags/' },
       { text: '分类', link: '/categories/' },
       { text: '归档', link: '/archive/' },
+      { text: 'CV', link: '/cv/' },
       { text: '关于', link: '/about' }
     ]
   }

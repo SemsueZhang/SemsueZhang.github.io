@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useData, withBase } from 'vitepress';
 import { data as postsData } from '../../../posts.data';
+import ActivityHeatmap from './ActivityHeatmap.vue';
+import LocalClock from './LocalClock.vue';
 
 const { site } = useData();
 
@@ -59,5 +61,10 @@ const profile = {
       </ol>
       <p v-else class="home-articles__empty">暂时还没有公开文章。</p>
     </section>
+
+    <aside class="home-widgets" aria-label="博客概览">
+      <LocalClock />
+      <ActivityHeatmap />
+    </aside>
   </div>
 </template>
