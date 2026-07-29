@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useData, withBase } from 'vitepress';
 import MobileNavigation from './MobileNavigation.vue';
+import SiteSearch from './SiteSearch.vue';
 import SiteNavigation from './SiteNavigation.vue';
 import ThemeToggle from './ThemeToggle.vue';
 
@@ -26,6 +27,7 @@ const navigation = computed(
 
       <div class="site-header__controls">
         <SiteNavigation :items="navigation" />
+        <SiteSearch />
         <ThemeToggle />
         <MobileNavigation :items="navigation" />
       </div>

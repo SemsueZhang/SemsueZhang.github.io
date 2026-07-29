@@ -105,8 +105,9 @@ const monthLabels = computed<MonthLabel[]>(() => {
         :key="day.key"
         class="activity-heatmap__day"
         :class="`activity-heatmap__day--level-${day.level}`"
-        :title="day.label"
         :aria-label="day.label"
+        :data-tooltip="day.label"
+        tabindex="0"
       />
     </div>
   </section>
