@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# VitePress build output and local cache
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# Package-manager logs and local environment files
+*.log
+.pnpm-debug.log*
+.env
+.env.*
+!.env.example
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

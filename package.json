@@ -1,0 +1,23 @@
+{
+  "name": "semsuezhang-github-io",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zhang Chenrui's personal blog, built with VitePress.",
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "gray-matter": "^4.0.3",
+    "markdown-it-mathjax3": "^4.3.2",
+    "typescript": "^5.9.3",
+    "vitepress": "latest",
+    "vue": "latest",
+    "vue-tsc": "latest"
+  }
+}
