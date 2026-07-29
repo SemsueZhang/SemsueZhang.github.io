@@ -255,15 +255,18 @@ a:hover { color: var(--color-accent-strong); }
 .home-widget__heading p { margin: 0; color: var(--color-text-faint); font-size: 0.75rem; }
 .local-clock__time { display: block; margin-top: var(--space-2); color: var(--color-text); font-family: var(--font-mono); font-size: 1.2rem; letter-spacing: -0.05em; }
 .activity-heatmap__description { margin: var(--space-2) 0 var(--space-3); color: var(--color-text-faint); font-size: 0.72rem; line-height: 1.5; }
-.activity-heatmap__months { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); min-height: 1rem; margin-bottom: var(--space-1); overflow: hidden; color: var(--color-text-faint); font-size: 0.66rem; line-height: 1; white-space: nowrap; }
-.activity-heatmap__months span { min-width: max-content; }
-.activity-heatmap__grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, minmax(0, 1fr)); grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; }
+.activity-heatmap__month-picker { margin-bottom: var(--space-3); }
+.activity-heatmap__month-picker output { display: block; color: var(--color-text-muted); font-size: 0.76rem; font-weight: 700; }
+.activity-heatmap__month-picker input { width: 100%; height: 1.1rem; margin: var(--space-2) 0 0; accent-color: var(--color-accent); cursor: ew-resize; }
+.activity-heatmap__month-picker > div { display: flex; justify-content: space-between; color: var(--color-text-faint); font-size: 0.66rem; }
+.activity-heatmap__grid { display: grid; grid-auto-flow: row; grid-template-columns: repeat(7, minmax(0, 1fr)); grid-template-rows: repeat(6, minmax(0, 1fr)); gap: 3px; }
 .activity-heatmap__day { position: relative; display: block; width: 100%; aspect-ratio: 1; background: var(--color-surface-muted); border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent); border-radius: 2px; cursor: help; }
 .activity-heatmap__day:is(:hover, :focus-visible)::after { position: absolute; z-index: 5; bottom: calc(100% + 0.35rem); left: 50%; width: max-content; max-width: 11rem; padding: 0.3rem var(--space-2); color: var(--color-surface); background: var(--color-text); border-radius: var(--radius-sm); content: attr(data-tooltip); font-size: 0.68rem; line-height: 1.35; pointer-events: none; transform: translateX(-50%); }
 .activity-heatmap__day--level-0 { background: var(--color-surface-muted); }
 .activity-heatmap__day--level-1 { background: color-mix(in srgb, var(--color-accent) 35%, var(--color-surface)); }
 .activity-heatmap__day--level-2 { background: color-mix(in srgb, var(--color-accent) 62%, var(--color-surface)); }
 .activity-heatmap__day--level-3 { background: var(--color-accent); }
+.activity-heatmap__day--empty { visibility: hidden; pointer-events: none; }
 
 .post-list { display: grid; gap: var(--space-4); max-width: var(--content-width); margin-top: var(--space-6); }
 .post-list--featured { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
