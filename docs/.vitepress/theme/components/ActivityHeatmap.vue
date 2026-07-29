@@ -9,6 +9,12 @@ interface ActivityDay {
   level: number;
 }
 
+interface MonthLabel {
+  key: string;
+  label: string;
+  column: number;
+}
+
 const DAY_MS = 24 * 60 * 60 * 1000;
 const DISPLAY_DAYS = 84;
 
@@ -18,6 +24,11 @@ function formatDate(timestamp: number): string {
   const month = String(date.getUTCMonth() + 1).padStart(2, '0');
   const day = String(date.getUTCDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+function formatMonth(timestamp: number): string {
+  const date = new Date(timestamp);
+  return `${date.getUTCMonth() + 1} 月`;
 }
 
 function activityLevel(count: number): number {
@@ -52,6 +63,24 @@ const activity = computed<ActivityDay[]>(() => {
 });
 
 const publishedCount = computed(() => postsData.posts.length);
+const monthLabels = computed<MonthLabel[]>(() => {
+  const labels: MonthLabel[] = [];
+  let previousMonth = '';
+
+  for (const [index, day] of activity.value.entries()) {
+    const month = day.key.slice(0, 7);
+    if (month === previousMonth) continue;
+
+    labels.push({
+      key: month,
+      label: formatMonth(Date.parse(`${day.key}T00:00:00Z`)),
+      column: Math.floor(index / 7) + 1
+    });
+    previousMonth = month;
+  }
+
+  return labels;
+});
 </script>
 
 <template>
@@ -61,6 +90,15 @@ const publishedCount = computed(() => postsData.posts.length);
       <p>{{ publishedCount }} 篇</p>
     </div>
     <p class="activity-heatmap__description">按公开文章发布日期统计</p>
+    <div class="activity-heatmap__months" aria-hidden="true">
+      <span
+        v-for="month in monthLabels"
+        :key="month.key"
+        :style="{ gridColumnStart: month.column }"
+      >
+        {{ month.label }}
+      </span>
+    </div>
     <div class="activity-heatmap__grid" role="img" aria-label="最近十二周的文章发布活动热力图">
       <span
         v-for="day in activity"
@@ -70,14 +108,6 @@ const publishedCount = computed(() => postsData.posts.length);
         :title="day.label"
         :aria-label="day.label"
       />
-    </div>
-    <div class="activity-heatmap__legend" aria-hidden="true">
-      <span>少</span>
-      <i class="activity-heatmap__day--level-0" />
-      <i class="activity-heatmap__day--level-1" />
-      <i class="activity-heatmap__day--level-2" />
-      <i class="activity-heatmap__day--level-3" />
-      <span>多</span>
     </div>
   </section>
 </template>
