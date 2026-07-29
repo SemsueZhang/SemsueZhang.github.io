@@ -16,9 +16,13 @@ const profile = {
 <template>
   <div class="home-page home-page--minimal">
     <aside class="home-profile" aria-labelledby="profile-name">
-      <div class="home-profile__avatar" role="img" :aria-label="`${profile.name} 的头像`">
-        ZC
-      </div>
+      <img
+        class="home-profile__avatar"
+        :src="withBase('/avatar.png')"
+        :alt="`${profile.name} 的个人头像`"
+        width="144"
+        height="144"
+      >
       <p class="home-profile__blog-name">{{ site.title }}</p>
       <h1 id="profile-name">{{ profile.name }}</h1>
       <p class="home-profile__identity">{{ profile.identity }}</p>

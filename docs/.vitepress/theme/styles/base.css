@@ -161,17 +161,11 @@ a:hover { color: var(--color-accent-strong); }
 }
 
 .home-profile__avatar {
-  display: grid;
   width: 4.5rem;
   height: 4.5rem;
-  place-items: center;
-  color: var(--color-surface);
-  background: var(--color-text);
   border-radius: 50%;
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.04em;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
 }
 
 .home-profile__blog-name {
