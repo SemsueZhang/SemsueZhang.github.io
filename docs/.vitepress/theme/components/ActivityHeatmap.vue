@@ -25,6 +25,7 @@ interface ActivityYear {
 }
 
 const MONTHS = ['1 月', '2 月', '3 月', '4 月', '5 月', '6 月', '7 月', '8 月', '9 月', '10 月', '11 月', '12 月'];
+const FIRST_ACTIVITY_YEAR = 2026;
 const activityCounts = new Map<number, number>();
 
 for (const post of postsData.posts) {
@@ -103,9 +104,8 @@ function createYearActivity(year: number): ActivityYear {
 
 const postYears = postsData.posts.map((post) => post.date.year);
 const currentYear = new Date().getUTCFullYear();
-const latestYear = Math.max(currentYear, ...postYears);
-const earliestYear = Math.min(...postYears, latestYear - 4);
-const years = Array.from({ length: latestYear - earliestYear + 1 }, (_, index) => latestYear - index);
+const latestYear = Math.max(FIRST_ACTIVITY_YEAR, currentYear, ...postYears);
+const years = Array.from({ length: latestYear - FIRST_ACTIVITY_YEAR + 1 }, (_, index) => latestYear - index);
 const selectedYear = ref(years[0] ?? currentYear);
 const selectedActivity = computed(() => createYearActivity(selectedYear.value));
 </script>
