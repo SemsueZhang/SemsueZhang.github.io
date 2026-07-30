@@ -44,14 +44,12 @@ onUnmounted(() => {
     <div class="site-header__inner">
       <div class="site-header__left">
         <a class="site-brand" :href="withBase('/')" aria-label="返回首页">
-          <span class="site-brand__title">{{ site.title }}</span>
-          <span class="site-brand__edition">ISSUE 01 / 2026</span>
+          <span>{{ site.title }}</span>
         </a>
         <SiteNavigation :items="navigation" />
       </div>
 
       <div class="site-header__controls">
-        <span class="site-header__signal" aria-hidden="true">RESEARCH NOTES</span>
         <SiteSearch />
         <ThemeToggle />
         <time class="site-header__clock" aria-label="当前日期和时间">{{ menuBarTime }}</time>

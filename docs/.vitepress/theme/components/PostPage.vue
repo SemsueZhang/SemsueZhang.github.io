@@ -68,9 +68,6 @@ const nextPost = computed(() => {
       <div class="post-reader__split">
         <div ref="scrollElement" class="post-reader__main">
           <header class="post-header">
-            <p class="post-header__index">
-              NOTE / {{ String(Math.max(currentIndex + 1, 1)).padStart(2, '0') }}
-            </p>
             <a
               v-if="post.category"
               class="eyebrow post-header__category"
