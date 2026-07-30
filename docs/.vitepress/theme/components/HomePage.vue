@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useData, withBase } from 'vitepress';
+import { data as postsData } from '../../../posts.data';
 import ActivityHeatmap from './ActivityHeatmap.vue';
 import LocalClock from './LocalClock.vue';
 import ReadingStats from './ReadingStats.vue';
@@ -16,21 +17,40 @@ const profile = {
   githubLabel: 'github.semsuezhang',
   github: 'https://github.com/SemsueZhang'
 };
+
+const overview = {
+  posts: postsData.posts.length,
+  tags: Object.keys(postsData.byTag).length,
+  categories: Object.keys(postsData.byCategory).length
+};
+
+const focusAreas = ['科研笔记', '论文阅读', '编程记录'];
 </script>
 
 <template>
-  <div class="home-page home-page--minimal">
+  <div class="home-page home-page--dashboard">
     <aside class="home-profile" aria-labelledby="profile-name">
-      <img
-        class="home-profile__avatar"
-        :src="withBase('/avatar.png')"
-        :alt="`${profile.name} 的个人头像`"
-        width="144"
-        height="144"
-      >
-      <p class="home-profile__blog-name">{{ site.title }}</p>
+      <div class="home-profile__avatar-wrap">
+        <img
+          class="home-profile__avatar"
+          :src="withBase('/avatar.png')"
+          :alt="`${profile.name} 的个人头像`"
+          width="144"
+          height="144"
+        >
+        <span class="home-profile__status" title="持续更新中">
+          <span aria-hidden="true" />
+          Active
+        </span>
+      </div>
       <h1 id="profile-name">{{ profile.name }}</h1>
+      <p class="home-profile__handle">@SemsueZhang</p>
       <p class="home-profile__identity">{{ profile.identity }}</p>
+
+      <a class="home-profile__github" :href="profile.github" rel="me external">
+        View GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
 
       <dl class="home-profile__details">
         <div>
@@ -51,23 +71,44 @@ const profile = {
         </div>
       </dl>
 
-      <nav class="home-profile__links" aria-label="个人链接">
-        <a :href="withBase('/about')">关于我</a>
-      </nav>
+      <p class="home-profile__site-name">{{ site.title }}</p>
     </aside>
 
     <section class="home-overview" aria-labelledby="introduction-title">
       <div class="home-introduction">
-        <p class="home-introduction__eyebrow">Profile README</p>
-        <h2 id="introduction-title">你好，我是 Zhang Chenrui。</h2>
-        <p>
-          我在 Sun Yat-sen University 学习与研究。这里用来整理科研过程、论文阅读中的线索，
-          以及可以复现和继续扩展的编程实践。
+        <p class="home-introduction__eyebrow">
+          <span aria-hidden="true" />
+          Research · Learn · Build
         </p>
-        <nav aria-label="个人介绍相关页面">
-          <a :href="withBase('/cv/')">查看 CV</a>
-          <a :href="withBase('/about')">关于本站</a>
+        <h2 id="introduction-title">把研究过程，<span>整理成可复用的知识。</span></h2>
+        <p class="home-introduction__summary">
+          我在 Sun Yat-sen University 学习与研究。这里记录科研过程、论文阅读中的线索，
+          以及可以复现、继续扩展的编程实践。
+        </p>
+
+        <ul class="home-introduction__focus" aria-label="主要内容方向">
+          <li v-for="area in focusAreas" :key="area">{{ area }}</li>
+        </ul>
+
+        <nav class="home-introduction__actions" aria-label="个人介绍相关页面">
+          <a class="home-action home-action--primary" :href="withBase('/cv/')">查看 CV</a>
+          <a class="home-action" :href="withBase('/about')">关于我</a>
         </nav>
+
+        <dl class="home-introduction__metrics" aria-label="博客内容概览">
+          <div>
+            <dt>公开文章</dt>
+            <dd>{{ overview.posts }}</dd>
+          </div>
+          <div>
+            <dt>主题标签</dt>
+            <dd>{{ overview.tags }}</dd>
+          </div>
+          <div>
+            <dt>内容分类</dt>
+            <dd>{{ overview.categories }}</dd>
+          </div>
+        </dl>
       </div>
 
       <ActivityHeatmap />

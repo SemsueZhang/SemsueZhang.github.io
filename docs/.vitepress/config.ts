@@ -29,7 +29,7 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'author', content: 'Zhang Chenrui' }],
-    ['meta', { name: 'theme-color', content: '#4d6f75' }],
+    ['meta', { name: 'theme-color', content: '#0d1117' }],
     [
       'script',
       {},
