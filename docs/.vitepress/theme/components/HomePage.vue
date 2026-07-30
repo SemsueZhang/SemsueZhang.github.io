@@ -76,14 +76,9 @@ const focusAreas = ['科研笔记', '论文阅读', '编程记录'];
 
     <section class="home-overview" aria-labelledby="introduction-title">
       <div class="home-introduction">
-        <p class="home-introduction__eyebrow">
-          <span aria-hidden="true" />
-          Research · Learn · Build
-        </p>
-        <h2 id="introduction-title">把研究过程，<span>整理成可复用的知识。</span></h2>
+        <h2 id="introduction-title">研究笔记</h2>
         <p class="home-introduction__summary">
-          我在 Sun Yat-sen University 学习与研究。这里记录科研过程、论文阅读中的线索，
-          以及可以复现、继续扩展的编程实践。
+          论文、实验与代码的公开记录。
         </p>
 
         <ul class="home-introduction__focus" aria-label="主要内容方向">
