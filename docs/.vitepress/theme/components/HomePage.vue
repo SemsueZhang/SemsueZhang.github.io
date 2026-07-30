@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useData, withBase } from 'vitepress';
-import { data as postsData } from '../../../posts.data';
 import ActivityHeatmap from './ActivityHeatmap.vue';
 import LocalClock from './LocalClock.vue';
 import ReadingStats from './ReadingStats.vue';
+import TopPosts from './TopPosts.vue';
 
 const { site } = useData();
 
@@ -56,25 +56,26 @@ const profile = {
       </nav>
     </aside>
 
-    <section class="home-articles" aria-labelledby="articles-title">
-      <header class="home-articles__header">
-        <h2 id="articles-title">文章</h2>
-        <p>{{ postsData.posts.length }} 篇</p>
-      </header>
+    <section class="home-overview" aria-labelledby="introduction-title">
+      <div class="home-introduction">
+        <p class="home-introduction__eyebrow">Profile README</p>
+        <h2 id="introduction-title">你好，我是 Zhang Chenrui。</h2>
+        <p>
+          我在 Sun Yat-sen University 学习与研究。这里用来整理科研过程、论文阅读中的线索，
+          以及可以复现和继续扩展的编程实践。
+        </p>
+        <nav aria-label="个人介绍相关页面">
+          <a :href="withBase('/cv/')">查看 CV</a>
+          <a :href="withBase('/about')">关于本站</a>
+        </nav>
+      </div>
 
-      <ol v-if="postsData.posts.length" class="home-articles__list">
-        <li v-for="post in postsData.posts" :key="post.url">
-          <time :datetime="post.date.value">{{ post.date.value }}</time>
-          <a :href="withBase(post.url)">{{ post.title }}</a>
-          <span>{{ post.category }}</span>
-        </li>
-      </ol>
-      <p v-else class="home-articles__empty">暂时还没有公开文章。</p>
+      <ActivityHeatmap />
     </section>
 
     <aside class="home-widgets" aria-label="博客概览">
       <LocalClock />
-      <ActivityHeatmap />
+      <TopPosts />
       <ReadingStats />
     </aside>
   </div>
