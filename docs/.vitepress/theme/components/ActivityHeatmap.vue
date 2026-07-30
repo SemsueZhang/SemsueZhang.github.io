@@ -24,7 +24,7 @@ interface ActivityYear {
   months: MonthMarker[];
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const MONTHS = ['1 月', '2 月', '3 月', '4 月', '5 月', '6 月', '7 月', '8 月', '9 月', '10 月', '11 月', '12 月'];
 const activityCounts = new Map<number, number>();
 
 for (const post of postsData.posts) {
@@ -112,14 +112,14 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
 
 <template>
   <section class="activity-heatmap" aria-label="按年份查看的文章活动热力图">
-    <div class="activity-heatmap__summary">
-      <strong>{{ selectedActivity.year }} 年</strong>
-      <span>{{ selectedActivity.count }} 篇公开文章 · {{ selectedActivity.activeDays }} 个发布日</span>
-    </div>
-
     <div class="activity-heatmap__layout">
       <div class="activity-heatmap__scroll">
-        <div class="activity-heatmap__calendar">
+        <section class="activity-heatmap__calendar">
+          <header class="activity-heatmap__header">
+            <h2>{{ selectedActivity.year }} 年发布记录</h2>
+            <p>{{ selectedActivity.count }} 篇文章，分布在 {{ selectedActivity.activeDays }} 天</p>
+          </header>
+
           <div class="activity-heatmap__months" aria-hidden="true">
             <span
               v-for="month in selectedActivity.months"
@@ -130,9 +130,9 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
 
           <div class="activity-heatmap__days-row">
             <div class="activity-heatmap__weekdays" aria-hidden="true">
-              <span>Mon</span>
-              <span>Wed</span>
-              <span>Fri</span>
+              <span>一</span>
+              <span>三</span>
+              <span>五</span>
             </div>
             <div
               class="activity-heatmap__grid"
@@ -157,7 +157,7 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
             </div>
           </div>
 
-        </div>
+        </section>
       </div>
 
       <nav class="activity-heatmap__years" aria-label="选择活动年份">
