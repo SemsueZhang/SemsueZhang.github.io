@@ -309,12 +309,14 @@ a:hover { color: var(--color-accent-strong); }
 .tag-filter button:hover, .tag-filter button[aria-pressed='true'] { color: var(--color-accent-strong); background: var(--color-accent-soft); border-color: var(--color-accent); }
 
 .taxonomy-index { margin-top: var(--space-6); }
-.taxonomy-index ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); padding: 0; margin: 0; list-style: none; }
-.taxonomy-index li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-.taxonomy-index li:hover { border-color: var(--color-border-strong); }
-.taxonomy-index a { color: var(--color-text); font-weight: 600; text-decoration: none; }
+.taxonomy-index ul { display: flex; flex-wrap: wrap; align-items: center; gap: 0.65rem 1rem; padding: clamp(1.5rem, 4vw, 2.5rem); margin: 0; background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: var(--radius-md); list-style: none; }
+.taxonomy-index li { display: contents; }
+.taxonomy-index a { display: inline-flex; align-items: baseline; gap: 0.28em; max-width: 100%; padding: 0.2em 0; color: var(--color-text-muted); line-height: 1.25; text-decoration: none; text-wrap: balance; transition: color 160ms ease; }
 .taxonomy-index a:hover { color: var(--color-accent); }
-.taxonomy-index span { color: var(--color-text-faint); font-size: 0.84rem; white-space: nowrap; }
+.taxonomy-index a:focus-visible { border-radius: var(--radius-sm); }
+.taxonomy-index a > span { overflow-wrap: anywhere; }
+.taxonomy-index small { color: var(--color-text-faint); font-family: var(--font-mono); font-size: 0.52em; font-weight: 500; }
+.taxonomy-index--category a { color: var(--color-text); }
 .taxonomy-index__empty { color: var(--color-text-muted); }
 
 .taxonomy-detail { padding-top: clamp(3.5rem, 8vw, 6rem); }
@@ -467,7 +469,6 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
   .home-profile__details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .home-widgets { grid-column: auto; grid-template-columns: 1fr; gap: var(--space-5); }
   .home-widgets .top-posts { grid-column: auto; }
-  .taxonomy-index ul { grid-template-columns: 1fr; }
   .back-to-top { right: var(--space-3); bottom: var(--space-3); }
   .site-footer__inner { align-items: flex-start; flex-direction: column; justify-content: center; padding: var(--space-5) 0; }
 }
