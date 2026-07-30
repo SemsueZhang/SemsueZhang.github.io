@@ -307,6 +307,22 @@ a:hover { color: var(--color-accent-strong); }
 .top-posts__list time { color: var(--color-text-faint); font-family: var(--font-mono); font-size: 0.62rem; }
 .top-posts__empty { margin: var(--space-3) 0 0; color: var(--color-text-muted); font-size: 0.8rem; }
 
+@media (min-width: 64.0625rem) {
+  body:has(.home-page--dashboard) { overflow: hidden; }
+  .site-shell:has(.home-page--dashboard) { height: 100dvh; overflow: hidden; }
+  .site-main:has(.home-page--dashboard) { flex: 1; min-height: 0; overflow: hidden; }
+  .site-shell:has(.home-page--dashboard) .site-footer { display: none; }
+  .home-page--dashboard { align-items: stretch; height: 100%; min-height: 0; overflow: hidden; }
+  .home-page--dashboard > * { min-height: 0; }
+  .home-profile { top: 0; height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+  .home-overview { align-self: stretch; display: grid; grid-template-rows: minmax(0, 1fr) auto; min-height: 0; overflow: hidden; }
+  .home-introduction { min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  .home-overview > .activity-heatmap { max-height: 17rem; min-height: 0; margin-top: var(--space-3); overflow-y: auto; overscroll-behavior: contain; }
+  .home-widgets { align-self: stretch; position: static; height: 100%; min-height: 0; grid-template-rows: auto minmax(0, 1fr) auto; }
+  .home-widgets .top-posts { display: flex; min-height: 0; flex-direction: column; overflow: hidden; }
+  .top-posts__list { min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding-right: var(--space-1); }
+}
+
 .post-list { display: grid; gap: var(--space-4); max-width: var(--content-width); margin-top: var(--space-6); }
 .post-list--featured { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; }
 .post-list__empty { color: var(--color-text-muted); }
