@@ -3,6 +3,7 @@ import { useData, withBase } from 'vitepress';
 import { data as postsData } from '../../../posts.data';
 import ActivityHeatmap from './ActivityHeatmap.vue';
 import LocalClock from './LocalClock.vue';
+import MacWindowCard from './MacWindowCard.vue';
 import ReadingStats from './ReadingStats.vue';
 
 const { site } = useData();
@@ -64,9 +65,14 @@ const profile = {
 
       <ol v-if="postsData.posts.length" class="home-articles__list">
         <li v-for="post in postsData.posts" :key="post.url">
-          <time :datetime="post.date.value">{{ post.date.value }}</time>
-          <a :href="withBase(post.url)">{{ post.title }}</a>
-          <span>{{ post.category }}</span>
+          <MacWindowCard :label="post.category">
+            <div class="home-article-window__meta">
+              <time :datetime="post.date.value">{{ post.date.value }}</time>
+              <span>{{ post.tags.join(' · ') }}</span>
+            </div>
+            <h3><a :href="withBase(post.url)">{{ post.title }}</a></h3>
+            <p>{{ post.description }}</p>
+          </MacWindowCard>
         </li>
       </ol>
       <p v-else class="home-articles__empty">暂时还没有公开文章。</p>
