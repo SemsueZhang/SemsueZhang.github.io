@@ -3,6 +3,7 @@ import { useData, withBase } from 'vitepress';
 import { data as postsData } from '../../../posts.data';
 import ActivityHeatmap from './ActivityHeatmap.vue';
 import LocalClock from './LocalClock.vue';
+import ReadingStats from './ReadingStats.vue';
 
 const { site } = useData();
 
@@ -74,6 +75,7 @@ const profile = {
     <aside class="home-widgets" aria-label="博客概览">
       <LocalClock />
       <ActivityHeatmap />
+      <ReadingStats />
     </aside>
   </div>
 </template>

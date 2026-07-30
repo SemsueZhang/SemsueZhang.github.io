@@ -12,11 +12,10 @@ interface ActivityDay {
 interface MonthOption {
   key: string;
   label: string;
-  shortLabel: string;
+  edgeLabel: string;
   timestamp: number;
 }
 
-const DISPLAY_MONTHS = 6;
 const DISPLAY_CELLS = 42;
 
 function formatDate(timestamp: number): string {
@@ -27,12 +26,12 @@ function formatDate(timestamp: number): string {
   return `${year}-${month}-${day}`;
 }
 
-function formatMonth(timestamp: number): { label: string; shortLabel: string } {
+function formatMonth(timestamp: number): { label: string; edgeLabel: string } {
   const date = new Date(timestamp);
   const month = date.getUTCMonth() + 1;
   return {
     label: `${date.getUTCFullYear()} 年 ${month} 月`,
-    shortLabel: `${month} 月`
+    edgeLabel: `${date.getUTCFullYear()}.${String(month).padStart(2, '0')}`
   };
 }
 
@@ -44,26 +43,32 @@ function activityLevel(count: number): number {
 }
 
 const latestTimestamp = Math.max(...postsData.posts.map((post) => post.date.timestamp));
+const earliestTimestamp = Math.min(...postsData.posts.map((post) => post.date.timestamp));
 const calendarEndTimestamp = Number.isFinite(latestTimestamp) ? latestTimestamp : Date.UTC(2026, 0, 1);
+const calendarStartTimestamp = Number.isFinite(earliestTimestamp) ? earliestTimestamp : calendarEndTimestamp;
 
 const months = computed<MonthOption[]>(() => {
+  const startDate = new Date(calendarStartTimestamp);
   const endDate = new Date(calendarEndTimestamp);
+  const startYear = startDate.getUTCFullYear();
+  const endYear = endDate.getUTCFullYear();
+  const monthCount = (endYear - startYear) * 12 + endDate.getUTCMonth() + 1;
 
-  return Array.from({ length: DISPLAY_MONTHS }, (_, index) => {
-    const date = new Date(Date.UTC(endDate.getUTCFullYear(), endDate.getUTCMonth() - (DISPLAY_MONTHS - 1 - index), 1));
+  return Array.from({ length: monthCount }, (_, index) => {
+    const date = new Date(Date.UTC(startYear, index, 1));
     const timestamp = date.getTime();
     const formatted = formatMonth(timestamp);
 
     return {
       key: `${date.getUTCFullYear()}-${date.getUTCMonth() + 1}`,
       label: formatted.label,
-      shortLabel: formatted.shortLabel,
+      edgeLabel: formatted.edgeLabel,
       timestamp
     };
   });
 });
 
-const selectedMonthIndex = ref(DISPLAY_MONTHS - 1);
+const selectedMonthIndex = ref(Math.max(months.value.length - 1, 0));
 const selectedMonth = computed(() => months.value[selectedMonthIndex.value] ?? months.value[months.value.length - 1]);
 
 const activity = computed<ActivityDay[]>(() => {
@@ -122,10 +127,11 @@ const publishedCount = computed(() => postsData.posts.length);
         :max="months.length - 1"
         step="1"
         aria-label="选择写作活动月份"
+        :aria-valuetext="selectedMonth.label"
       >
       <div aria-hidden="true">
-        <span>{{ months[0]?.shortLabel }}</span>
-        <span>{{ months[months.length - 1]?.shortLabel }}</span>
+        <span>{{ months[0]?.edgeLabel }}</span>
+        <span>{{ months[months.length - 1]?.edgeLabel }}</span>
       </div>
     </div>
     <div class="activity-heatmap__grid" role="group" :aria-label="`${selectedMonth.label}的文章发布活动热力图`">

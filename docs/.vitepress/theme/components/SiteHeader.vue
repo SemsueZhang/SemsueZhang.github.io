@@ -21,7 +21,6 @@ const navigation = computed(
   <header class="site-header">
     <div class="site-header__inner">
       <a class="site-brand" :href="withBase('/')" aria-label="返回首页">
-        <span class="site-brand__mark" aria-hidden="true">Z</span>
         <span>{{ site.title }}</span>
       </a>
 
