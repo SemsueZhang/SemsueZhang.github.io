@@ -8,6 +8,7 @@ import PostMeta from './PostMeta.vue';
 import TableOfContents from './TableOfContents.vue';
 import TagList from './TagList.vue';
 import CodeCopyControls from './CodeCopyControls.vue';
+import MacWindowReader from './MacWindowReader.vue';
 import ReadingTools from './ReadingTools.vue';
 
 interface TocItem {
@@ -58,7 +59,7 @@ const nextPost = computed(() => {
 
 <template>
   <div class="post-layout">
-    <article class="post-page">
+    <MacWindowReader class="post-page" :label="post.category || '文章阅读器'">
       <header class="post-header">
         <a
           v-if="post.category"
@@ -91,7 +92,7 @@ const nextPost = computed(() => {
           </a>
         </nav>
       </footer>
-    </article>
+    </MacWindowReader>
 
     <aside class="post-aside">
       <TableOfContents :headers="headers" />
