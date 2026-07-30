@@ -7,6 +7,7 @@ interface ActivityDay {
   label: string;
   level: number;
   active: boolean;
+  future: boolean;
 }
 
 interface MonthMarker {
@@ -18,6 +19,7 @@ interface MonthMarker {
 interface ActivityYear {
   year: number;
   count: number;
+  activeDays: number;
   days: ActivityDay[];
   months: MonthMarker[];
 }
@@ -51,6 +53,8 @@ function firstDayOffset(year: number): number {
 function createYearActivity(year: number): ActivityYear {
   const offset = firstDayOffset(year);
   const daysInYear = (Date.UTC(year + 1, 0, 1) - Date.UTC(year, 0, 1)) / 86_400_000;
+  const today = new Date();
+  const todayTimestamp = Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate());
   const days = Array.from({ length: 53 * 7 }, (_, index) => {
     const dayOfYear = index - offset;
 
@@ -59,25 +63,31 @@ function createYearActivity(year: number): ActivityYear {
         key: `empty-${year}-${index}`,
         label: '',
         level: 0,
-        active: false
+        active: false,
+        future: false
       };
     }
 
     const timestamp = Date.UTC(year, 0, dayOfYear + 1);
     const count = activityCounts.get(timestamp) ?? 0;
     const date = formatDate(timestamp);
+    const future = timestamp > todayTimestamp;
 
     return {
       key: date,
-      label: `${date}：${count} 篇公开文章`,
+      label: future ? `${date}：未来日期` : `${date}：${count} 篇公开文章`,
       level: activityLevel(count),
-      active: true
+      active: true,
+      future
     };
   });
+
+  const activeDays = days.filter((day) => day.active && day.level > 0).length;
 
   return {
     year,
     count: postsData.posts.filter((post) => post.date.year === year).length,
+    activeDays,
     days,
     months: MONTHS.map((label, month) => {
       const dayOfYear = (Date.UTC(year, month, 1) - Date.UTC(year, 0, 1)) / 86_400_000;
@@ -103,7 +113,8 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
 <template>
   <section class="activity-heatmap" aria-label="按年份查看的文章活动热力图">
     <div class="activity-heatmap__summary">
-      {{ selectedActivity.count }} 篇文章 · {{ selectedActivity.year }}
+      <strong>{{ selectedActivity.year }} 年</strong>
+      <span>{{ selectedActivity.count }} 篇公开文章 · {{ selectedActivity.activeDays }} 个发布日</span>
     </div>
 
     <div class="activity-heatmap__layout">
@@ -134,7 +145,10 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
                 class="activity-heatmap__day"
                 :class="[
                   `activity-heatmap__day--level-${day.level}`,
-                  { 'activity-heatmap__day--empty': !day.active }
+                  {
+                    'activity-heatmap__day--empty': !day.active,
+                    'activity-heatmap__day--future': day.future
+                  }
                 ]"
                 :aria-label="day.active ? day.label : undefined"
                 :data-tooltip="day.label"
@@ -143,14 +157,6 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
             </div>
           </div>
 
-          <div class="activity-heatmap__legend" aria-label="文章数量图例">
-            <span>少</span>
-            <i class="activity-heatmap__day--level-0" aria-hidden="true" />
-            <i class="activity-heatmap__day--level-1" aria-hidden="true" />
-            <i class="activity-heatmap__day--level-2" aria-hidden="true" />
-            <i class="activity-heatmap__day--level-3" aria-hidden="true" />
-            <span>多</span>
-          </div>
         </div>
       </div>
 
