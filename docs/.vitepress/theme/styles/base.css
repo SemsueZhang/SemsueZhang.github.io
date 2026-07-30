@@ -176,9 +176,10 @@ a:hover { color: var(--color-accent-strong); }
 
 .home-page--dashboard {
   display: grid;
-  grid-template-columns: minmax(11rem, 13rem) minmax(0, 1fr) minmax(10rem, 11rem);
+  grid-template-columns: minmax(11rem, 13rem) minmax(0, 45rem) minmax(10rem, 11rem);
   align-items: start;
-  gap: clamp(1.25rem, 2.5vw, 2rem);
+  justify-content: center;
+  gap: clamp(0.875rem, 1.5vw, 1.25rem);
   padding: clamp(1.5rem, 3vw, 2.75rem) 0 var(--space-6);
 }
 .home-page--dashboard > * { min-width: 0; }
