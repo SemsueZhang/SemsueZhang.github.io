@@ -49,10 +49,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section class="local-clock" aria-labelledby="clock-title">
-    <div class="home-widget__heading">
-      <h2 id="clock-title">本地时间</h2>
-    </div>
+  <section class="local-clock" aria-label="本地时间">
     <time class="analog-clock__readout" :datetime="now?.toISOString()" :aria-label="timeLabel">
       <span class="analog-clock" aria-hidden="true">
         <span

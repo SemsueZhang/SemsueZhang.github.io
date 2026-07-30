@@ -21,11 +21,7 @@ onUnmounted(() => window.removeEventListener(READING_STATS_EVENT, updateStats));
 </script>
 
 <template>
-  <section class="reading-stats" aria-labelledby="reading-stats-title">
-    <div class="home-widget__heading">
-      <h2 id="reading-stats-title">本机阅读</h2>
-      <p>此浏览器</p>
-    </div>
+  <section class="reading-stats" aria-label="此浏览器的阅读统计">
     <dl class="reading-stats__values">
       <div>
         <dt>今日阅读量</dt>

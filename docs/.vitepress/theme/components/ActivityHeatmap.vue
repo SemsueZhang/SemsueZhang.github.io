@@ -77,17 +77,10 @@ const activityYears = computed<ActivityYear[]>(() => Array.from(
   (_, index) => createYearActivity(latestYear - index)
 ));
 
-const publishedCount = computed(() => postsData.posts.length);
 </script>
 
 <template>
-  <section class="activity-heatmap" aria-labelledby="activity-title">
-    <div class="home-widget__heading">
-      <h2 id="activity-title">Activity</h2>
-      <p>{{ publishedCount }} posts</p>
-    </div>
-    <p class="activity-heatmap__description">按公开文章发布日期统计</p>
-
+  <section class="activity-heatmap" aria-label="按公开文章发布日期统计的年度活动热力图">
     <div class="activity-heatmap__years">
       <section
         v-for="activityYear in activityYears"
@@ -107,7 +100,7 @@ const publishedCount = computed(() => postsData.posts.length);
             ]"
             :aria-label="day.active ? day.label : undefined"
             :data-tooltip="day.label"
-            :tabindex="day.active ? 0 : -1"
+            tabindex="-1"
           />
         </div>
       </section>
