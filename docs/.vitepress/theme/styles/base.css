@@ -468,7 +468,9 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 @media (max-width: 64rem) {
   .home-page--dashboard { grid-template-columns: minmax(11rem, 13rem) minmax(0, 1fr); }
   .home-widgets { position: static; grid-column: 2; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); }
-  .home-widgets .top-posts { grid-column: 1 / -1; }
+  .home-widgets .local-clock { grid-column: 1; grid-row: 1; }
+  .home-widgets .reading-stats { grid-column: 2; grid-row: 1; }
+  .home-widgets .top-posts { grid-column: 1 / -1; grid-row: 2; }
 }
 
 @media (max-width: 44rem) {
@@ -492,6 +494,7 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
   .activity-heatmap__scroll { overflow-x: auto; padding-bottom: var(--space-2); scrollbar-width: thin; }
   .activity-heatmap__calendar { min-width: 34rem; }
   .home-widgets { grid-column: auto; grid-template-columns: 1fr; gap: var(--space-3); }
+  .home-widgets :where(.local-clock, .reading-stats, .top-posts) { grid-column: auto; grid-row: auto; }
   .home-widgets .top-posts { grid-column: auto; }
   .back-to-top { right: var(--space-3); bottom: var(--space-3); }
   .site-footer__inner { align-items: flex-start; flex-direction: column; justify-content: center; padding: var(--space-5) 0; }
