@@ -36,7 +36,9 @@ const layout = computed(() => {
     <SiteHeader />
 
     <main id="main-content" class="site-main">
-      <HomePage v-if="layout === 'home'" />
+      <HomePage v-if="layout === 'home'">
+        <Content />
+      </HomePage>
       <PostPage v-else-if="layout === 'post'" />
       <DefaultPage v-else />
     </main>

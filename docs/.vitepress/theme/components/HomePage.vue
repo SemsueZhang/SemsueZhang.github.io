@@ -52,9 +52,7 @@ const profile = {
 
     <section class="home-overview" aria-label="个人介绍">
       <div class="home-introduction">
-        <p>
-          我是 Zhang Chenrui。这里记录科研、论文阅读和编程实践中的问题、思考与阶段性结果。
-        </p>
+        <slot />
       </div>
 
       <ActivityHeatmap />

@@ -243,7 +243,10 @@ a:hover { color: var(--color-accent-strong); }
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
-.home-introduction p { max-width: 42rem; margin: 0; color: var(--color-text-muted); font-size: 1rem; line-height: 1.9; }
+.home-introduction :where(p, ul, ol) { max-width: 42rem; margin: 0; color: var(--color-text-muted); font-size: 1rem; line-height: 1.9; }
+.home-introduction :where(p, ul, ol) + :where(p, ul, ol) { margin-top: var(--space-3); }
+.home-introduction :where(ul, ol) { padding-left: 1.25em; }
+.home-introduction :where(h1, h2, h3) { margin: 0 0 var(--space-3); color: var(--color-text); font-family: var(--font-sans); line-height: 1.25; }
 .home-overview > .activity-heatmap { margin-top: var(--space-5); }
 
 .home-widgets { position: sticky; top: calc(var(--space-4) + 30px); display: grid; gap: var(--space-4); min-width: 0; }
