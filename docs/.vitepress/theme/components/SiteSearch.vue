@@ -51,8 +51,11 @@ onUnmounted(() => window.removeEventListener('keydown', handleShortcut));
 <template>
   <div class="site-search">
     <button class="site-search__trigger" type="button" aria-label="搜索站内内容" @click="openSearch">
-      <span aria-hidden="true">⌕</span>
-      <span>搜索</span>
+      <svg class="site-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.4" />
+        <path d="m15.6 15.6 4.2 4.2" />
+      </svg>
+      <span class="site-search__text">搜索</span>
       <kbd aria-hidden="true">Ctrl K</kbd>
     </button>
 
