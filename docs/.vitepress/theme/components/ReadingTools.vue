@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+
+const props = defineProps<{
+  container?: HTMLElement | null;
+}>();
 
 const progress = ref(0);
 const showBackToTop = ref(false);
@@ -7,10 +11,12 @@ let frame = 0;
 
 function updateReadingState() {
   frame = 0;
-  const root = document.documentElement;
-  const scrollable = root.scrollHeight - window.innerHeight;
-  progress.value = scrollable > 0 ? Math.min(100, Math.max(0, (window.scrollY / scrollable) * 100)) : 0;
-  showBackToTop.value = window.scrollY > 480;
+  const scrollable = props.container
+    ? props.container.scrollHeight - props.container.clientHeight
+    : document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPosition = props.container?.scrollTop ?? window.scrollY;
+  progress.value = scrollable > 0 ? Math.min(100, Math.max(0, (scrollPosition / scrollable) * 100)) : 0;
+  showBackToTop.value = scrollPosition > 480;
 }
 
 function requestUpdate() {
@@ -21,17 +27,34 @@ function requestUpdate() {
 
 function scrollToTop() {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  (props.container ?? window).scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+
+function attachScrollListener(container: HTMLElement | null | undefined) {
+  (container ?? window).addEventListener('scroll', requestUpdate, { passive: true });
+}
+
+function detachScrollListener(container: HTMLElement | null | undefined) {
+  (container ?? window).removeEventListener('scroll', requestUpdate);
 }
 
 onMounted(() => {
   updateReadingState();
-  window.addEventListener('scroll', requestUpdate, { passive: true });
+  attachScrollListener(props.container);
   window.addEventListener('resize', requestUpdate);
 });
 
+watch(
+  () => props.container,
+  (container, previousContainer) => {
+    detachScrollListener(previousContainer);
+    attachScrollListener(container);
+    requestUpdate();
+  }
+);
+
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', requestUpdate);
+  detachScrollListener(props.container);
   window.removeEventListener('resize', requestUpdate);
   if (frame !== 0) {
     window.cancelAnimationFrame(frame);

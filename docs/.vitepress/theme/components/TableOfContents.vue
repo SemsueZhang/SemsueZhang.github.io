@@ -10,6 +10,7 @@ interface TocItem {
 
 const props = defineProps<{
   headers: TocItem[];
+  scrollContainer?: HTMLElement | null;
 }>();
 
 const route = useRoute();
@@ -45,7 +46,11 @@ function observeHeadings() {
     if (visible[0]?.target instanceof HTMLElement) {
       activeSlug.value = visible[0].target.id;
     }
-  }, { rootMargin: '-18% 0px -68% 0px', threshold: [0, 1] });
+  }, {
+    root: props.scrollContainer ?? null,
+    rootMargin: '-18% 0px -68% 0px',
+    threshold: [0, 1]
+  });
 
   headings.forEach((heading) => observer?.observe(heading));
 }
@@ -58,6 +63,7 @@ onMounted(observeHeadings);
 onBeforeUnmount(stopObserving);
 watch(() => route.path, observeHeadings);
 watch(items, observeHeadings);
+watch(() => props.scrollContainer, observeHeadings);
 </script>
 
 <template>

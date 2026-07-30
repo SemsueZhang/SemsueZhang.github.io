@@ -41,6 +41,6 @@ const layout = computed(() => {
       <DefaultPage v-else />
     </main>
 
-    <SiteFooter />
+    <SiteFooter v-if="layout !== 'post'" />
   </div>
 </template>

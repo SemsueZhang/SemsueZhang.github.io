@@ -20,6 +20,7 @@ interface TocItem {
 const { frontmatter, page } = useData();
 const route = useRoute();
 const contentElement = ref<HTMLElement | null>(null);
+const scrollElement = ref<HTMLElement | null>(null);
 
 function normalizeDate(value: unknown): string {
   if (typeof value === 'string') {
@@ -46,6 +47,9 @@ const post = computed(() => {
 });
 
 const headers = computed(() => (page.value.headers ?? []) as TocItem[]);
+const hasTableOfContents = computed(
+  () => headers.value.filter((header) => header.level === 2 || header.level === 3).length >= 2
+);
 const currentIndex = computed(() => {
   const currentPath = route.path.replace(/\/$/, '');
   return postsData.posts.findIndex((item) => item.url.replace(/\/$/, '') === currentPath);
@@ -59,44 +63,48 @@ const nextPost = computed(() => {
 
 <template>
   <div class="post-layout">
-    <MacWindowReader class="post-page" :label="post.category || '文章阅读器'">
-      <header class="post-header">
-        <a
-          v-if="post.category"
-          class="eyebrow post-header__category"
-          :href="withBase(taxonomyPath('category', post.category))"
-        >
-          {{ post.category }}
-        </a>
-        <h1>{{ post.title }}</h1>
-        <p v-if="post.description" class="post-header__summary">{{ post.description }}</p>
-        <PostMeta :date="post.date" :updated="post.updated" />
-        <TagList v-if="post.tags.length" :tags="post.tags" />
-      </header>
+    <MacWindowReader class="post-page" :label="post.title">
+      <div class="post-reader__split">
+        <div ref="scrollElement" class="post-reader__main">
+          <header class="post-header">
+            <a
+              v-if="post.category"
+              class="eyebrow post-header__category"
+              :href="withBase(taxonomyPath('category', post.category))"
+            >
+              {{ post.category }}
+            </a>
+            <h1>{{ post.title }}</h1>
+            <p v-if="post.description" class="post-header__summary">{{ post.description }}</p>
+            <PostMeta :date="post.date" :updated="post.updated" />
+            <TagList v-if="post.tags.length" :tags="post.tags" />
+          </header>
 
-      <div ref="contentElement" class="post-content">
-        <Content />
+          <div ref="contentElement" class="post-content">
+            <Content />
+          </div>
+          <CodeCopyControls :container="contentElement" />
+
+          <footer class="post-footer">
+            <a class="back-link" :href="withBase('/posts/')">← 返回文章列表</a>
+            <nav v-if="previousPost || nextPost" class="post-pagination" aria-label="相邻文章">
+              <a v-if="previousPost" :href="withBase(previousPost.url)">
+                <span>上一篇</span>
+                <strong>{{ previousPost.title }}</strong>
+              </a>
+              <a v-if="nextPost" :href="withBase(nextPost.url)">
+                <span>下一篇</span>
+                <strong>{{ nextPost.title }}</strong>
+              </a>
+            </nav>
+          </footer>
+        </div>
+
+        <aside v-if="hasTableOfContents" class="post-reader__aside">
+          <TableOfContents :headers="headers" :scroll-container="scrollElement" />
+        </aside>
       </div>
-      <CodeCopyControls :container="contentElement" />
-
-      <footer class="post-footer">
-        <a class="back-link" :href="withBase('/posts/')">← 返回文章列表</a>
-        <nav v-if="previousPost || nextPost" class="post-pagination" aria-label="相邻文章">
-          <a v-if="previousPost" :href="withBase(previousPost.url)">
-            <span>上一篇</span>
-            <strong>{{ previousPost.title }}</strong>
-          </a>
-          <a v-if="nextPost" :href="withBase(nextPost.url)">
-            <span>下一篇</span>
-            <strong>{{ nextPost.title }}</strong>
-          </a>
-        </nav>
-      </footer>
     </MacWindowReader>
-
-    <aside class="post-aside">
-      <TableOfContents :headers="headers" />
-    </aside>
-    <ReadingTools />
+    <ReadingTools :container="scrollElement" />
   </div>
 </template>
