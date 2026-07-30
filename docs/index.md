@@ -19,7 +19,7 @@ description: Zhang Chenrui's Blog
 
 ## 贡献
 
-记录我的一些贡献（截止至 2026-07-30）：
+记录我的一些贡献（截止至 2026.07）：
 
 - 笔记：
 - 文章：
@@ -27,4 +27,4 @@ description: Zhang Chenrui's Blog
 
 ## 新闻
 
-2026-07-30 本博客诞生！
+- 2026.07 本博客诞生！
