@@ -112,52 +112,10 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
 
 <template>
   <section class="activity-heatmap" aria-label="按年份查看的文章活动热力图">
-    <div class="activity-heatmap__layout">
-      <div class="activity-heatmap__scroll">
-        <section class="activity-heatmap__calendar">
-          <header class="activity-heatmap__header">
-            <h2>{{ selectedActivity.year }} 年发布记录</h2>
-            <p>{{ selectedActivity.count }} 篇文章，分布在 {{ selectedActivity.activeDays }} 天</p>
-          </header>
-
-          <div class="activity-heatmap__months" aria-hidden="true">
-            <span
-              v-for="month in selectedActivity.months"
-              :key="month.key"
-              :style="{ gridColumnStart: month.column }"
-            >{{ month.label }}</span>
-          </div>
-
-          <div class="activity-heatmap__days-row">
-            <div class="activity-heatmap__weekdays" aria-hidden="true">
-              <span>一</span>
-              <span>三</span>
-              <span>五</span>
-            </div>
-            <div
-              class="activity-heatmap__grid"
-              role="group"
-              :aria-label="`${selectedActivity.year} 年文章发布活动热力图`"
-            >
-              <span
-                v-for="day in selectedActivity.days"
-                :key="day.key"
-                class="activity-heatmap__day"
-                :class="[
-                  `activity-heatmap__day--level-${day.level}`,
-                  {
-                    'activity-heatmap__day--empty': !day.active,
-                    'activity-heatmap__day--future': day.future
-                  }
-                ]"
-                :aria-label="day.active ? day.label : undefined"
-                :data-tooltip="day.label"
-                tabindex="-1"
-              />
-            </div>
-          </div>
-
-        </section>
+    <header class="activity-heatmap__toolbar">
+      <div>
+        <h2>{{ selectedActivity.year }} 年发布记录</h2>
+        <p>{{ selectedActivity.count }} 篇文章，分布在 {{ selectedActivity.activeDays }} 天</p>
       </div>
 
       <nav class="activity-heatmap__years" aria-label="选择活动年份">
@@ -169,6 +127,47 @@ const selectedActivity = computed(() => createYearActivity(selectedYear.value));
           @click="selectedYear = year"
         >{{ year }}</button>
       </nav>
+    </header>
+
+    <div class="activity-heatmap__scroll">
+      <section class="activity-heatmap__calendar">
+        <div class="activity-heatmap__months" aria-hidden="true">
+          <span
+            v-for="month in selectedActivity.months"
+            :key="month.key"
+            :style="{ gridColumnStart: month.column }"
+          >{{ month.label }}</span>
+        </div>
+
+        <div class="activity-heatmap__days-row">
+          <div class="activity-heatmap__weekdays" aria-hidden="true">
+            <span>一</span>
+            <span>三</span>
+            <span>五</span>
+          </div>
+          <div
+            class="activity-heatmap__grid"
+            role="group"
+            :aria-label="`${selectedActivity.year} 年文章发布活动热力图`"
+          >
+            <span
+              v-for="day in selectedActivity.days"
+              :key="day.key"
+              class="activity-heatmap__day"
+              :class="[
+                `activity-heatmap__day--level-${day.level}`,
+                {
+                  'activity-heatmap__day--empty': !day.active,
+                  'activity-heatmap__day--future': day.future
+                }
+              ]"
+              :aria-label="day.active ? day.label : undefined"
+              :data-tooltip="day.label"
+              tabindex="-1"
+            />
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 </template>

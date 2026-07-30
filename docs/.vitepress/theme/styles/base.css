@@ -266,13 +266,12 @@ a:hover { color: var(--color-accent-strong); }
 .analog-clock__hand--second { width: 1px; height: 38%; margin-left: -0.5px; background: var(--color-accent); }
 .analog-clock__pin { position: absolute; top: 50%; left: 50%; width: 0.42rem; height: 0.42rem; background: var(--color-accent); border: 2px solid var(--color-surface-raised); border-radius: 50%; transform: translate(-50%, -50%); }
 .analog-clock__date { margin-top: var(--space-2); color: var(--color-text-faint); font-size: 0.72rem; }
-.activity-heatmap__layout { display: grid; grid-template-columns: minmax(0, 1fr) 4.75rem; gap: var(--space-4); }
+.activity-heatmap__toolbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--space-5); margin-bottom: var(--space-3); }
+.activity-heatmap__toolbar h2 { margin: 0; color: var(--color-text); font-size: clamp(1rem, 1.7vw, 1.25rem); font-weight: 680; letter-spacing: -0.025em; }
+.activity-heatmap__toolbar p { margin: var(--space-1) 0 0; color: var(--color-text-muted); font-size: 0.78rem; }
 .activity-heatmap__scroll { min-width: 0; }
-.activity-heatmap__calendar { min-width: 0; padding: clamp(1.1rem, 2.5vw, 1.45rem); background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-.activity-heatmap__header { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding-bottom: var(--space-4); border-bottom: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent); }
-.activity-heatmap__header h2 { margin: 0; color: var(--color-text); font-size: clamp(1rem, 1.7vw, 1.25rem); font-weight: 680; letter-spacing: -0.025em; }
-.activity-heatmap__header p { margin: 0; color: var(--color-text-muted); font-size: 0.78rem; white-space: nowrap; }
-.activity-heatmap__months { display: grid; grid-template-columns: repeat(53, minmax(0, 1fr)); gap: 3px; margin-top: var(--space-5); margin-left: 2.35rem; color: var(--color-text-muted); font-size: 0.7rem; line-height: 1; }
+.activity-heatmap__calendar { min-width: 0; padding: clamp(1.25rem, 2.8vw, 1.6rem); background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+.activity-heatmap__months { display: grid; grid-template-columns: repeat(53, minmax(0, 1fr)); gap: 3px; margin-left: 2.35rem; color: var(--color-text-muted); font-size: 0.7rem; line-height: 1; }
 .activity-heatmap__months span { white-space: nowrap; }
 .activity-heatmap__days-row { display: grid; grid-template-columns: 2.35rem minmax(0, 1fr); gap: var(--space-2); margin-top: var(--space-2); }
 .activity-heatmap__weekdays { display: grid; grid-template-rows: repeat(7, 1fr); color: var(--color-text-faint); font-size: 0.66rem; line-height: 1; }
@@ -289,8 +288,8 @@ a:hover { color: var(--color-accent-strong); }
 .activity-heatmap__day--level-3 { background: #216e39; border-color: #216e39; }
 .activity-heatmap__day--empty { visibility: hidden; pointer-events: none; }
 .activity-heatmap__day--future { background: color-mix(in srgb, var(--color-surface-muted) 45%, var(--color-surface)); border-color: color-mix(in srgb, var(--color-border) 36%, transparent); cursor: default; }
-.activity-heatmap__years { display: grid; align-content: start; gap: var(--space-2); }
-.activity-heatmap__years button { width: 100%; padding: 0.58rem var(--space-2); color: var(--color-text-muted); background: transparent; border: 1px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-size: 0.78rem; }
+.activity-heatmap__years { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+.activity-heatmap__years button { min-width: 3.5rem; padding: 0.48rem var(--space-2); color: var(--color-text-muted); background: transparent; border: 1px solid transparent; border-radius: var(--radius-sm); cursor: pointer; font-size: 0.78rem; }
 .activity-heatmap__years button:hover { color: var(--color-accent-strong); background: var(--color-accent-soft); }
 .activity-heatmap__years button[aria-pressed='true'] { color: #fff; background: var(--color-accent); border-color: var(--color-accent); font-weight: 700; }
 .reading-stats__values { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); margin: 0; }
@@ -486,14 +485,12 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
   .home-profile__identity { margin-top: var(--space-2); }
   .home-profile__details { grid-column: 1 / -1; }
   .home-profile__details { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .activity-heatmap__layout { grid-template-columns: 1fr; gap: var(--space-3); }
-  .activity-heatmap__years { grid-row: 1; display: flex; overflow-x: auto; padding-bottom: var(--space-1); }
-  .activity-heatmap__years button { width: auto; min-width: 4rem; }
-  .activity-heatmap__scroll { grid-row: 2; }
+  .activity-heatmap__toolbar { align-items: flex-start; flex-direction: column; gap: var(--space-2); }
+  .activity-heatmap__years { flex-wrap: nowrap; justify-content: flex-start; width: 100%; overflow-x: auto; padding-bottom: var(--space-1); }
+  .activity-heatmap__years button { min-width: 4rem; }
   .activity-heatmap__scroll { overflow-x: auto; padding-bottom: var(--space-2); scrollbar-width: thin; }
   .activity-heatmap__calendar { min-width: 34rem; }
-  .activity-heatmap__header { align-items: flex-start; flex-direction: column; gap: var(--space-1); }
-  .home-widgets { grid-column: auto; grid-template-columns: 1fr; gap: var(--space-5); }
+  .home-widgets { grid-column: auto; grid-template-columns: 1fr; gap: var(--space-3); }
   .home-widgets .top-posts { grid-column: auto; }
   .back-to-top { right: var(--space-3); bottom: var(--space-3); }
   .site-footer__inner { align-items: flex-start; flex-direction: column; justify-content: center; padding: var(--space-5) 0; }
