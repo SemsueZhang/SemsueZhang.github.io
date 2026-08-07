@@ -43,11 +43,6 @@ onUnmounted(() => {
   <header class="site-header">
     <div class="site-header__inner">
       <div class="site-header__left">
-        <span class="site-header__window-controls" aria-hidden="true">
-          <i></i>
-          <i></i>
-          <i></i>
-        </span>
         <a class="site-brand" :href="withBase('/')" aria-label="返回首页">
           <span>{{ site.title }}</span>
         </a>

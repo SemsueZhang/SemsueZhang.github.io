@@ -142,10 +142,6 @@ const label = computed(() => props.kind === 'tag' ? '标签' : '分类');
 
 <template>
   <section class="taxonomy-index" :class="`taxonomy-index--${kind}`" :aria-label="`${label}词云`">
-    <header class="taxonomy-index__header">
-      <h1>{{ label }}</h1>
-      <p>{{ entries.length }} 个{{ label }}</p>
-    </header>
     <ul v-if="entries.length">
       <li v-for="entry in entries" :key="entry.name">
         <a

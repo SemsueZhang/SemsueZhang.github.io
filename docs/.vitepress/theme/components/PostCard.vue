@@ -9,11 +9,7 @@ defineProps<{
 
 <template>
   <article class="post-card">
-    <span class="post-card__folder" aria-hidden="true"></span>
-    <div class="post-card__content">
-      <h3><a :href="withBase(post.url)">{{ post.title }}</a></h3>
-      <p>{{ post.description }}</p>
-    </div>
+    <h3><a :href="withBase(post.url)">{{ post.title }}</a></h3>
     <time class="post-card__meta" :datetime="post.date.value">{{ post.date.label }}</time>
   </article>
 </template>
