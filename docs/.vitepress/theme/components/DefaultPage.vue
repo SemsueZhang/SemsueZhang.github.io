@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, type CSSProperties } from 'vue';
+import { computed, ref, type CSSProperties } from 'vue';
 import { Content } from 'vitepress/dist/client/app/components/Content.js';
 import { useRoute, withBase } from 'vitepress';
 
@@ -8,7 +8,7 @@ const isIndexPage = computed(() => /^(\/posts\/|\/tags\/|\/categories\/|\/archiv
 const panel = ref<HTMLElement | null>(null);
 const panelOffset = ref({ x: 0, y: 0 });
 const isDragging = ref(false);
-const isFullscreen = ref(false);
+const isExpanded = ref(false);
 let dragOrigin = { x: 0, y: 0 };
 let pointerOrigin = { x: 0, y: 0 };
 
@@ -59,35 +59,21 @@ function endDrag(event: PointerEvent) {
   target.releasePointerCapture(event.pointerId);
 }
 
-function updateFullscreenState() {
-  isFullscreen.value = document.fullscreenElement === panel.value;
+function toggleWindowSize() {
+  isExpanded.value = !isExpanded.value;
+  panelOffset.value = { x: 0, y: 0 };
 }
-
-async function toggleFullscreen() {
-  if (!panel.value) return;
-
-  if (document.fullscreenElement === panel.value) {
-    await document.exitFullscreen();
-    return;
-  }
-
-  await panel.value.requestFullscreen();
-}
-
-onMounted(() => {
-  document.addEventListener('fullscreenchange', updateFullscreenState);
-});
-
-onUnmounted(() => {
-  document.removeEventListener('fullscreenchange', updateFullscreenState);
-});
 </script>
 
 <template>
   <article
     ref="panel"
     class="default-page prose-content"
-    :class="{ 'default-page--index': isIndexPage, 'default-page--dragging': isDragging }"
+    :class="{
+      'default-page--index': isIndexPage,
+      'default-page--index--expanded': isExpanded,
+      'default-page--dragging': isDragging
+    }"
     :style="isIndexPage ? panelStyle : undefined"
   >
     <header
@@ -114,10 +100,10 @@ onUnmounted(() => {
         <button
           class="index-window__control index-window__control--maximize"
           type="button"
-          :aria-label="isFullscreen ? '退出全屏' : '全屏显示目录窗口'"
-          :aria-pressed="isFullscreen"
-          :title="isFullscreen ? '退出全屏' : '全屏显示'"
-          @click="toggleFullscreen"
+          :aria-label="isExpanded ? '恢复目录窗口大小' : '展开至文章阅读器大小'"
+          :aria-pressed="isExpanded"
+          :title="isExpanded ? '恢复目录窗口大小' : '展开至文章阅读器大小'"
+          @click="toggleWindowSize"
         ></button>
       </span>
       <span>{{ indexTitle }}</span>
