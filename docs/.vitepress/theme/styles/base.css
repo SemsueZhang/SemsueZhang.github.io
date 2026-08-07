@@ -1028,10 +1028,10 @@ html.dark .site-header {
 }
 
 .default-page--index {
-  width: 50vw;
-  min-width: 25rem;
-  height: 50dvh;
-  min-height: 20rem;
+  width: min(66.667vw, 62rem);
+  min-width: 30rem;
+  height: min(66.667dvh, 44rem);
+  min-height: 24rem;
   padding: 0;
   margin: clamp(3rem, 13vh, 8rem) auto var(--space-6);
   overflow: hidden;
@@ -1046,6 +1046,7 @@ html.dark .site-header {
 }
 
 .index-window__titlebar {
+  position: relative;
   display: grid;
   flex: 0 0 2.2rem;
   min-height: 2.2rem;
@@ -1053,10 +1054,42 @@ html.dark .site-header {
   color: var(--color-text-muted);
   border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 48%, transparent);
   cursor: grab;
-  font-size: 0.76rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   touch-action: none;
+}
+
+.index-window__controls {
+  position: absolute;
+  left: 0.78rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+}
+
+.index-window__control {
+  display: block;
+  width: 0.68rem;
+  height: 0.68rem;
+  padding: 0;
+  border: 1px solid rgb(0 0 0 / 0.14);
+  border-radius: 50%;
+  box-shadow: 0 1px 1px rgb(255 255 255 / 0.38) inset;
+}
+
+.index-window__control--close { background: #ff5f57; }
+.index-window__control--minimize { background: #febc2e; }
+.index-window__control--maximize { background: #28c840; cursor: pointer; }
+.index-window__control--maximize:hover { filter: brightness(0.92); }
+
+.default-page--index:fullscreen {
+  width: 100vw;
+  height: 100dvh;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  border-radius: 0;
 }
 
 .default-page--index > h1,
@@ -1123,16 +1156,22 @@ html.dark .site-footer {
   border-color: rgb(255 255 255 / 0.13);
 }
 
+html.dark .index-window__control {
+  border-color: rgb(0 0 0 / 0.28);
+  box-shadow: 0 1px 1px rgb(255 255 255 / 0.16) inset;
+}
+
 @media (max-width: 44rem) {
   .default-page--index {
     width: calc(100% - 1rem);
     min-width: 0;
-    height: min(32rem, 64dvh);
+    height: min(36rem, 68dvh);
     min-height: 18rem;
     margin: var(--space-5) auto;
   }
 
   .index-window__titlebar { cursor: default; touch-action: auto; }
+  .index-window__controls { left: 0.72rem; }
   .default-page--index .post-card,
   .taxonomy-detail .post-card { grid-template-columns: minmax(0, 1fr) auto; padding: 0.6rem var(--space-3); }
   .site-footer__inner { width: calc(100% - 1rem); }

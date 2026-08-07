@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { computed, ref, type CSSProperties } from 'vue';
+import { computed, onMounted, onUnmounted, ref, type CSSProperties } from 'vue';
 import { Content } from 'vitepress/dist/client/app/components/Content.js';
-import { useRoute } from 'vitepress';
+import { useRoute, withBase } from 'vitepress';
 
 const route = useRoute();
 const isIndexPage = computed(() => /^(\/posts\/|\/tags\/|\/categories\/|\/archive\/)/.test(route.path));
 const panel = ref<HTMLElement | null>(null);
 const panelOffset = ref({ x: 0, y: 0 });
 const isDragging = ref(false);
+const isFullscreen = ref(false);
 let dragOrigin = { x: 0, y: 0 };
 let pointerOrigin = { x: 0, y: 0 };
 
@@ -27,6 +28,7 @@ function startDrag(event: PointerEvent) {
 
   const target = event.currentTarget;
   if (!(target instanceof HTMLElement)) return;
+  if (event.target instanceof Element && event.target.closest('a, button')) return;
 
   isDragging.value = true;
   dragOrigin = { ...panelOffset.value };
@@ -56,6 +58,29 @@ function endDrag(event: PointerEvent) {
   isDragging.value = false;
   target.releasePointerCapture(event.pointerId);
 }
+
+function updateFullscreenState() {
+  isFullscreen.value = document.fullscreenElement === panel.value;
+}
+
+async function toggleFullscreen() {
+  if (!panel.value) return;
+
+  if (document.fullscreenElement === panel.value) {
+    await document.exitFullscreen();
+    return;
+  }
+
+  await panel.value.requestFullscreen();
+}
+
+onMounted(() => {
+  document.addEventListener('fullscreenchange', updateFullscreenState);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('fullscreenchange', updateFullscreenState);
+});
 </script>
 
 <template>
@@ -74,6 +99,27 @@ function endDrag(event: PointerEvent) {
       @pointerup="endDrag"
       @pointercancel="endDrag"
     >
+      <span class="index-window__controls" aria-label="目录窗口控制">
+        <a
+          class="index-window__control index-window__control--close"
+          :href="withBase('/')"
+          aria-label="返回首页"
+          title="返回首页"
+        ></a>
+        <span
+          class="index-window__control index-window__control--minimize"
+          aria-hidden="true"
+          title="无操作"
+        ></span>
+        <button
+          class="index-window__control index-window__control--maximize"
+          type="button"
+          :aria-label="isFullscreen ? '退出全屏' : '全屏显示目录窗口'"
+          :aria-pressed="isFullscreen"
+          :title="isFullscreen ? '退出全屏' : '全屏显示'"
+          @click="toggleFullscreen"
+        ></button>
+      </span>
       <span>{{ indexTitle }}</span>
     </header>
     <Content />
