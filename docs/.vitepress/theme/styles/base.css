@@ -775,3 +775,184 @@ html.dark .activity-heatmap__day--level-3 { background: #87d78b; border-color: #
 @media (max-width: 34rem) {
   .site-header__window-controls { display: none; }
 }
+
+/* iOS-style directory windows: one glass surface, dense folder rows within. */
+.site-main:has(.default-page--index) {
+  width: min(calc(100% - 2rem), 86rem);
+}
+
+.default-page--index {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: calc(100dvh - 7.5rem);
+  margin: clamp(1rem, 2.5vw, 2rem) 0;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+}
+
+.default-page--index > h1,
+.default-page--index :where(.archive-page, .taxonomy-index, .taxonomy-detail) h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+}
+
+.default-page--index > h1 {
+  display: flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0 var(--space-2) var(--space-3);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 64%, transparent);
+}
+
+.default-page--index .post-directory,
+.default-page--index .archive-page,
+.default-page--index .taxonomy-index,
+.default-page--index .taxonomy-detail {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.default-page--index .archive-page,
+.default-page--index .taxonomy-detail {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.post-directory__summary,
+.taxonomy-index__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 3.25rem;
+  padding: 0 var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 48%, transparent);
+}
+
+.post-directory__summary h2,
+.taxonomy-index__header h1 {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 650;
+}
+
+.post-directory__summary p,
+.taxonomy-index__header p {
+  margin: 0;
+  color: var(--color-text-faint);
+  font-size: 0.8rem;
+}
+
+.tag-filter {
+  gap: 0.4rem;
+  margin: 0;
+  padding: var(--space-3) var(--space-2);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 36%, transparent);
+}
+
+.tag-filter button {
+  padding: 0.22rem 0.62rem;
+  background: color-mix(in srgb, var(--color-surface-muted) 66%, transparent);
+  font-size: 0.76rem;
+}
+
+.default-page--index .post-list,
+.taxonomy-detail .post-list {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.default-page--index .post-card,
+.taxonomy-detail .post-card {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 4.5rem;
+  padding: 0.78rem var(--space-2);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 36%, transparent);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform: none;
+}
+
+.default-page--index .post-card:hover,
+.taxonomy-detail .post-card:hover {
+  background: color-mix(in srgb, var(--color-surface-muted) 58%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+  box-shadow: none;
+  transform: none;
+}
+
+.post-card__folder {
+  position: relative;
+  display: block;
+  width: 1.32rem;
+  height: 0.9rem;
+  margin-top: 0.18rem;
+  background: color-mix(in srgb, #f5c84b 78%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, #b88619 42%, transparent);
+  border-radius: 0.2rem;
+  box-shadow: 0 2px 4px rgb(100 76 22 / 0.12);
+}
+
+.post-card__folder::before {
+  position: absolute;
+  top: -0.22rem;
+  left: 0.12rem;
+  width: 0.58rem;
+  height: 0.28rem;
+  background: inherit;
+  border: inherit;
+  border-bottom: 0;
+  border-radius: 0.16rem 0.16rem 0 0;
+  content: '';
+}
+
+.post-card__content { min-width: 0; }
+.post-card h3 { margin: 0; font-family: var(--font-sans); font-size: 0.96rem; font-weight: 620; letter-spacing: -0.015em; line-height: 1.4; }
+.post-card h3 a { color: var(--color-text); }
+.post-card > .post-card__content > p { display: -webkit-box; margin: 0.13rem 0 0; overflow: hidden; color: var(--color-text-faint); font-size: 0.78rem; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+.post-card__meta { display: block; margin: 0; color: var(--color-text-faint); font-size: 0.76rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.default-page--index .taxonomy-index { flex: 1; min-height: 0; }
+.default-page--index .taxonomy-index ul { height: min(34rem, calc(100dvh - 16rem)); min-height: 20rem; margin-top: var(--space-3); }
+
+.default-page--index .archive-page__summary,
+.taxonomy-detail__summary { margin: var(--space-2) var(--space-2) 0; font-size: 0.8rem; }
+.default-page--index .archive-year { margin-top: var(--space-5); }
+.default-page--index .archive-year > h2 { padding: 0 var(--space-2) var(--space-2); font-family: var(--font-sans); font-size: 1rem; }
+.default-page--index .archive-month { margin-top: var(--space-4); }
+.default-page--index .archive-month h3 { padding: 0 var(--space-2); font-size: 0.78rem; }
+.default-page--index .archive-month ol { gap: 0; margin-top: var(--space-2); }
+.default-page--index .archive-month li { grid-template-columns: 3.5rem minmax(0, 1fr); gap: var(--space-2); padding: 0.65rem var(--space-2); border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 36%, transparent); }
+.default-page--index .archive-month li:hover { background: color-mix(in srgb, var(--color-surface-muted) 58%, transparent); }
+.default-page--index .archive-month a::before { display: inline-block; width: 0.75rem; height: 0.52rem; margin-right: 0.5rem; background: #f5c84b; border-radius: 0.12rem; content: ''; vertical-align: 0.02rem; }
+
+html.dark .post-card__folder { background: #d6a93c; border-color: rgb(255 220 133 / 0.28); box-shadow: none; }
+
+@media (max-width: 44rem) {
+  .site-main:has(.default-page--index) { width: calc(100% - 1rem); }
+  .default-page--index { min-height: calc(100dvh - 5.5rem); padding: var(--space-4); }
+  .default-page--index .post-card,
+  .taxonomy-detail .post-card { grid-template-columns: 1.25rem minmax(0, 1fr); gap: var(--space-2); min-height: 4.1rem; }
+  .post-card__meta { grid-column: 2; font-size: 0.7rem; }
+  .post-card > .post-card__content > p { -webkit-line-clamp: 1; }
+  .default-page--index .taxonomy-index ul { height: min(28rem, calc(100dvh - 15rem)); min-height: 17rem; }
+}

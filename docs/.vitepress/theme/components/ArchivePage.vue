@@ -16,7 +16,6 @@ import { data as postsData } from '../../../posts.data';
           <li v-for="post in month.posts" :key="post.url">
             <time :datetime="post.date.value">{{ post.date.value.slice(5) }}</time>
             <a :href="withBase(post.url)">{{ post.title }}</a>
-            <span>{{ post.category }}</span>
           </li>
         </ol>
       </section>
