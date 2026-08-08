@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress';
+
 defineProps<{
   label?: string;
 }>();
@@ -7,8 +9,13 @@ defineProps<{
 <template>
   <article class="mac-window-reader">
     <header class="mac-window-reader__bar">
-      <span class="mac-window-reader__controls" aria-hidden="true">
-        <i class="mac-window-reader__control mac-window-reader__control--close" />
+      <span class="mac-window-reader__controls" aria-label="文章窗口控制">
+        <a
+          class="mac-window-reader__control mac-window-reader__control--close"
+          :href="withBase('/posts/')"
+          aria-label="返回文章列表"
+          title="返回文章列表"
+        ></a>
         <i class="mac-window-reader__control mac-window-reader__control--minimize" />
         <i class="mac-window-reader__control mac-window-reader__control--maximize" />
       </span>

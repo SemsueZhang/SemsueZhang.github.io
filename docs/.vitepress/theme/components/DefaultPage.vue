@@ -24,7 +24,7 @@ const panelStyle = computed<CSSProperties>(() => ({
 }));
 
 function startDrag(event: PointerEvent) {
-  if (!isIndexPage.value || window.innerWidth < 720) return;
+  if (!isIndexPage.value || isExpanded.value || window.innerWidth < 720) return;
 
   const target = event.currentTarget;
   if (!(target instanceof HTMLElement)) return;
