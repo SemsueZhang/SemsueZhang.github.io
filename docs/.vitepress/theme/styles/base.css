@@ -549,10 +549,10 @@ body {
 
 html.dark body {
   background:
-    radial-gradient(ellipse 55rem 39rem at -10% -12%, rgb(126 104 184 / 0.34), transparent 68%),
-    radial-gradient(ellipse 48rem 34rem at 108% 0%, rgb(177 143 225 / 0.23), transparent 66%),
-    radial-gradient(ellipse 42rem 32rem at 96% 104%, rgb(111 131 201 / 0.18), transparent 68%),
-    linear-gradient(135deg, #100d19 0%, #171126 50%, #0e0b17 100%);
+    radial-gradient(ellipse 55rem 39rem at -10% -12%, rgb(122 104 170 / 0.14), transparent 68%),
+    radial-gradient(ellipse 48rem 34rem at 108% 0%, rgb(160 137 201 / 0.1), transparent 66%),
+    radial-gradient(ellipse 42rem 32rem at 96% 104%, rgb(104 96 143 / 0.08), transparent 68%),
+    linear-gradient(135deg, #08080c 0%, #0c0b10 50%, #08080c 100%);
   background-attachment: fixed;
 }
 
@@ -561,9 +561,9 @@ html.dark {
 }
 
 html.dark .site-header {
-  background: rgb(38 31 55 / 0.76);
-  border-color: rgb(231 220 255 / 0.16);
-  box-shadow: 0 10px 34px rgb(7 4 15 / 0.34), 0 1px 0 rgb(255 255 255 / 0.06) inset;
+  background: rgb(24 22 30 / 0.78);
+  border-color: rgb(222 211 249 / 0.14);
+  box-shadow: 0 10px 34px rgb(0 0 0 / 0.38), 0 1px 0 rgb(255 255 255 / 0.05) inset;
 }
 
 html.dark :where(
@@ -581,21 +581,21 @@ html.dark :where(
   .taxonomy-detail,
   .site-footer__inner
 ) {
-  background: rgb(41 33 59 / 0.72);
-  border-color: rgb(231 220 255 / 0.14);
-  box-shadow: 0 16px 42px rgb(8 5 16 / 0.3), 0 1px 0 rgb(255 255 255 / 0.05) inset;
+  background: rgb(26 24 32 / 0.74);
+  border-color: rgb(222 211 249 / 0.13);
+  box-shadow: 0 16px 42px rgb(0 0 0 / 0.34), 0 1px 0 rgb(255 255 255 / 0.045) inset;
 }
 
 html.dark .home-introduction,
 html.dark .activity-heatmap__calendar,
 html.dark .home-widgets :where(.local-clock, .top-posts, .reading-stats) {
-  background: rgb(47 38 67 / 0.7);
+  background: rgb(32 29 40 / 0.72);
 }
 
 html.dark .post-card:hover,
 html.dark .home-widgets :where(.local-clock, .top-posts, .reading-stats):hover {
-  border-color: rgb(198 177 255 / 0.5);
-  box-shadow: 0 20px 48px rgb(7 4 15 / 0.4), 0 1px 0 rgb(255 255 255 / 0.07) inset;
+  border-color: rgb(188 167 239 / 0.46);
+  box-shadow: 0 20px 48px rgb(0 0 0 / 0.42), 0 1px 0 rgb(255 255 255 / 0.06) inset;
 }
 
 html.dark .home-profile__avatar {
@@ -609,14 +609,14 @@ html.dark .site-search__input-label input {
 }
 
 html.dark .mac-window-reader {
-  background: rgb(38 31 55 / 0.76);
-  border-color: rgb(231 220 255 / 0.18);
-  box-shadow: 0 24px 68px rgb(7 4 15 / 0.48), 0 1px 0 rgb(255 255 255 / 0.06) inset;
+  background: rgb(24 22 30 / 0.8);
+  border-color: rgb(222 211 249 / 0.16);
+  box-shadow: 0 24px 68px rgb(0 0 0 / 0.52), 0 1px 0 rgb(255 255 255 / 0.05) inset;
 }
 
 html.dark .mac-window-reader__bar {
-  background: rgb(61 50 85 / 0.66);
-  border-bottom-color: rgb(231 220 255 / 0.12);
+  background: rgb(46 39 62 / 0.68);
+  border-bottom-color: rgb(222 211 249 / 0.12);
 }
 
 html.dark .activity-heatmap__day--level-1 { background: #7e6ab5; border-color: #7e6ab5; }
@@ -1000,8 +1000,8 @@ html.dark .post-card__folder { background: #d6a93c; border-color: rgb(255 220 13
 .site-navigation a { padding: 0.17rem 0.4rem; }
 
 html.dark .site-header {
-  background: rgb(38 31 55 / 0.8);
-  border-bottom-color: rgb(231 220 255 / 0.16);
+  background: rgb(24 22 30 / 0.82);
+  border-bottom-color: rgb(222 211 249 / 0.14);
   box-shadow: 0 1px 0 rgb(255 255 255 / 0.06) inset;
 }
 
@@ -1159,8 +1159,8 @@ html.dark .site-header {
 .default-page--index .archive-month a::before { display: none; }
 
 html.dark .site-footer {
-  background: rgb(35 28 51 / 0.78);
-  border-color: rgb(231 220 255 / 0.15);
+  background: rgb(21 20 27 / 0.82);
+  border-color: rgb(222 211 249 / 0.14);
 }
 
 html.dark .index-window__control {
@@ -1169,13 +1169,13 @@ html.dark .index-window__control {
 }
 
 html.dark .index-window__titlebar {
-  background: linear-gradient(90deg, rgb(77 62 112 / 0.76), rgb(101 82 141 / 0.68));
-  border-bottom-color: rgb(231 220 255 / 0.14);
+  background: linear-gradient(90deg, rgb(51 43 70 / 0.8), rgb(69 58 91 / 0.72));
+  border-bottom-color: rgb(222 211 249 / 0.13);
 }
 
 html.dark .mac-window-reader__bar {
-  background: linear-gradient(90deg, rgb(77 62 112 / 0.76), rgb(101 82 141 / 0.68));
-  border-bottom-color: rgb(231 220 255 / 0.14);
+  background: linear-gradient(90deg, rgb(51 43 70 / 0.8), rgb(69 58 91 / 0.72));
+  border-bottom-color: rgb(222 211 249 / 0.13);
 }
 
 @media (max-width: 44rem) {

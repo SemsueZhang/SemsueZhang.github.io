@@ -32,39 +32,39 @@
 }
 
 :root.dark {
-  --color-bg: #100d19;
-  --color-surface: rgb(41 33 59 / 0.72);
-  --color-surface-muted: rgb(57 47 78 / 0.66);
-  --color-surface-raised: rgb(47 38 67 / 0.82);
+  --color-bg: #09090d;
+  --color-surface: rgb(26 24 32 / 0.74);
+  --color-surface-muted: rgb(37 33 46 / 0.66);
+  --color-surface-raised: rgb(30 28 37 / 0.84);
   --color-text: #f4f0ff;
   --color-text-muted: #cec6df;
   --color-text-faint: #aaa0bd;
-  --color-border: rgb(231 220 255 / 0.14);
-  --color-border-strong: rgb(211 194 247 / 0.28);
-  --color-accent: #bca7ff;
-  --color-accent-strong: #d4c5ff;
-  --color-accent-soft: rgb(188 167 255 / 0.16);
-  --color-code-bg: rgb(25 20 38 / 0.82);
-  --shadow-subtle: 0 3px 7px rgb(8 5 16 / 0.3), 0 22px 55px rgb(7 4 15 / 0.4);
+  --color-border: rgb(222 211 249 / 0.13);
+  --color-border-strong: rgb(194 175 235 / 0.26);
+  --color-accent: #b8a4ee;
+  --color-accent-strong: #d2c4fb;
+  --color-accent-soft: rgb(184 164 238 / 0.15);
+  --color-code-bg: rgb(18 17 24 / 0.84);
+  --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.32), 0 22px 55px rgb(0 0 0 / 0.46);
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --color-bg: #100d19;
-    --color-surface: rgb(41 33 59 / 0.72);
-    --color-surface-muted: rgb(57 47 78 / 0.66);
-    --color-surface-raised: rgb(47 38 67 / 0.82);
+    --color-bg: #09090d;
+    --color-surface: rgb(26 24 32 / 0.74);
+    --color-surface-muted: rgb(37 33 46 / 0.66);
+    --color-surface-raised: rgb(30 28 37 / 0.84);
     --color-text: #f4f0ff;
     --color-text-muted: #cec6df;
     --color-text-faint: #aaa0bd;
-    --color-border: rgb(231 220 255 / 0.14);
-    --color-border-strong: rgb(211 194 247 / 0.28);
-    --color-accent: #bca7ff;
-    --color-accent-strong: #d4c5ff;
-    --color-accent-soft: rgb(188 167 255 / 0.16);
-    --color-code-bg: rgb(25 20 38 / 0.82);
-    --shadow-subtle: 0 3px 7px rgb(8 5 16 / 0.28), 0 18px 46px rgb(7 4 15 / 0.36);
+    --color-border: rgb(222 211 249 / 0.13);
+    --color-border-strong: rgb(194 175 235 / 0.26);
+    --color-accent: #b8a4ee;
+    --color-accent-strong: #d2c4fb;
+    --color-accent-soft: rgb(184 164 238 / 0.15);
+    --color-code-bg: rgb(18 17 24 / 0.84);
+    --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.3), 0 18px 46px rgb(0 0 0 / 0.42);
     color-scheme: dark;
   }
 }
