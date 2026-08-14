@@ -1,18 +1,18 @@
 :root {
-  --color-bg: #f5f7fb;
-  --color-surface: rgb(255 255 255 / 0.72);
-  --color-surface-muted: rgb(238 243 250 / 0.68);
-  --color-surface-raised: rgb(255 255 255 / 0.82);
-  --color-text: #1e2632;
-  --color-text-muted: #5c6878;
-  --color-text-faint: #8490a0;
-  --color-border: rgb(255 255 255 / 0.78);
-  --color-border-strong: rgb(155 171 192 / 0.48);
-  --color-accent: #3d5afe;
-  --color-accent-strong: #2d46cb;
-  --color-accent-soft: rgb(61 90 254 / 0.1);
-  --color-code-bg: rgb(235 240 247 / 0.86);
-  --shadow-subtle: 0 2px 5px rgb(45 61 82 / 0.05), 0 18px 46px rgb(45 61 82 / 0.1);
+  --color-bg: #f8f7f5;
+  --color-surface: rgb(255 255 255 / 0.74);
+  --color-surface-muted: rgb(245 243 241 / 0.7);
+  --color-surface-raised: rgb(255 255 255 / 0.84);
+  --color-text: #24232a;
+  --color-text-muted: #63616c;
+  --color-text-faint: #898692;
+  --color-border: rgb(255 255 255 / 0.8);
+  --color-border-strong: rgb(190 190 202 / 0.48);
+  --color-accent: #596bad;
+  --color-accent-strong: #42528e;
+  --color-accent-soft: rgb(89 107 173 / 0.1);
+  --color-code-bg: rgb(241 240 240 / 0.88);
+  --shadow-subtle: 0 2px 5px rgb(55 49 61 / 0.05), 0 18px 46px rgb(55 49 61 / 0.1);
   --font-sans: Outfit, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
   --font-serif: "Source Han Serif SC", "Noto Serif SC", Georgia, serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -33,18 +33,18 @@
 
 :root.dark {
   --color-bg: #09090d;
-  --color-surface: rgb(26 24 32 / 0.74);
-  --color-surface-muted: rgb(37 33 46 / 0.66);
-  --color-surface-raised: rgb(30 28 37 / 0.84);
+  --color-surface: rgb(23 23 27 / 0.76);
+  --color-surface-muted: rgb(32 31 37 / 0.68);
+  --color-surface-raised: rgb(27 27 32 / 0.84);
   --color-text: #f4f0ff;
   --color-text-muted: #cec6df;
   --color-text-faint: #aaa0bd;
-  --color-border: rgb(222 211 249 / 0.13);
-  --color-border-strong: rgb(194 175 235 / 0.26);
-  --color-accent: #b8a4ee;
-  --color-accent-strong: #d2c4fb;
-  --color-accent-soft: rgb(184 164 238 / 0.15);
-  --color-code-bg: rgb(18 17 24 / 0.84);
+  --color-border: rgb(225 220 235 / 0.12);
+  --color-border-strong: rgb(182 170 207 / 0.22);
+  --color-accent: #a89ac1;
+  --color-accent-strong: #c1b5d7;
+  --color-accent-soft: rgb(168 154 193 / 0.12);
+  --color-code-bg: rgb(17 17 21 / 0.84);
   --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.32), 0 22px 55px rgb(0 0 0 / 0.46);
   color-scheme: dark;
 }
@@ -52,18 +52,18 @@
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
     --color-bg: #09090d;
-    --color-surface: rgb(26 24 32 / 0.74);
-    --color-surface-muted: rgb(37 33 46 / 0.66);
-    --color-surface-raised: rgb(30 28 37 / 0.84);
+    --color-surface: rgb(23 23 27 / 0.76);
+    --color-surface-muted: rgb(32 31 37 / 0.68);
+    --color-surface-raised: rgb(27 27 32 / 0.84);
     --color-text: #f4f0ff;
     --color-text-muted: #cec6df;
     --color-text-faint: #aaa0bd;
-    --color-border: rgb(222 211 249 / 0.13);
-    --color-border-strong: rgb(194 175 235 / 0.26);
-    --color-accent: #b8a4ee;
-    --color-accent-strong: #d2c4fb;
-    --color-accent-soft: rgb(184 164 238 / 0.15);
-    --color-code-bg: rgb(18 17 24 / 0.84);
+    --color-border: rgb(225 220 235 / 0.12);
+    --color-border-strong: rgb(182 170 207 / 0.22);
+    --color-accent: #a89ac1;
+    --color-accent-strong: #c1b5d7;
+    --color-accent-soft: rgb(168 154 193 / 0.12);
+    --color-code-bg: rgb(17 17 21 / 0.84);
     --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.3), 0 18px 46px rgb(0 0 0 / 0.42);
     color-scheme: dark;
   }

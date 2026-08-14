@@ -541,18 +541,20 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 /* A restrained cool-white canvas for the light theme. */
 body {
   background:
-    radial-gradient(ellipse 56rem 38rem at -10% -16%, rgb(214 226 246 / 0.58), transparent 72%),
-    radial-gradient(ellipse 48rem 34rem at 108% 102%, rgb(226 220 249 / 0.4), transparent 70%),
-    linear-gradient(135deg, #fafcff 0%, #f4f7fb 52%, #f8f9fd 100%);
+    radial-gradient(ellipse 54rem 38rem at -10% -16%, rgb(220 230 244 / 0.3), transparent 72%),
+    radial-gradient(ellipse 46rem 33rem at 108% -8%, rgb(237 226 246 / 0.22), transparent 70%),
+    radial-gradient(ellipse 46rem 34rem at 104% 106%, rgb(247 228 208 / 0.24), transparent 70%),
+    linear-gradient(135deg, #fcfbf9 0%, #f7f6f4 52%, #faf9f7 100%);
   background-attachment: fixed;
 }
 
 html.dark body {
   background:
-    radial-gradient(ellipse 55rem 39rem at -10% -12%, rgb(122 104 170 / 0.14), transparent 68%),
-    radial-gradient(ellipse 48rem 34rem at 108% 0%, rgb(160 137 201 / 0.1), transparent 66%),
-    radial-gradient(ellipse 42rem 32rem at 96% 104%, rgb(104 96 143 / 0.08), transparent 68%),
-    linear-gradient(135deg, #08080c 0%, #0c0b10 50%, #08080c 100%);
+    radial-gradient(ellipse 48rem 35rem at -12% -12%, rgb(126 108 168 / 0.07), transparent 68%),
+    radial-gradient(ellipse 44rem 31rem at 110% -8%, rgb(148 129 187 / 0.055), transparent 68%),
+    radial-gradient(ellipse 42rem 30rem at -8% 108%, rgb(111 95 149 / 0.05), transparent 70%),
+    radial-gradient(ellipse 46rem 33rem at 108% 108%, rgb(139 120 178 / 0.065), transparent 70%),
+    linear-gradient(135deg, #08080c 0%, #0b0b0f 52%, #08080c 100%);
   background-attachment: fixed;
 }
 
@@ -561,8 +563,8 @@ html.dark {
 }
 
 html.dark .site-header {
-  background: rgb(24 22 30 / 0.78);
-  border-color: rgb(222 211 249 / 0.14);
+  background: rgb(22 22 27 / 0.8);
+  border-color: rgb(225 220 235 / 0.12);
   box-shadow: 0 10px 34px rgb(0 0 0 / 0.38), 0 1px 0 rgb(255 255 255 / 0.05) inset;
 }
 
@@ -581,20 +583,20 @@ html.dark :where(
   .taxonomy-detail,
   .site-footer__inner
 ) {
-  background: rgb(26 24 32 / 0.74);
-  border-color: rgb(222 211 249 / 0.13);
+  background: rgb(23 23 27 / 0.76);
+  border-color: rgb(225 220 235 / 0.12);
   box-shadow: 0 16px 42px rgb(0 0 0 / 0.34), 0 1px 0 rgb(255 255 255 / 0.045) inset;
 }
 
 html.dark .home-introduction,
 html.dark .activity-heatmap__calendar,
 html.dark .home-widgets :where(.local-clock, .top-posts, .reading-stats) {
-  background: rgb(32 29 40 / 0.72);
+  background: rgb(29 29 34 / 0.72);
 }
 
 html.dark .post-card:hover,
 html.dark .home-widgets :where(.local-clock, .top-posts, .reading-stats):hover {
-  border-color: rgb(188 167 239 / 0.46);
+  border-color: rgb(168 154 193 / 0.42);
   box-shadow: 0 20px 48px rgb(0 0 0 / 0.42), 0 1px 0 rgb(255 255 255 / 0.06) inset;
 }
 
@@ -609,19 +611,19 @@ html.dark .site-search__input-label input {
 }
 
 html.dark .mac-window-reader {
-  background: rgb(24 22 30 / 0.8);
-  border-color: rgb(222 211 249 / 0.16);
+  background: rgb(22 22 27 / 0.82);
+  border-color: rgb(225 220 235 / 0.14);
   box-shadow: 0 24px 68px rgb(0 0 0 / 0.52), 0 1px 0 rgb(255 255 255 / 0.05) inset;
 }
 
 html.dark .mac-window-reader__bar {
-  background: rgb(46 39 62 / 0.68);
-  border-bottom-color: rgb(222 211 249 / 0.12);
+  background: rgb(36 34 42 / 0.7);
+  border-bottom-color: rgb(225 220 235 / 0.11);
 }
 
-html.dark .activity-heatmap__day--level-1 { background: #7e6ab5; border-color: #7e6ab5; }
-html.dark .activity-heatmap__day--level-2 { background: #a58ae1; border-color: #a58ae1; }
-html.dark .activity-heatmap__day--level-3 { background: #d2beff; border-color: #d2beff; }
+html.dark .activity-heatmap__day--level-1 { background: #6d667b; border-color: #6d667b; }
+html.dark .activity-heatmap__day--level-2 { background: #8d83a1; border-color: #8d83a1; }
+html.dark .activity-heatmap__day--level-3 { background: #b9adcc; border-color: #b9adcc; }
 
 .site-header {
   top: 0.65rem;
@@ -1000,8 +1002,8 @@ html.dark .post-card__folder { background: #d6a93c; border-color: rgb(255 220 13
 .site-navigation a { padding: 0.17rem 0.4rem; }
 
 html.dark .site-header {
-  background: rgb(24 22 30 / 0.82);
-  border-bottom-color: rgb(222 211 249 / 0.14);
+  background: rgb(22 22 27 / 0.84);
+  border-bottom-color: rgb(225 220 235 / 0.12);
   box-shadow: 0 1px 0 rgb(255 255 255 / 0.06) inset;
 }
 
@@ -1159,8 +1161,8 @@ html.dark .site-header {
 .default-page--index .archive-month a::before { display: none; }
 
 html.dark .site-footer {
-  background: rgb(21 20 27 / 0.82);
-  border-color: rgb(222 211 249 / 0.14);
+  background: rgb(20 20 24 / 0.84);
+  border-color: rgb(225 220 235 / 0.12);
 }
 
 html.dark .index-window__control {
@@ -1169,13 +1171,13 @@ html.dark .index-window__control {
 }
 
 html.dark .index-window__titlebar {
-  background: linear-gradient(90deg, rgb(51 43 70 / 0.8), rgb(69 58 91 / 0.72));
-  border-bottom-color: rgb(222 211 249 / 0.13);
+  background: linear-gradient(90deg, rgb(35 33 41 / 0.82), rgb(45 41 54 / 0.76));
+  border-bottom-color: rgb(225 220 235 / 0.11);
 }
 
 html.dark .mac-window-reader__bar {
-  background: linear-gradient(90deg, rgb(51 43 70 / 0.8), rgb(69 58 91 / 0.72));
-  border-bottom-color: rgb(222 211 249 / 0.13);
+  background: linear-gradient(90deg, rgb(35 33 41 / 0.82), rgb(45 41 54 / 0.76));
+  border-bottom-color: rgb(225 220 235 / 0.11);
 }
 
 @media (max-width: 44rem) {
