@@ -538,22 +538,13 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
 
-/* Glass visual system: neutral content surfaces with restrained red and yellow ambient light. */
+/* Glass visual system over a deliberately plain white or black canvas. */
 body {
-  background:
-    radial-gradient(circle at 6% 22%, rgb(255 202 73 / 0.3), transparent 19rem),
-    radial-gradient(circle at 94% 14%, rgb(218 38 48 / 0.2), transparent 22rem),
-    radial-gradient(circle at 78% 86%, rgb(255 183 48 / 0.16), transparent 25rem),
-    linear-gradient(132deg, #f8f6f0 0%, #f2f5f3 48%, #f7f2ed 100%);
-  background-attachment: fixed;
+  background: var(--color-bg);
 }
 
 html.dark body {
-  background:
-    radial-gradient(circle at 8% 20%, rgb(255 185 54 / 0.15), transparent 21rem),
-    radial-gradient(circle at 94% 14%, rgb(217 42 51 / 0.18), transparent 24rem),
-    radial-gradient(circle at 76% 88%, rgb(255 151 44 / 0.12), transparent 26rem),
-    linear-gradient(132deg, #151819 0%, #1d1e1c 52%, #1c1918 100%);
+  background: var(--color-bg);
 }
 
 html.dark {
