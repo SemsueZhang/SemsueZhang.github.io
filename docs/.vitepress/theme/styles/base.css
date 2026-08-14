@@ -538,13 +538,23 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
 
-/* Glass visual system over a deliberately plain white or black canvas. */
+/* Soft Instagram-inspired color wash behind the unchanged glass interface. */
 body {
-  background: var(--color-bg);
+  background:
+    radial-gradient(ellipse 54rem 37rem at -8% -10%, rgb(242 177 213 / 0.58), transparent 68%),
+    radial-gradient(ellipse 48rem 34rem at 106% 0%, rgb(255 192 150 / 0.52), transparent 66%),
+    radial-gradient(ellipse 44rem 34rem at 94% 102%, rgb(255 223 152 / 0.36), transparent 67%),
+    linear-gradient(135deg, #fffafd 0%, #fff8f3 48%, #fffdf7 100%);
+  background-attachment: fixed;
 }
 
 html.dark body {
-  background: var(--color-bg);
+  background:
+    radial-gradient(ellipse 55rem 39rem at -10% -12%, rgb(112 41 108 / 0.42), transparent 68%),
+    radial-gradient(ellipse 48rem 34rem at 108% 0%, rgb(164 61 83 / 0.34), transparent 66%),
+    radial-gradient(ellipse 42rem 32rem at 96% 104%, rgb(163 78 36 / 0.22), transparent 68%),
+    linear-gradient(135deg, #0c0911 0%, #100b10 50%, #110e0c 100%);
+  background-attachment: fixed;
 }
 
 html.dark {
