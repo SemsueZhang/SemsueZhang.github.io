@@ -287,7 +287,7 @@ a:hover { color: var(--color-accent-strong); }
 .activity-heatmap__day--level-0 { background: var(--color-surface-muted); }
 .activity-heatmap__day--level-1 { background: #bae6fd; border-color: #bae6fd; }
 .activity-heatmap__day--level-2 { background: #38bdf8; border-color: #38bdf8; }
-.activity-heatmap__day--level-3 { background: #8b5cf6; border-color: #8b5cf6; }
+.activity-heatmap__day--level-3 { background: #0284c7; border-color: #0284c7; }
 .activity-heatmap__day--empty { visibility: hidden; pointer-events: none; }
 .activity-heatmap__day--future { background: color-mix(in srgb, var(--color-surface-muted) 45%, var(--color-surface)); border-color: color-mix(in srgb, var(--color-border) 36%, transparent); cursor: default; }
 .activity-heatmap__years { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
@@ -542,19 +542,19 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 body {
   background:
     radial-gradient(ellipse 54rem 38rem at -10% -16%, rgb(56 189 248 / 0.34), transparent 72%),
-    radial-gradient(ellipse 46rem 33rem at 108% -8%, rgb(168 85 247 / 0.28), transparent 70%),
+    radial-gradient(ellipse 46rem 33rem at 108% -8%, rgb(14 165 233 / 0.22), transparent 70%),
     radial-gradient(ellipse 43rem 31rem at -6% 108%, rgb(14 165 233 / 0.2), transparent 70%),
-    radial-gradient(ellipse 46rem 34rem at 104% 106%, rgb(139 92 246 / 0.2), transparent 70%),
-    linear-gradient(135deg, #fbfdff 0%, #f5f7ff 52%, #fbfaff 100%);
+    radial-gradient(ellipse 46rem 34rem at 104% 106%, rgb(37 99 235 / 0.14), transparent 70%),
+    linear-gradient(135deg, #fbfdff 0%, #f5f7ff 52%, #f4f8ff 100%);
   background-attachment: fixed;
 }
 
 html.dark body {
   background:
-    radial-gradient(ellipse 48rem 35rem at -12% -12%, rgb(56 189 248 / 0.16), transparent 68%),
-    radial-gradient(ellipse 44rem 31rem at 110% -8%, rgb(168 85 247 / 0.15), transparent 68%),
-    radial-gradient(ellipse 42rem 30rem at -8% 108%, rgb(14 165 233 / 0.12), transparent 70%),
-    radial-gradient(ellipse 46rem 33rem at 108% 108%, rgb(139 92 246 / 0.13), transparent 70%),
+    radial-gradient(ellipse 48rem 35rem at -12% -12%, rgb(168 85 247 / 0.17), transparent 68%),
+    radial-gradient(ellipse 44rem 31rem at 110% -8%, rgb(192 132 252 / 0.14), transparent 68%),
+    radial-gradient(ellipse 42rem 30rem at -8% 108%, rgb(147 51 234 / 0.12), transparent 70%),
+    radial-gradient(ellipse 46rem 33rem at 108% 108%, rgb(168 85 247 / 0.13), transparent 70%),
     linear-gradient(135deg, #08080c 0%, #0b0b0f 52%, #08080c 100%);
   background-attachment: fixed;
 }
@@ -565,7 +565,7 @@ html.dark {
 
 html.dark .site-header {
   background: rgb(22 22 27 / 0.8);
-  border-color: rgb(125 211 252 / 0.14);
+  border-color: rgb(167 139 250 / 0.16);
   box-shadow: 0 10px 34px rgb(0 0 0 / 0.38), 0 1px 0 rgb(255 255 255 / 0.05) inset;
 }
 
@@ -585,7 +585,7 @@ html.dark :where(
   .site-footer__inner
 ) {
   background: rgb(23 23 27 / 0.76);
-  border-color: rgb(125 211 252 / 0.13);
+  border-color: rgb(167 139 250 / 0.16);
   box-shadow: 0 16px 42px rgb(0 0 0 / 0.34), 0 1px 0 rgb(255 255 255 / 0.045) inset;
 }
 
@@ -613,18 +613,18 @@ html.dark .site-search__input-label input {
 
 html.dark .mac-window-reader {
   background: rgb(22 22 27 / 0.82);
-  border-color: rgb(125 211 252 / 0.16);
+  border-color: rgb(167 139 250 / 0.18);
   box-shadow: 0 24px 68px rgb(0 0 0 / 0.52), 0 1px 0 rgb(255 255 255 / 0.05) inset;
 }
 
 html.dark .mac-window-reader__bar {
-  background: linear-gradient(90deg, rgb(12 74 110 / 0.74), rgb(88 28 135 / 0.74));
-  border-bottom-color: rgb(125 211 252 / 0.14);
+  background: linear-gradient(90deg, rgb(88 28 135 / 0.76), rgb(147 51 234 / 0.74));
+  border-bottom-color: rgb(167 139 250 / 0.16);
 }
 
-html.dark .activity-heatmap__day--level-1 { background: #38bdf8; border-color: #38bdf8; }
-html.dark .activity-heatmap__day--level-2 { background: #0ea5e9; border-color: #0ea5e9; }
-html.dark .activity-heatmap__day--level-3 { background: #a855f7; border-color: #a855f7; }
+html.dark .activity-heatmap__day--level-1 { background: #c4b5fd; border-color: #c4b5fd; }
+html.dark .activity-heatmap__day--level-2 { background: #a78bfa; border-color: #a78bfa; }
+html.dark .activity-heatmap__day--level-3 { background: #7c3aed; border-color: #7c3aed; }
 
 .site-header {
   top: 0.65rem;
@@ -757,7 +757,7 @@ html.dark .activity-heatmap__day--level-3 { background: #a855f7; border-color: #
 }
 
 .mac-window-reader__bar {
-  background: linear-gradient(90deg, rgb(225 238 255 / 0.82), rgb(238 233 255 / 0.76));
+  background: linear-gradient(90deg, rgb(225 238 255 / 0.82), rgb(214 232 255 / 0.76));
   border-bottom-color: var(--color-border);
 }
 
@@ -1004,7 +1004,7 @@ html.dark .post-card__folder { background: #d6a93c; border-color: rgb(255 220 13
 
 html.dark .site-header {
   background: rgb(22 22 27 / 0.84);
-  border-bottom-color: rgb(125 211 252 / 0.14);
+  border-bottom-color: rgb(167 139 250 / 0.16);
   box-shadow: 0 1px 0 rgb(255 255 255 / 0.06) inset;
 }
 
@@ -1062,7 +1062,7 @@ html.dark .site-header {
   min-height: 2.2rem;
   place-items: center;
   color: var(--color-text-muted);
-  background: linear-gradient(90deg, rgb(225 238 255 / 0.82), rgb(238 233 255 / 0.76));
+  background: linear-gradient(90deg, rgb(225 238 255 / 0.82), rgb(214 232 255 / 0.76));
   border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 48%, transparent);
   cursor: grab;
   font-size: 1rem;
@@ -1163,7 +1163,7 @@ html.dark .site-header {
 
 html.dark .site-footer {
   background: rgb(20 20 24 / 0.84);
-  border-color: rgb(125 211 252 / 0.14);
+  border-color: rgb(167 139 250 / 0.16);
 }
 
 html.dark .index-window__control {
@@ -1172,13 +1172,13 @@ html.dark .index-window__control {
 }
 
 html.dark .index-window__titlebar {
-  background: linear-gradient(90deg, rgb(12 74 110 / 0.78), rgb(88 28 135 / 0.78));
-  border-bottom-color: rgb(125 211 252 / 0.14);
+  background: linear-gradient(90deg, rgb(88 28 135 / 0.8), rgb(147 51 234 / 0.8));
+  border-bottom-color: rgb(167 139 250 / 0.16);
 }
 
 html.dark .mac-window-reader__bar {
-  background: linear-gradient(90deg, rgb(12 74 110 / 0.78), rgb(88 28 135 / 0.78));
-  border-bottom-color: rgb(125 211 252 / 0.14);
+  background: linear-gradient(90deg, rgb(88 28 135 / 0.8), rgb(147 51 234 / 0.8));
+  border-bottom-color: rgb(167 139 250 / 0.16);
 }
 
 @media (max-width: 44rem) {

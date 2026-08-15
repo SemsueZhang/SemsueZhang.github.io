@@ -9,10 +9,10 @@
   --color-border: rgb(255 255 255 / 0.8);
   --color-border-strong: rgb(125 169 242 / 0.46);
   --color-accent: #0ea5e9;
-  --color-accent-strong: #7c3aed;
+  --color-accent-strong: #0284c7;
   --color-accent-soft: rgb(14 165 233 / 0.12);
   --color-code-bg: rgb(239 246 255 / 0.88);
-  --shadow-subtle: 0 2px 5px rgb(37 99 235 / 0.05), 0 18px 46px rgb(124 58 237 / 0.1);
+  --shadow-subtle: 0 2px 5px rgb(37 99 235 / 0.05), 0 18px 46px rgb(37 99 235 / 0.12);
   --font-sans: Outfit, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
   --font-serif: "Source Han Serif SC", "Noto Serif SC", Georgia, serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -39,13 +39,13 @@
   --color-text: #f4f0ff;
   --color-text-muted: #cec6df;
   --color-text-faint: #aaa0bd;
-  --color-border: rgb(125 211 252 / 0.13);
+  --color-border: rgb(167 139 250 / 0.16);
   --color-border-strong: rgb(167 139 250 / 0.3);
-  --color-accent: #38bdf8;
-  --color-accent-strong: #a855f7;
-  --color-accent-soft: rgb(56 189 248 / 0.15);
+  --color-accent: #a855f7;
+  --color-accent-strong: #c084fc;
+  --color-accent-soft: rgb(168 85 247 / 0.16);
   --color-code-bg: rgb(17 17 21 / 0.84);
-  --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.32), 0 22px 55px rgb(0 0 0 / 0.46);
+  --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.32), 0 22px 55px rgb(88 28 135 / 0.3);
   color-scheme: dark;
 }
 
@@ -58,13 +58,13 @@
     --color-text: #f4f0ff;
     --color-text-muted: #cec6df;
     --color-text-faint: #aaa0bd;
-    --color-border: rgb(125 211 252 / 0.13);
+    --color-border: rgb(167 139 250 / 0.16);
     --color-border-strong: rgb(167 139 250 / 0.3);
-    --color-accent: #38bdf8;
-    --color-accent-strong: #a855f7;
-    --color-accent-soft: rgb(56 189 248 / 0.15);
+    --color-accent: #a855f7;
+    --color-accent-strong: #c084fc;
+    --color-accent-soft: rgb(168 85 247 / 0.16);
     --color-code-bg: rgb(17 17 21 / 0.84);
-    --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.3), 0 18px 46px rgb(0 0 0 / 0.42);
+    --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.3), 0 18px 46px rgb(88 28 135 / 0.28);
     color-scheme: dark;
   }
 }
