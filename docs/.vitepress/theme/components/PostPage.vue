@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { useData, useRoute, withBase } from 'vitepress';
 import { Content } from 'vitepress/dist/client/app/components/Content.js';
 import { data as postsData } from '../../../posts.data';
@@ -21,6 +21,18 @@ const { frontmatter, page } = useData();
 const route = useRoute();
 const contentElement = ref<HTMLElement | null>(null);
 const scrollElement = ref<HTMLElement | null>(null);
+const isExpanded = ref(true);
+
+watch(() => route.path, () => {
+  isExpanded.value = true;
+});
+
+async function toggleWindowSize() {
+  const scrollPosition = scrollElement.value?.scrollTop ?? 0;
+  isExpanded.value = !isExpanded.value;
+  await nextTick();
+  if (scrollElement.value) scrollElement.value.scrollTop = scrollPosition;
+}
 
 function normalizeDate(value: unknown): string {
   if (typeof value === 'string') {
@@ -39,7 +51,6 @@ const post = computed(() => {
   const data = frontmatter.value as Record<string, unknown>;
   return {
     title: typeof data.title === 'string' ? data.title : '未命名文章',
-    description: typeof data.description === 'string' ? data.description : '',
     date: normalizeDate(data.date),
     updated: normalizeDate(data.updated),
     category: typeof data.category === 'string' ? data.category : '',
@@ -63,42 +74,53 @@ const nextPost = computed(() => {
 </script>
 
 <template>
-  <div class="post-layout">
-    <MacWindowReader class="post-page" :label="post.title">
+  <div class="post-layout" :class="{ 'post-layout--windowed': !isExpanded }">
+    <MacWindowReader
+      class="post-page"
+      :label="post.title"
+      :expanded="isExpanded"
+      @toggle-window-size="toggleWindowSize"
+    >
       <div class="post-reader__split">
-        <div ref="scrollElement" class="post-reader__main">
-          <header class="post-header">
-            <a
-              v-if="post.category"
-              class="eyebrow post-header__category"
-              :href="withBase(taxonomyPath('category', post.category))"
-            >
-              {{ post.category }}
-            </a>
-            <h1>{{ post.title }}</h1>
-            <p v-if="post.description" class="post-header__summary">{{ post.description }}</p>
-            <PostMeta :date="post.date" :updated="post.updated" />
-            <TagList v-if="post.tags.length" :tags="post.tags" />
-          </header>
+        <div ref="scrollElement" class="post-reader__main" tabindex="0" aria-label="文章正文">
+          <div class="post-reader__content">
+            <header class="post-header">
+              <h1>{{ post.title }}</h1>
+              <div class="post-header__details">
+                <PostMeta :date="post.date" :updated="post.updated" compact />
+                <div v-if="post.category || post.tags.length" class="post-header__taxonomy">
+                  <a
+                    v-if="post.category"
+                    class="post-header__category"
+                    :href="withBase(taxonomyPath('category', post.category))"
+                    :aria-label="`分类：${post.category}`"
+                  >
+                    {{ post.category }}
+                  </a>
+                  <TagList v-if="post.tags.length" :tags="post.tags" />
+                </div>
+              </div>
+            </header>
 
-          <div ref="contentElement" class="post-content">
-            <Content />
+            <div ref="contentElement" class="post-content">
+              <Content />
+            </div>
+            <CodeCopyControls :container="contentElement" />
+
+            <footer class="post-footer">
+              <a class="back-link" :href="withBase('/posts/')">← 返回文章列表</a>
+              <nav v-if="previousPost || nextPost" class="post-pagination" aria-label="相邻文章">
+                <a v-if="previousPost" :href="withBase(previousPost.url)">
+                  <span>上一篇</span>
+                  <strong>{{ previousPost.title }}</strong>
+                </a>
+                <a v-if="nextPost" :href="withBase(nextPost.url)">
+                  <span>下一篇</span>
+                  <strong>{{ nextPost.title }}</strong>
+                </a>
+              </nav>
+            </footer>
           </div>
-          <CodeCopyControls :container="contentElement" />
-
-          <footer class="post-footer">
-            <a class="back-link" :href="withBase('/posts/')">← 返回文章列表</a>
-            <nav v-if="previousPost || nextPost" class="post-pagination" aria-label="相邻文章">
-              <a v-if="previousPost" :href="withBase(previousPost.url)">
-                <span>上一篇</span>
-                <strong>{{ previousPost.title }}</strong>
-              </a>
-              <a v-if="nextPost" :href="withBase(nextPost.url)">
-                <span>下一篇</span>
-                <strong>{{ nextPost.title }}</strong>
-              </a>
-            </nav>
-          </footer>
         </div>
 
         <aside v-if="hasTableOfContents" class="post-reader__aside">

@@ -370,26 +370,48 @@ a:hover { color: var(--color-accent-strong); }
 .archive-month a { min-width: 0; color: var(--color-text); text-decoration: none; }
 .archive-month a:hover { color: var(--color-accent); text-decoration: underline; }
 
-.post-layout { width: 100%; height: calc(100vh - 30px); height: calc(100dvh - 30px); min-height: 30rem; padding: clamp(0.75rem, 2vw, 1.5rem) 0; }
-.post-page { min-width: 0; height: 100%; }
+.post-layout {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: calc(100vh - var(--site-header-height));
+  height: calc(100dvh - var(--site-header-height));
+  min-height: 0;
+}
+
+.post-page { container: article-reader / inline-size; min-width: 0; width: 100%; height: 100%; }
+.post-layout:not(.post-layout--windowed) .post-page { border: 0; border-radius: 0; box-shadow: none; }
+.post-layout--windowed .post-page { width: min(calc(100% - 2rem), var(--site-width)); height: calc(100% - 2rem); }
 .mac-window-reader { display: flex; overflow: hidden; flex-direction: column; background: color-mix(in srgb, var(--color-surface-raised) 72%, transparent); border: 1px solid color-mix(in srgb, var(--color-border-strong) 82%, transparent); border-radius: 1rem; box-shadow: 0 20px 55px rgb(37 47 45 / 0.1), 0 1px 0 rgb(255 255 255 / 0.55) inset; backdrop-filter: blur(24px) saturate(1.15); }
 html.dark .mac-window-reader { box-shadow: 0 20px 55px rgb(0 0 0 / 0.3), 0 1px 0 rgb(255 255 255 / 0.05) inset; }
 .mac-window-reader__bar { position: relative; display: flex; align-items: center; min-height: 38px; padding: 0 var(--space-4); background: color-mix(in srgb, var(--color-surface-muted) 60%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent); }
 .mac-window-reader__controls { display: inline-flex; align-items: center; gap: 0.45rem; }
-.mac-window-reader__control { display: block; width: 0.72rem; height: 0.72rem; border: 1px solid rgb(0 0 0 / 0.12); border-radius: 50%; box-shadow: 0 1px 1px rgb(255 255 255 / 0.35) inset; }
+.mac-window-reader__control { display: block; width: 0.72rem; height: 0.72rem; padding: 0; border: 1px solid rgb(0 0 0 / 0.12); border-radius: 50%; box-shadow: 0 1px 1px rgb(255 255 255 / 0.35) inset; }
 .mac-window-reader__control--close { background: #ff5f57; }
 .mac-window-reader__control--minimize { background: #febc2e; }
-.mac-window-reader__control--maximize { background: #28c840; }
+.mac-window-reader__control--maximize { color: #084d13; background: #28c840; cursor: pointer; }
+.mac-window-reader__control--maximize:hover { filter: brightness(0.92); }
+.mac-window-reader__control--maximize svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.4; }
 .mac-window-reader__label { position: absolute; right: 5rem; left: 5rem; overflow: hidden; color: var(--color-text-faint); font-size: 0.72rem; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
 .mac-window-reader__body { flex: 1; min-height: 0; overflow: hidden; }
-.post-reader__split { display: grid; grid-template-columns: minmax(0, 1fr) 13rem; height: 100%; min-height: 0; overflow: hidden; }
-.post-reader__main { min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.5rem, 5vw, 3.25rem); scroll-behavior: smooth; scrollbar-color: color-mix(in srgb, var(--color-text-faint) 38%, transparent) transparent; scrollbar-width: thin; }
-.post-reader__aside { min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: var(--space-6) var(--space-4); border-left: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent); scrollbar-color: color-mix(in srgb, var(--color-text-faint) 32%, transparent) transparent; scrollbar-width: thin; }
+.post-reader__split { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: 100%; min-height: 0; overflow: hidden; }
+.post-reader__main { grid-row: 2; min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.5rem, 3vw, 2.75rem); scroll-behavior: smooth; scrollbar-color: color-mix(in srgb, var(--color-text-faint) 38%, transparent) transparent; scrollbar-width: thin; }
+.post-reader__content { width: 100%; max-width: var(--content-width); margin: 0 auto; overflow-wrap: anywhere; }
+.post-reader__aside { grid-row: 1; min-width: 0; min-height: 0; max-height: 13rem; overflow-y: auto; overscroll-behavior: contain; padding: var(--space-3) var(--space-4); border-bottom: 1px solid color-mix(in srgb, var(--color-border-strong) 48%, transparent); scrollbar-color: color-mix(in srgb, var(--color-text-faint) 32%, transparent) transparent; scrollbar-width: thin; }
 .post-reader__main::-webkit-scrollbar, .post-reader__aside::-webkit-scrollbar { width: 8px; }
 .post-reader__main::-webkit-scrollbar-thumb, .post-reader__aside::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--color-text-faint) 32%, transparent); border: 2px solid transparent; border-radius: 999px; background-clip: padding-box; }
-.post-header { padding-bottom: var(--space-6); border-bottom: 1px solid var(--color-border); }
-.post-header h1 { font-size: clamp(2.2rem, 5vw, 3.85rem); }
-.post-header__summary { max-width: 40rem; margin: var(--space-5) 0 0; color: var(--color-text-muted); font-size: 1.12rem; line-height: 1.8; }
+.post-header { padding-bottom: var(--space-5); border-bottom: 1px solid var(--color-border-strong); }
+.post-header h1 { font-family: var(--font-sans); font-size: clamp(1.5rem, 2vw, 1.875rem); font-weight: 650; letter-spacing: -0.025em; line-height: 1.45; }
+.post-header__details { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem 1rem; margin-top: var(--space-2); color: var(--color-text-muted); font-size: 0.75rem; line-height: 1.6; }
+.post-header__details .post-meta { gap: 0.4rem 1rem; margin: 0; color: inherit; font-size: inherit; }
+.post-header__details .post-meta div { gap: 0.35rem; white-space: nowrap; }
+.post-header__details .post-meta dt { color: inherit; }
+.post-header__taxonomy { display: flex; align-items: baseline; gap: 0.75rem; min-width: 0; }
+.post-header__category { flex-shrink: 0; padding: 0.15rem var(--space-2); color: var(--color-category); background: var(--color-category-soft); border-radius: 999px; font-weight: 600; text-decoration: none; }
+.post-header__category:hover { color: var(--color-category); }
+.post-header__category:hover { text-decoration: underline; }
+.post-header__details .tag-list { gap: 0.35rem 0.6rem; margin: 0; }
+.post-header__details .tag-list li { padding: 0.15rem var(--space-2); color: var(--color-post-tag); background: var(--color-post-tag-soft); box-shadow: none; font-size: inherit; }
 
 .post-meta { display: flex; flex-wrap: wrap; gap: var(--space-4); margin: var(--space-5) 0 0; color: var(--color-text-faint); font-size: 0.86rem; }
 .post-meta div { display: flex; gap: var(--space-2); }
@@ -451,6 +473,10 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 
 .table-of-contents { position: sticky; top: var(--space-5); padding-left: var(--space-4); border-left: 1px solid var(--color-border); }
 .post-reader__aside .table-of-contents { position: static; max-width: none; padding: 0; border: 0; }
+.table-of-contents__title { display: none; margin: 0; color: var(--color-text); font-size: 0.82rem; font-weight: 700; }
+.post-reader__aside .table-of-contents__toggle { cursor: pointer; }
+.post-reader__aside .table-of-contents ol { display: none; }
+.post-reader__aside .table-of-contents ol.table-of-contents__list--open { display: grid; }
 .table-of-contents__toggle { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 0; color: var(--color-text); background: transparent; border: 0; font-size: 0.82rem; font-weight: 700; text-align: left; }
 .table-of-contents ol { display: grid; gap: var(--space-2); padding: 0; margin: var(--space-3) 0 0; list-style: none; }
 .table-of-contents li { font-size: 0.8rem; line-height: 1.45; }
@@ -460,7 +486,8 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 .table-of-contents__item--level-3 { padding-left: var(--space-3); }
 .table-of-contents__item--level-4 { padding-left: var(--space-5); }
 
-.reading-progress { position: fixed; z-index: 30; top: 30px; right: 0; left: 0; height: 3px; background: color-mix(in srgb, var(--color-border) 70%, transparent); pointer-events: none; }
+.reading-tools { display: contents; }
+.reading-progress { position: fixed; z-index: 30; top: var(--site-header-height); right: 0; left: 0; height: 3px; background: color-mix(in srgb, var(--color-border) 70%, transparent); pointer-events: none; }
 .reading-progress span { display: block; width: 100%; height: 100%; background: var(--color-accent); transform-origin: left center; }
 .back-to-top { position: fixed; z-index: 10; right: max(var(--space-4), calc((100vw - var(--site-width)) / 2)); bottom: var(--space-5); display: inline-flex; align-items: center; gap: var(--space-1); min-height: 2.5rem; padding: 0 var(--space-3); color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border-strong); border-radius: 999px; box-shadow: var(--shadow-subtle); cursor: pointer; font-size: 0.8rem; font-weight: 700; }
 .back-to-top:hover { color: var(--color-accent); border-color: var(--color-accent); }
@@ -473,9 +500,6 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 @media (max-width: 62rem) {
   .site-navigation { display: none; }
   .mobile-navigation { display: block; }
-  .post-reader__split { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-  .post-reader__main { grid-row: 2; }
-  .post-reader__aside { grid-row: 1; max-height: 13rem; padding: var(--space-3) var(--space-4); overflow-y: auto; border-bottom: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent); border-left: 0; }
   .table-of-contents { position: static; max-width: var(--content-width); padding: 0 0 var(--space-4); border-bottom: 1px solid var(--color-border); border-left: 0; }
   .post-reader__aside .table-of-contents { max-width: none; padding: 0; border: 0; }
   .table-of-contents ol { display: none; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
@@ -520,7 +544,7 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 @media (max-width: 28rem) {
   .site-brand { overflow: hidden; max-width: 9rem; font-size: 0.74rem; text-overflow: ellipsis; }
   .site-header__controls { gap: var(--space-2); }
-  .post-layout { padding: var(--space-2) 0; }
+  .post-layout--windowed .post-page { width: calc(100% - 1rem); height: calc(100% - 1rem); }
   .post-reader__main { padding: var(--space-4); }
   .post-directory__summary { align-items: flex-start; flex-direction: column; }
   .archive-month li { grid-template-columns: 3.25rem minmax(0, 1fr); }
@@ -534,7 +558,7 @@ html.dark .post-content .shiki span, html.dark .prose-content .shiki span { colo
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html, .post-reader__main { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
 
@@ -971,7 +995,7 @@ html.dark .post-card__folder { background: #d6a93c; border-color: rgb(255 220 13
 .site-header {
   top: 0;
   width: 100%;
-  height: 2rem;
+  height: var(--site-header-height);
   margin: 0;
   background: color-mix(in srgb, var(--color-surface-raised) 72%, transparent);
   border: 0;
@@ -1195,4 +1219,26 @@ html.dark .mac-window-reader__bar {
   .default-page--index .post-card,
   .taxonomy-detail .post-card { grid-template-columns: minmax(0, 1fr) auto; padding: 0.6rem var(--space-3); }
   .site-footer__inner { width: calc(100% - 1rem); }
+}
+
+/* The glass fills the viewport; the reading column stays centered in either window size. */
+.site-main.site-main--post { flex: 0 0 auto; width: 100%; }
+
+@container article-reader (min-width: 76rem) {
+  .post-reader__split { display: block; }
+  .post-reader__main { height: 100%; padding-inline: 15rem; }
+  .post-reader__aside {
+    position: absolute;
+    top: var(--space-6);
+    right: max(var(--space-4), calc((100% - 80rem) / 2));
+    width: 13rem;
+    max-height: calc(100% - 4rem);
+    padding: 0 var(--space-4);
+    border-bottom: 0;
+    border-left: 1px solid color-mix(in srgb, var(--color-border-strong) 48%, transparent);
+  }
+
+  .post-reader__aside .table-of-contents__title { display: block; }
+  .post-reader__aside .table-of-contents__toggle { display: none; }
+  .post-reader__aside .table-of-contents ol { display: grid; }
 }

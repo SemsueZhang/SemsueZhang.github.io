@@ -11,6 +11,10 @@
   --color-accent: #0ea5e9;
   --color-accent-strong: #0284c7;
   --color-accent-soft: rgb(14 165 233 / 0.12);
+  --color-category: #15803d;
+  --color-category-soft: rgb(22 163 74 / 0.12);
+  --color-post-tag: #0369a1;
+  --color-post-tag-soft: rgb(14 165 233 / 0.12);
   --color-code-bg: rgb(239 246 255 / 0.88);
   --shadow-subtle: 0 2px 5px rgb(37 99 235 / 0.05), 0 18px 46px rgb(37 99 235 / 0.12);
   --font-sans: Outfit, "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
@@ -28,6 +32,7 @@
   --radius-md: 1.15rem;
   --content-width: 45rem;
   --site-width: 76rem;
+  --site-header-height: 2rem;
   color-scheme: light;
 }
 
@@ -44,6 +49,10 @@
   --color-accent: #a855f7;
   --color-accent-strong: #c084fc;
   --color-accent-soft: rgb(168 85 247 / 0.16);
+  --color-category: #86efac;
+  --color-category-soft: rgb(74 222 128 / 0.14);
+  --color-post-tag: #7dd3fc;
+  --color-post-tag-soft: rgb(14 165 233 / 0.16);
   --color-code-bg: rgb(17 17 21 / 0.84);
   --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.32), 0 22px 55px rgb(88 28 135 / 0.3);
   color-scheme: dark;
@@ -63,6 +72,10 @@
     --color-accent: #a855f7;
     --color-accent-strong: #c084fc;
     --color-accent-soft: rgb(168 85 247 / 0.16);
+    --color-category: #86efac;
+    --color-category-soft: rgb(74 222 128 / 0.14);
+    --color-post-tag: #7dd3fc;
+    --color-post-tag-soft: rgb(14 165 233 / 0.16);
     --color-code-bg: rgb(17 17 21 / 0.84);
     --shadow-subtle: 0 3px 7px rgb(0 0 0 / 0.3), 0 18px 46px rgb(88 28 135 / 0.28);
     color-scheme: dark;

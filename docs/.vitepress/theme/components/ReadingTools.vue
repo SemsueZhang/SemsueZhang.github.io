@@ -8,6 +8,7 @@ const props = defineProps<{
 const progress = ref(0);
 const showBackToTop = ref(false);
 let frame = 0;
+let resizeObserver: ResizeObserver | undefined;
 
 function updateReadingState() {
   frame = 0;
@@ -39,6 +40,8 @@ function detachScrollListener(container: HTMLElement | null | undefined) {
 }
 
 onMounted(() => {
+  resizeObserver = new ResizeObserver(requestUpdate);
+  if (props.container) resizeObserver.observe(props.container);
   updateReadingState();
   attachScrollListener(props.container);
   window.addEventListener('resize', requestUpdate);
@@ -49,11 +52,14 @@ watch(
   (container, previousContainer) => {
     detachScrollListener(previousContainer);
     attachScrollListener(container);
+    resizeObserver?.disconnect();
+    if (container) resizeObserver?.observe(container);
     requestUpdate();
   }
 );
 
 onBeforeUnmount(() => {
+  resizeObserver?.disconnect();
   detachScrollListener(props.container);
   window.removeEventListener('resize', requestUpdate);
   if (frame !== 0) {

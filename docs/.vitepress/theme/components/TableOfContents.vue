@@ -68,6 +68,7 @@ watch(() => props.scrollContainer, observeHeadings);
 
 <template>
   <nav v-if="shouldRender" class="table-of-contents" aria-label="文章目录">
+    <p class="table-of-contents__title">本页目录</p>
     <button
       class="table-of-contents__toggle"
       type="button"

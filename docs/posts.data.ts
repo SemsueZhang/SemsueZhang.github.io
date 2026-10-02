@@ -2,7 +2,7 @@ import { createContentLoader } from 'vitepress';
 
 export interface ArticleFrontmatter {
   title: string;
-  description: string;
+  description?: string;
   date: string;
   updated: string;
   tags: string[];
@@ -78,6 +78,16 @@ function requiredString(data: FrontmatterRecord, field: string, source: string):
   const value = data[field];
   if (typeof value !== 'string' || value.trim().length === 0) {
     return invalidPost(source, `缺少必填字段或字段为空：${field}。`);
+  }
+
+  return value.trim();
+}
+
+function optionalString(data: FrontmatterRecord, field: string, source: string): string {
+  const value = data[field];
+  if (value === undefined || value === null) return '';
+  if (typeof value !== 'string') {
+    return invalidPost(source, `字段 ${field} 必须是字符串。`);
   }
 
   return value.trim();
@@ -174,9 +184,10 @@ function normalizePost(entry: {
     return invalidPost(source, '字段 layout 必须为 post。');
   }
 
+  const description = optionalString(data, 'description', source);
   const frontmatter: ArticleFrontmatter = {
     title: requiredString(data, 'title', source),
-    description: requiredString(data, 'description', source),
+    description,
     date: date.value,
     updated: updated.value,
     tags: requiredTags(data, source),
@@ -190,8 +201,8 @@ function normalizePost(entry: {
     url: entry.url,
     frontmatter,
     title: frontmatter.title,
-    description: frontmatter.description,
-    excerpt: entry.excerpt?.trim() || frontmatter.description,
+    description,
+    excerpt: entry.excerpt?.trim() || description,
     date,
     updated,
     tags: frontmatter.tags,

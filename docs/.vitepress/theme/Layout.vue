@@ -35,7 +35,7 @@ const layout = computed(() => {
     <a class="skip-link" href="#main-content">跳到主要内容</a>
     <SiteHeader />
 
-    <main id="main-content" class="site-main">
+    <main id="main-content" class="site-main" :class="{ 'site-main--post': layout === 'post' }">
       <HomePage v-if="layout === 'home'">
         <Content />
       </HomePage>
