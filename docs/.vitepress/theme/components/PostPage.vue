@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useData, useRoute, withBase } from 'vitepress';
 import { Content } from 'vitepress/dist/client/app/components/Content.js';
 import { data as postsData } from '../../../posts.data';
@@ -22,17 +22,77 @@ const route = useRoute();
 const contentElement = ref<HTMLElement | null>(null);
 const scrollElement = ref<HTMLElement | null>(null);
 const isExpanded = ref(true);
+const readerElement = ref<HTMLElement | null>(null);
+const isFullscreen = ref(false);
+const fullscreenSupported = ref(false);
+const fullscreenError = ref('');
+let expandedBeforeFullscreen = true;
 
 watch(() => route.path, () => {
   isExpanded.value = true;
+  fullscreenError.value = '';
+  if (isFullscreen.value) expandedBeforeFullscreen = true;
 });
 
 async function toggleWindowSize() {
   const scrollPosition = scrollElement.value?.scrollTop ?? 0;
-  isExpanded.value = !isExpanded.value;
+  if (isFullscreen.value) {
+    expandedBeforeFullscreen = false;
+    try {
+      await document.exitFullscreen();
+    } catch {
+      fullscreenError.value = '暂时无法退出全屏，请按 Esc 后重试。';
+      return;
+    }
+  } else {
+    isExpanded.value = !isExpanded.value;
+  }
   await nextTick();
   if (scrollElement.value) scrollElement.value.scrollTop = scrollPosition;
 }
+
+function updateFullscreenState() {
+  const active = document.fullscreenElement === readerElement.value;
+  if (isFullscreen.value && !active) isExpanded.value = expandedBeforeFullscreen;
+  isFullscreen.value = active;
+}
+
+async function toggleFullscreen() {
+  fullscreenError.value = '';
+  if (isFullscreen.value) {
+    try {
+      await document.exitFullscreen();
+    } catch {
+      fullscreenError.value = '暂时无法退出全屏，请按 Esc 后重试。';
+    }
+    return;
+  }
+
+  if (!fullscreenSupported.value || !readerElement.value?.requestFullscreen) {
+    await toggleWindowSize();
+    return;
+  }
+  expandedBeforeFullscreen = isExpanded.value;
+  isExpanded.value = true;
+  try {
+    await readerElement.value.requestFullscreen();
+  } catch {
+    isExpanded.value = expandedBeforeFullscreen;
+    fullscreenError.value = '暂时无法进入全屏，请重试或使用绿色按钮展开窗口。';
+  }
+}
+
+onMounted(() => {
+  fullscreenSupported.value = Boolean(document.fullscreenEnabled && readerElement.value?.requestFullscreen);
+  document.addEventListener('fullscreenchange', updateFullscreenState);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener('fullscreenchange', updateFullscreenState);
+  if (document.fullscreenElement === readerElement.value) {
+    void document.exitFullscreen().catch(() => {});
+  }
+});
 
 function normalizeDate(value: unknown): string {
   if (typeof value === 'string') {
@@ -74,12 +134,15 @@ const nextPost = computed(() => {
 </script>
 
 <template>
-  <div class="post-layout" :class="{ 'post-layout--windowed': !isExpanded }">
+  <div ref="readerElement" class="post-layout" :class="{ 'post-layout--windowed': !isExpanded }">
     <MacWindowReader
       class="post-page"
       :label="post.title"
       :expanded="isExpanded"
+      :fullscreen="isFullscreen"
+      :fullscreen-error="fullscreenError"
       @toggle-window-size="toggleWindowSize"
+      @toggle-fullscreen="toggleFullscreen"
     >
       <div class="post-reader__split">
         <div ref="scrollElement" class="post-reader__main" tabindex="0" aria-label="文章正文">

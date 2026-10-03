@@ -371,29 +371,55 @@ a:hover { color: var(--color-accent-strong); }
 .archive-month a:hover { color: var(--color-accent); text-decoration: underline; }
 
 .post-layout {
+  position: relative;
   display: grid;
   place-items: center;
   width: 100%;
   height: calc(100vh - var(--site-header-height));
   height: calc(100dvh - var(--site-header-height));
   min-height: 0;
+  overflow: clip;
 }
 
 .post-page { container: article-reader / inline-size; min-width: 0; width: 100%; height: 100%; }
 .post-layout:not(.post-layout--windowed) .post-page { border: 0; border-radius: 0; box-shadow: none; }
 .post-layout--windowed .post-page { width: min(calc(100% - 2rem), var(--site-width)); height: calc(100% - 2rem); }
-.mac-window-reader { display: flex; overflow: hidden; flex-direction: column; background: color-mix(in srgb, var(--color-surface-raised) 72%, transparent); border: 1px solid color-mix(in srgb, var(--color-border-strong) 82%, transparent); border-radius: 1rem; box-shadow: 0 20px 55px rgb(37 47 45 / 0.1), 0 1px 0 rgb(255 255 255 / 0.55) inset; backdrop-filter: blur(24px) saturate(1.15); }
+.post-layout:fullscreen { --site-header-height: 0px; width: 100%; height: 100%; background: var(--color-bg); }
+.post-layout::backdrop { background: var(--color-bg); }
+.mac-window-reader { position: relative; display: flex; overflow: hidden; flex-direction: column; background: color-mix(in srgb, var(--color-surface-raised) 72%, transparent); border: 1px solid color-mix(in srgb, var(--color-border-strong) 82%, transparent); border-radius: 1rem; box-shadow: 0 20px 55px rgb(37 47 45 / 0.1), 0 1px 0 rgb(255 255 255 / 0.55) inset; backdrop-filter: blur(24px) saturate(1.15); }
 html.dark .mac-window-reader { box-shadow: 0 20px 55px rgb(0 0 0 / 0.3), 0 1px 0 rgb(255 255 255 / 0.05) inset; }
 .mac-window-reader__bar { position: relative; display: flex; align-items: center; min-height: 38px; padding: 0 var(--space-4); background: color-mix(in srgb, var(--color-surface-muted) 60%, transparent); border-bottom: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent); }
+.mac-window-reader--movable .mac-window-reader__bar { cursor: grab; touch-action: none; user-select: none; }
+.mac-window-reader__bar:focus-visible { outline: none; }
+.mac-window-reader__bar:focus-visible .mac-window-reader__label { color: var(--color-text-muted); text-decoration: underline; text-underline-offset: 3px; }
+.mac-window-reader--dragging, .mac-window-reader--resizing { user-select: none; }
+.mac-window-reader--dragging .mac-window-reader__bar { cursor: grabbing; }
 .mac-window-reader__controls { display: inline-flex; align-items: center; gap: 0.45rem; }
 .mac-window-reader__control { display: block; width: 0.72rem; height: 0.72rem; padding: 0; border: 1px solid rgb(0 0 0 / 0.12); border-radius: 50%; box-shadow: 0 1px 1px rgb(255 255 255 / 0.35) inset; }
 .mac-window-reader__control--close { background: #ff5f57; }
 .mac-window-reader__control--minimize { background: #febc2e; }
-.mac-window-reader__control--maximize { color: #084d13; background: #28c840; cursor: pointer; }
+.mac-window-reader__control--maximize { background: #28c840; cursor: pointer; }
 .mac-window-reader__control--maximize:hover { filter: brightness(0.92); }
-.mac-window-reader__control--maximize svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.4; }
 .mac-window-reader__label { position: absolute; right: 5rem; left: 5rem; overflow: hidden; color: var(--color-text-faint); font-size: 0.72rem; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.mac-window-reader__notice { position: absolute; z-index: 3; top: 2.75rem; right: var(--space-4); left: var(--space-4); margin: 0; padding: var(--space-2) var(--space-3); color: var(--color-text); background: var(--color-surface-raised); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); font-size: 0.8rem; }
 .mac-window-reader__body { flex: 1; min-height: 0; overflow: hidden; }
+.mac-window-reader__resize { position: absolute; z-index: 2; touch-action: none; }
+.mac-window-reader__resize--n, .mac-window-reader__resize--s { right: 16px; left: 16px; height: 6px; cursor: ns-resize; }
+.mac-window-reader__resize--n { top: 0; }
+.mac-window-reader__resize--s { bottom: 0; }
+.mac-window-reader__resize--e, .mac-window-reader__resize--w { top: 16px; bottom: 16px; width: 6px; cursor: ew-resize; }
+.mac-window-reader__resize--e { right: 0; }
+.mac-window-reader__resize--w { left: 0; }
+.mac-window-reader__resize--ne, .mac-window-reader__resize--nw,
+.mac-window-reader__resize--se, .mac-window-reader__resize--sw { width: 16px; height: 16px; }
+.mac-window-reader__resize--ne { top: 0; right: 0; cursor: nesw-resize; }
+.mac-window-reader__resize--nw { top: 0; left: 0; cursor: nwse-resize; }
+.mac-window-reader__resize--se { right: 0; bottom: 0; cursor: nwse-resize; }
+.mac-window-reader__resize--sw { bottom: 0; left: 0; cursor: nesw-resize; }
+.mac-window-reader__resize--se::before, .mac-window-reader__resize--se::after { position: absolute; right: 3px; height: 1px; background: var(--color-text-faint); transform: rotate(-45deg); content: ''; }
+.mac-window-reader__resize--se::before { bottom: 6px; width: 9px; }
+.mac-window-reader__resize--se::after { bottom: 4px; width: 5px; }
+.mac-window-reader__resize--se:focus-visible { outline-offset: -3px; }
 .post-reader__split { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); height: 100%; min-height: 0; overflow: hidden; }
 .post-reader__main { grid-row: 2; min-width: 0; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.5rem, 3vw, 2.75rem); scroll-behavior: smooth; scrollbar-color: color-mix(in srgb, var(--color-text-faint) 38%, transparent) transparent; scrollbar-width: thin; }
 .post-reader__content { width: 100%; max-width: var(--content-width); margin: 0 auto; overflow-wrap: anywhere; }
