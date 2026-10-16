@@ -3,12 +3,19 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch, type CSSPro
 import { withBase } from 'vitepress';
 import { keepWindowReachable, resizeWindowRect, type ResizeEdge, type WindowRect } from '../utils/windowGeometry';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   label?: string;
+  windowLabel?: string;
+  closeHref?: string;
+  closeLabel?: string;
   expanded: boolean;
   fullscreen?: boolean;
   fullscreenError?: string;
-}>();
+}>(), {
+  windowLabel: '文章',
+  closeHref: '/posts/',
+  closeLabel: '返回文章列表'
+});
 
 const emit = defineEmits<{
   'toggle-window-size': [];
@@ -245,7 +252,7 @@ onBeforeUnmount(() => {
     <header
       class="mac-window-reader__bar"
       tabindex="0"
-      :aria-label="expanded ? '文章窗口标题栏；双击或按 Enter 全屏' : '拖动文章窗口；方向键移动，Home 键居中，双击或按 Enter 全屏'"
+      :aria-label="expanded ? `${windowLabel}窗口标题栏；双击或按 Enter 全屏` : `拖动${windowLabel}窗口；方向键移动，Home 键居中，双击或按 Enter 全屏`"
       :aria-keyshortcuts="expanded ? 'Enter' : 'ArrowLeft ArrowRight ArrowUp ArrowDown Home Enter'"
       :title="fullscreen ? '双击退出全屏' : '双击进入全屏'"
       @pointerdown="startDrag"
@@ -256,20 +263,20 @@ onBeforeUnmount(() => {
       @keydown="moveWithKeyboard"
       @dblclick="toggleFullscreenFromTitlebar"
     >
-      <span class="mac-window-reader__controls" aria-label="文章窗口控制">
+      <span class="mac-window-reader__controls" :aria-label="`${windowLabel}窗口控制`">
         <a
           class="mac-window-reader__control mac-window-reader__control--close"
-          :href="withBase('/posts/')"
-          aria-label="返回文章列表"
-          title="返回文章列表"
+          :href="withBase(closeHref)"
+          :aria-label="closeLabel"
+          :title="closeLabel"
         ></a>
         <span class="mac-window-reader__control mac-window-reader__control--minimize" aria-hidden="true"></span>
         <button
           class="mac-window-reader__control mac-window-reader__control--maximize"
           type="button"
-          :aria-label="fullscreen ? '退出全屏并恢复文章窗口' : expanded ? '缩小文章窗口' : '展开文章窗口'"
+          :aria-label="fullscreen ? `退出全屏并恢复${windowLabel}窗口` : expanded ? `缩小${windowLabel}窗口` : `展开${windowLabel}窗口`"
           :aria-pressed="expanded"
-          :title="fullscreen ? '退出全屏并恢复文章窗口' : expanded ? '缩小文章窗口' : '展开文章窗口'"
+          :title="fullscreen ? `退出全屏并恢复${windowLabel}窗口` : expanded ? `缩小${windowLabel}窗口` : `展开${windowLabel}窗口`"
           @click="$emit('toggle-window-size')"
         ></button>
       </span>
@@ -289,7 +296,7 @@ onBeforeUnmount(() => {
         :role="edge === 'se' ? 'button' : undefined"
         :tabindex="edge === 'se' ? 0 : undefined"
         :aria-hidden="edge !== 'se' ? true : undefined"
-        :aria-label="edge === 'se' ? '调整文章窗口大小；方向键调整宽高，Home 键恢复默认' : undefined"
+        :aria-label="edge === 'se' ? `调整${windowLabel}窗口大小；方向键调整宽高，Home 键恢复默认` : undefined"
         :aria-keyshortcuts="edge === 'se' ? 'ArrowLeft ArrowRight ArrowUp ArrowDown Home Enter' : undefined"
         @pointerdown.stop="startResize($event, edge)"
         @pointermove="moveDrag"

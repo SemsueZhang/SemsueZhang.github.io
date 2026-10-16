@@ -1,113 +1,50 @@
 <script setup lang="ts">
-import { computed, ref, type CSSProperties } from 'vue';
+import { computed, ref } from 'vue';
 import { Content } from 'vitepress/dist/client/app/components/Content.js';
 import { useRoute, withBase } from 'vitepress';
+import MacWindowReader from './MacWindowReader.vue';
+import { useReaderWindow } from '../utils/useReaderWindow';
 
 const route = useRoute();
-const isIndexPage = computed(() => /^(\/posts\/|\/tags\/|\/categories\/|\/archive\/)/.test(route.path));
-const panel = ref<HTMLElement | null>(null);
-const panelOffset = ref({ x: 0, y: 0 });
-const isDragging = ref(false);
-const isExpanded = ref(false);
-let dragOrigin = { x: 0, y: 0 };
-let pointerOrigin = { x: 0, y: 0 };
+const pagePath = computed(() => `/${route.path.slice(withBase('/').length)}`);
+const isIndexPage = computed(() => /^\/(posts|tags|categories|archive)\//.test(pagePath.value));
+const scrollElement = ref<HTMLElement | null>(null);
+const { readerElement, isExpanded, isFullscreen, fullscreenError, toggleWindowSize, toggleFullscreen } = useReaderWindow(scrollElement);
 
 const indexTitle = computed(() => {
-  if (route.path.startsWith('/posts/')) return '文章';
-  if (route.path.startsWith('/tags/')) return '标签';
-  if (route.path.startsWith('/categories/')) return '分类';
+  if (pagePath.value.startsWith('/posts/')) return '文章';
+  if (pagePath.value.startsWith('/tags/')) return '标签';
+  if (pagePath.value.startsWith('/categories/')) return '分类';
   return '归档';
 });
-
-const panelStyle = computed<CSSProperties>(() => ({
-  transform: `translate(${panelOffset.value.x}px, ${panelOffset.value.y}px)`
-}));
-
-function startDrag(event: PointerEvent) {
-  if (!isIndexPage.value || isExpanded.value || window.innerWidth < 720) return;
-
-  const target = event.currentTarget;
-  if (!(target instanceof HTMLElement)) return;
-  if (event.target instanceof Element && event.target.closest('a, button')) return;
-
-  isDragging.value = true;
-  dragOrigin = { ...panelOffset.value };
-  pointerOrigin = { x: event.clientX, y: event.clientY };
-  target.setPointerCapture(event.pointerId);
-}
-
-function moveDrag(event: PointerEvent) {
-  if (!isDragging.value) return;
-
-  const maxX = Math.min(280, window.innerWidth / 4);
-  const maxY = Math.min(180, window.innerHeight / 4);
-  const x = dragOrigin.x + event.clientX - pointerOrigin.x;
-  const y = dragOrigin.y + event.clientY - pointerOrigin.y;
-  panelOffset.value = {
-    x: Math.max(-maxX, Math.min(maxX, x)),
-    y: Math.max(-maxY, Math.min(maxY, y))
-  };
-}
-
-function endDrag(event: PointerEvent) {
-  if (!isDragging.value) return;
-
-  const target = event.currentTarget;
-  if (!(target instanceof HTMLElement)) return;
-
-  isDragging.value = false;
-  target.releasePointerCapture(event.pointerId);
-}
-
-function toggleWindowSize() {
-  isExpanded.value = !isExpanded.value;
-  panelOffset.value = { x: 0, y: 0 };
-}
 </script>
 
 <template>
-  <article
-    ref="panel"
-    class="default-page prose-content"
-    :class="{
-      'default-page--index': isIndexPage,
-      'default-page--index--expanded': isExpanded,
-      'default-page--dragging': isDragging
-    }"
-    :style="isIndexPage ? panelStyle : undefined"
+  <div
+    v-if="isIndexPage"
+    ref="readerElement"
+    class="post-layout directory-layout"
+    :class="{ 'post-layout--windowed': !isExpanded }"
   >
-    <header
-      v-if="isIndexPage"
-      class="index-window__titlebar"
-      aria-label="拖动目录窗口"
-      @pointerdown="startDrag"
-      @pointermove="moveDrag"
-      @pointerup="endDrag"
-      @pointercancel="endDrag"
+    <MacWindowReader
+      :key="route.path"
+      class="post-page directory-window"
+      :label="indexTitle"
+      window-label="目录"
+      close-href="/"
+      close-label="返回首页"
+      :expanded="isExpanded"
+      :fullscreen="isFullscreen"
+      :fullscreen-error="fullscreenError"
+      @toggle-window-size="toggleWindowSize"
+      @toggle-fullscreen="toggleFullscreen"
     >
-      <span class="index-window__controls" aria-label="目录窗口控制">
-        <a
-          class="index-window__control index-window__control--close"
-          :href="withBase('/')"
-          aria-label="返回首页"
-          title="返回首页"
-        ></a>
-        <span
-          class="index-window__control index-window__control--minimize"
-          aria-hidden="true"
-          title="无操作"
-        ></span>
-        <button
-          class="index-window__control index-window__control--maximize"
-          type="button"
-          :aria-label="isExpanded ? '恢复目录窗口大小' : '展开至文章阅读器大小'"
-          :aria-pressed="isExpanded"
-          :title="isExpanded ? '恢复目录窗口大小' : '展开至文章阅读器大小'"
-          @click="toggleWindowSize"
-        ></button>
-      </span>
-      <span>{{ indexTitle }}</span>
-    </header>
+      <div ref="scrollElement" class="directory-content prose-content" tabindex="0" :aria-label="`${indexTitle}目录`">
+        <Content />
+      </div>
+    </MacWindowReader>
+  </div>
+  <article v-else class="default-page prose-content">
     <Content />
   </article>
 </template>
