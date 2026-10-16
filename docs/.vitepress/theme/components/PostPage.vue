@@ -100,9 +100,8 @@ const nextPost = computed(() => {
             </div>
             <CodeCopyControls :container="contentElement" />
 
-            <footer class="post-footer">
-              <a class="back-link" :href="withBase('/posts/')">← 返回文章列表</a>
-              <nav v-if="previousPost || nextPost" class="post-pagination" aria-label="相邻文章">
+            <footer v-if="previousPost || nextPost" class="post-footer">
+              <nav class="post-pagination" aria-label="相邻文章">
                 <a v-if="previousPost" :href="withBase(previousPost.url)">
                   <span>上一篇</span>
                   <strong>{{ previousPost.title }}</strong>
