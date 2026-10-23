@@ -11,7 +11,8 @@ defineProps<{ items: NavigationItem[] }>();
 const route = useRoute();
 
 function isCurrent(link: string) {
-  return link === '/' ? route.path === '/' : route.path.startsWith(link);
+  const path = withBase(link);
+  return link === '/' ? route.path === path : route.path.startsWith(path);
 }
 </script>
 

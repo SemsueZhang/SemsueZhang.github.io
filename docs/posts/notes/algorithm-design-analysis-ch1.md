@@ -3,8 +3,9 @@ title: 算法设计与分析（一）：算法基础
 date: 2026-07-18
 updated: 2026-07-18
 tags:
+  - 计算机科学
   - 算法
-category: 课程笔记
+category: 笔记
 draft: false
 featured: false
 layout: post

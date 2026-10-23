@@ -10,6 +10,7 @@ export interface TaxonomyRouteNames {
 }
 
 const postsDirectory = fileURLToPath(new URL('../../posts', import.meta.url));
+const todosDirectory = fileURLToPath(new URL('../../todo', import.meta.url));
 
 function asRecord(value: unknown): FrontmatterRecord | null {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -17,16 +18,16 @@ function asRecord(value: unknown): FrontmatterRecord | null {
     : null;
 }
 
-async function collectMarkdownFiles(directory: string): Promise<string[]> {
+async function collectMarkdownFiles(directory: string, includeIndex = false): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = await Promise.all(entries.map(async (entry) => {
     const path = `${directory}/${entry.name}`;
 
     if (entry.isDirectory()) {
-      return collectMarkdownFiles(path);
+      return collectMarkdownFiles(path, includeIndex);
     }
 
-    return entry.isFile() && entry.name.endsWith('.md') && entry.name !== 'index.md'
+    return entry.isFile() && entry.name.endsWith('.md') && (includeIndex || entry.name !== 'index.md')
       ? [path]
       : [];
   }));
@@ -66,8 +67,8 @@ export async function loadTaxonomyRouteNames(): Promise<TaxonomyRouteNames> {
   };
 }
 
-export async function loadDraftPostPaths(): Promise<string[]> {
-  const files = await collectMarkdownFiles(postsDirectory);
+async function loadDraftPaths(directory: string, routePrefix: string): Promise<string[]> {
+  const files = await collectMarkdownFiles(directory, true);
   const draftPaths: string[] = [];
 
   for (const file of files) {
@@ -75,9 +76,17 @@ export async function loadDraftPostPaths(): Promise<string[]> {
     const frontmatter = asRecord(matter(source).data);
 
     if (frontmatter?.draft === true) {
-      draftPaths.push(file.replace(`${postsDirectory}/`, 'posts/').replace(/\\/g, '/'));
+      draftPaths.push(file.replace(`${directory}/`, `${routePrefix}/`).replace(/\\/g, '/'));
     }
   }
 
   return draftPaths;
+}
+
+export function loadDraftPostPaths(): Promise<string[]> {
+  return loadDraftPaths(postsDirectory, 'posts');
+}
+
+export function loadDraftTodoPaths(): Promise<string[]> {
+  return loadDraftPaths(todosDirectory, 'todo');
 }
