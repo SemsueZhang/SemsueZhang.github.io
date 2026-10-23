@@ -1,0 +1,15 @@
+Asset: landscape-lake.png
+Generated with the built-in image_gen tool (single image, opaque background).
+Native output: 1672 x 941 pixels. This is an AI-generated landscape, not a photograph of an identified location.
+
+Final prompt:
+Use case: photorealistic-natural
+Asset type: full-screen landscape background behind translucent glass cards on a calm research and technical blog.
+Primary request: a single wide landscape photograph of a tranquil mountain lake with distant mountain ridges and delicate natural mist.
+Scene/backdrop: an uninhabited alpine lake at blue-hour dawn, overlapping distant ridgelines, a subtle forested shoreline at the sides, still water with delicate reflections and fine ripples.
+Style/medium: realistic high-quality nature photography, natural textures and convincing depth.
+Composition/framing: wide 16:9 landscape, approximately 2560 x 1440. Layered distant mountains across the upper middle, calm open lake across the lower half. Keep the center visually quiet and readable behind UI cards, with stronger landscape detail near the outer sides. Frame a complete coherent landscape suitable for cover cropping.
+Lighting/mood: gentle diffuse dawn light and thin mist, serene, crisp yet soft atmospheric perspective.
+Color palette: restrained cool blue, slate gray and subtle muted forest green, balanced exposure.
+Constraints: exactly one image, full bleed, clear recognizable mountains and lake, visible natural detail, no people, buildings, roads, boats, text, logos, watermarks or graphic framing.
+Avoid: excessive blur, artificial gradients, abstract shapes, oversaturated colors, dramatic orange sunset, cartoon or painted rendering.

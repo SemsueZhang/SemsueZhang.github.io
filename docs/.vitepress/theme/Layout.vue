@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from 'vue';
-import { useData, useRoute } from 'vitepress';
+import { useData, useRoute, withBase } from 'vitepress';
 import DefaultPage from './components/DefaultPage.vue';
 import HomePage from './components/HomePage.vue';
 import PostPage from './components/PostPage.vue';
@@ -33,7 +33,7 @@ const isWindowPage = computed(() => layout.value === 'post' || layout.value === 
 </script>
 
 <template>
-  <div class="site-shell">
+  <div class="site-shell" :style="{ '--site-wallpaper': `url('${withBase('/images/landscape-lake.png')}')` }">
     <a class="skip-link" href="#main-content">跳到主要内容</a>
     <SiteHeader />
 

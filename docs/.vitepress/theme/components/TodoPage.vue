@@ -28,6 +28,7 @@ const progressStatus = computed(() => {
     <MacWindowReader
       :key="route.path"
       class="post-page todo-window"
+      :class="{ 'todo-window--board': isIndex }"
       :label="isIndex ? '计划' : todo?.title"
       window-label="计划"
       :close-href="isIndex ? '/' : '/todo/'"
@@ -41,6 +42,7 @@ const progressStatus = computed(() => {
       <div
         ref="scrollElement"
         class="todo-scroll"
+        :class="{ 'todo-scroll--board': isIndex }"
         tabindex="0"
         :aria-label="isIndex ? '计划列表' : '计划详情'"
       >
@@ -119,9 +121,10 @@ const progressStatus = computed(() => {
   scrollbar-color: var(--color-border-strong) transparent;
 }
 
-.todo-board { max-width: 68rem; margin: 0 auto; }
-.todo-board__note { margin: 0 0 var(--space-5); color: var(--color-text-muted); font-size: 0.8rem; }
-.todo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13.5rem), 1fr)); gap: var(--space-4); padding: 0; margin: 0; list-style: none; }
+.todo-scroll--board { display: flex; flex-direction: column; }
+.todo-board { flex-shrink: 0; width: min(100%, 36rem); margin: auto; }
+.todo-board__note { width: fit-content; max-width: 100%; margin: 0 auto var(--space-5); padding: var(--space-2) var(--space-3); color: var(--color-text); background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: var(--radius-sm); backdrop-filter: blur(12px); font-size: 0.8rem; text-align: center; }
+.todo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); padding: 0; margin: 0; list-style: none; }
 .todo-grid > li { min-width: 0; }
 
 .todo-card {
@@ -129,12 +132,12 @@ const progressStatus = computed(() => {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  min-height: 9.5rem;
+  aspect-ratio: 2 / 3;
   padding: clamp(1rem, 2.5cqi, 1.5rem);
   overflow-wrap: anywhere;
   color: var(--color-text);
   text-decoration: none;
-  background: linear-gradient(145deg, var(--color-accent-soft), transparent 70%), color-mix(in srgb, var(--color-surface) 70%, transparent);
+  background: linear-gradient(145deg, var(--color-accent-soft), transparent 70%), var(--color-surface-raised);
   border: 1px solid var(--color-border-strong);
   border-radius: 1rem;
   box-shadow: 0 3px 12px color-mix(in srgb, var(--color-accent) 5%, transparent), inset 0 1px 0 var(--color-border);
@@ -142,11 +145,11 @@ const progressStatus = computed(() => {
   transition: border-color 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
 }
 
-.todo-card:hover { color: var(--color-text); background-color: var(--color-accent-soft); border-color: var(--color-accent); box-shadow: 0 6px 20px color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.todo-card:hover { color: var(--color-text); border-color: var(--color-accent); box-shadow: 0 6px 20px color-mix(in srgb, var(--color-accent) 10%, transparent); }
 .todo-card:focus-visible { outline: 3px solid var(--color-accent-strong); outline-offset: 4px; }
 .todo-card__date { font-size: clamp(0.95rem, 1.8cqi, 1.15rem); font-weight: 550; font-variant-numeric: tabular-nums; letter-spacing: 0.035em; }
-.todo-card__duration { color: var(--color-text-muted); font-size: 0.86rem; }
-.todo-empty { padding-block: var(--space-7); color: var(--color-text-muted); text-align: center; }
+.todo-card__duration { color: var(--color-text); font-size: 0.86rem; }
+.todo-empty { padding: var(--space-7) var(--space-5); color: var(--color-text); background: var(--color-surface-raised); border: 1px solid var(--color-border); border-radius: var(--radius-md); backdrop-filter: blur(12px); text-align: center; }
 .todo-empty h2 { margin: 0; color: var(--color-text); font-size: 1rem; font-weight: 500; }
 .todo-empty p { font-size: 0.88rem; }
 .todo-detail { max-width: var(--content-width); margin: 0 auto; overflow-wrap: anywhere; }
@@ -179,7 +182,7 @@ const progressStatus = computed(() => {
 @container article-reader (max-width: 32rem) {
   .todo-scroll { padding: var(--space-4); }
   .todo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
-  .todo-card { min-height: 7rem; padding: var(--space-4); border-radius: 0.85rem; }
+  .todo-card { padding: var(--space-4); border-radius: 0.85rem; }
   .todo-card__date { font-size: 0.9rem; letter-spacing: 0; }
   .todo-card__duration { font-size: 0.78rem; }
   .todo-detail__meta { column-gap: var(--space-4); }
