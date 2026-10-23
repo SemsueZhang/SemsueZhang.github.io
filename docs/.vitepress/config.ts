@@ -14,6 +14,9 @@ const detectedBase = repositoryName && repositoryOwner && !isUserPagesRepository
   : '/';
 const base = process.env.VITEPRESS_BASE ?? detectedBase;
 const draftPaths = (await Promise.all([loadDraftPostPaths(), loadDraftTodoPaths()])).flat();
+const wallpapers = ['lake', 'forest', 'coast', 'snow'].map(
+  (name) => `${base.replace(/\/?$/, '/')}images/landscape-${name}.png`
+);
 
 export default defineConfig({
   lang: 'zh-CN',
@@ -57,6 +60,17 @@ export default defineConfig({
   head: [
     ['meta', { name: 'author', content: 'Zhang Chenrui' }],
     ['meta', { name: 'theme-color', content: '#0d1117' }],
+    ['style', {}, `:root { --site-wallpaper: url(${JSON.stringify(wallpapers[0])}); }`],
+    [
+      'script',
+      {},
+      // Choose once before first paint; the root variable persists across SPA navigation.
+      `(function () {
+        var wallpapers = ${JSON.stringify(wallpapers)};
+        var wallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)];
+        document.documentElement.style.setProperty('--site-wallpaper', 'url(' + JSON.stringify(wallpaper) + ')');
+      })();`
+    ],
     [
       'script',
       {},

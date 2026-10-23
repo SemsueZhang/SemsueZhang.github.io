@@ -1,0 +1,16 @@
+Generation mode: built-in image_gen__imagegen
+Intent: generate
+Transparent background: false
+Original output: /Users/zhangchenrui/.codex/generated_images/01a169bb-1813-7e51-9b1d-6d5885cf7238/exec-5db406e0-a61a-4eb9-af46-c7b1be19326d.png
+Project asset: docs/public/images/landscape-snow.png
+
+Exact prompt:
+Use case: photorealistic-natural
+Asset type: wide landscape wallpaper for a restrained modern research blog, with translucent glass cards in the center.
+Primary request: a realistic alpine snow-mountain landscape, a spacious high plateau valley between snowy peaks and a small amount of conifer forest.
+Style/medium: high-quality natural landscape photography with believable textures, distant atmospheric depth, no illustration or CGI look.
+Composition/framing: horizontal 16:9 wide landscape; open calm valley through the middle, snowy mountain peaks across the upper middle, sparse dark evergreen trees near the lower edges, broad light sky above; center stays quiet and unobstructed for glass UI; suitable for cover cropping on both desktop and narrow mobile screens.
+Lighting/mood: soft blue-white early morning light, peaceful and clear, gentle mist far in the valley, natural modest contrast.
+Color palette: restrained cool blue, pale blue-white snow, slate gray rock, muted evergreen; no warm orange sunset.
+Materials/textures: crisp natural snow and mountain rock detail with subtle depth and soft distant ridges.
+Constraints: landscape only, no people, no animals, no buildings, no roads, no vehicles, no foreground branches across the center, no text, no symbols, no logos, no watermark, no frame, no UI overlays.

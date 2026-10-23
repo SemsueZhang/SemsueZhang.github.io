@@ -1,0 +1,17 @@
+Asset: landscape-coast.png
+Mode: built-in image_gen tool, generate a new image (one call), transparent_background: false.
+Original generated image: /Users/zhangchenrui/.codex/generated_images/01a164c0-3110-7f32-9332-125a8c646e4d/exec-117f01b7-080c-4584-82b5-d3770869d274.png
+Saved by copying the original PNG without editing or re-encoding. This is an AI-generated landscape, not a photograph of an identified location.
+
+Final prompt (exact):
+Use case: photorealistic-natural
+Asset type: full-screen landscape background behind translucent glass cards on a calm research and technical blog.
+Primary request: one wide realistic coastal landscape photograph with an open blue-gray sea, distant natural coastal cliffs and rocks, soft clouds and diffuse daylight.
+Scene/backdrop: an uninhabited coastline with distant rugged cliffs and weathered natural rocks, a broad open sea with gentle fine ripples, and a soft layered cloudy sky.
+Style/medium: realistic nature photography with natural crisp details, convincing depth, and restrained processing.
+Composition/framing: wide 16:9 landscape, full bleed. Keep the center visually calm and open for glass UI cards; concentrate stronger coastline and rock detail toward the outer edges. Keep the horizon and complete landscape unobstructed, with generous framing suitable for cover cropping at different screen sizes.
+Lighting/mood: soft cloud-filtered daylight, gentle atmospheric depth, calm and clear.
+Color palette: restrained cyan-blue, slate blue-gray sea and sky, natural stone tones; balanced exposure without warm sunset colors.
+Materials/textures: fine natural sea ripples, subtle cloud texture, visibly detailed rock surfaces.
+Constraints: exactly one opaque-background image; no people, buildings, roads, boats, text, logos, watermarks, or graphic framing.
+Avoid: artificial gradients, abstract shapes, heavy blur, oversaturation, dramatic orange sunset, illustration, painting, or a UI mockup.

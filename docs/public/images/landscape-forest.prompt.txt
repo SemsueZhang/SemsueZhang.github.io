@@ -1,0 +1,15 @@
+Mode: built-in image_gen, generate, single image, transparent_background=false
+Original generated image: /Users/zhangchenrui/.codex/generated_images/01a1698a-c1a6-7b00-8017-427e099e914b/exec-8a68e3c3-7a2c-405e-8cba-915e3cd7b325.png
+Workspace image: docs/public/images/landscape-forest.png
+
+Exact final prompt:
+Use case: photorealistic-natural
+Asset type: full-screen forest landscape background behind translucent glass cards on a calm research and technical blog.
+Primary request: one wide realistic landscape photograph of layered evergreen forest hills and a peaceful mountain valley with thin low-lying mist.
+Scene/backdrop: an expansive uninhabited forested mountain valley in early morning, dense pine and fir woodland covering rounded hills, successive ridgelines fading into subtle atmospheric haze, slender bands of mist resting between trees in the lower valley.
+Style/medium: high-quality natural landscape photography with convincing fine foliage texture, realistic terrain and natural depth.
+Composition/framing: wide 16:9 landscape, approximately 2560 x 1440. Show multiple gentle forest ridges with a quiet open valley near the center. Keep the central composition calm with smooth distant detail for translucent UI overlays; allow recognizable evergreen foliage around the outer lower sides. Full-bleed composition without foreground branches blocking the view, suitable for cover cropping at different viewport sizes.
+Lighting/mood: soft diffuse morning daylight beneath a pale overcast sky, serene and naturally clear, restrained contrast with visible detail.
+Color palette: restrained cool forest green, blue-gray atmospheric ridges and neutral pale mist; avoid warm color casts.
+Constraints: exactly one image, no people, wildlife, buildings, roads, vehicles, fences, text, logos, watermarks or graphic framing. Preserve a recognizable real forest and layered valley; no artificial blur.
+Avoid: abstract gradients, excessive fog obscuring the scene, exaggerated saturation, warm orange light, fantasy scenery, illustration, painted rendering, tilt-shift or miniature effects.
